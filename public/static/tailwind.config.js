@@ -27,10 +27,10 @@ tailwind.config = {
         mono:   ['DM Mono', 'monospace'],
       },
       fontSize: {
-        'display':  ['clamp(3.5rem, 9vw, 9rem)',   { lineHeight: '0.95', letterSpacing: '-0.04em' }],
-        'mega':     ['clamp(2.5rem, 6.5vw, 6.5rem)',{ lineHeight: '0.98', letterSpacing: '-0.035em' }],
-        'huge':     ['clamp(2rem, 4.5vw, 4.5rem)',  { lineHeight: '1.02', letterSpacing: '-0.03em' }],
-        'editorial':['clamp(1.5rem, 2.5vw, 2.25rem)',{ lineHeight: '1.25', letterSpacing: '-0.015em' }],
+        'display':  ['clamp(2.625rem, 4.5vw, 4.5rem)',  { lineHeight: '1.02', letterSpacing: '-0.035em' }],
+        'mega':     ['clamp(1.875rem, 3.2vw, 3.25rem)', { lineHeight: '1.06', letterSpacing: '-0.03em' }],
+        'huge':     ['clamp(1.5rem, 2.25vw, 2.25rem)',  { lineHeight: '1.06', letterSpacing: '-0.03em' }],
+        'editorial':['clamp(1.125rem, 1.25vw, 1.125rem)',{ lineHeight: '1.3', letterSpacing: '-0.015em' }],
       },
       boxShadow: {
         'soft':    '0 1px 2px rgba(31,58,46,0.04), 0 8px 32px -8px rgba(31,58,46,0.08)',

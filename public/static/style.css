@@ -163,6 +163,22 @@ html.lenis, html.lenis body { height: auto; }
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 55%, rgba(31,58,46,.35));
   pointer-events: none;
+  z-index: 0;
+}
+/* Full-bleed legend cards — stronger bottom scrim for readable copy */
+.img-frame-legend::after {
+  background: linear-gradient(
+    180deg,
+    rgba(31,58,46,0.05) 0%,
+    rgba(31,58,46,0.35) 50%,
+    rgba(31,58,46,0.75) 100%
+  );
+}
+.img-legend-copy .kicker,
+.img-legend-copy h3 {
+  text-shadow:
+    0 2px 18px rgba(0,0,0,0.55),
+    0 1px 4px rgba(0,0,0,0.45);
 }
 
 .img-warm { filter: saturate(0.9) contrast(1.02) sepia(0.06); }
@@ -396,7 +412,6 @@ img, svg, video { max-width: 100%; height: auto; }
 
   /* Stat counter typography on big metric grid */
   .text-6xl { font-size: 2.75rem; }
-  .text-mega { line-height: 1.04; }
 
   /* Soften the editorial gutter mb-20/mb-24 between masthead and body */
   .mb-20 { margin-bottom: 2.75rem; }
@@ -431,8 +446,12 @@ img, svg, video { max-width: 100%; height: auto; }
   .phone-back  { right: 0 !important; top: 0 !important; transform: none; }
   .phone-front { transform: none; }
 
-  /* Smaller display sizes for footer masthead on phones */
-  footer .text-mega { font-size: clamp(2rem, 7vw, 3rem); }
+  /* Editorial type scale — medium on phones/tablets */
+  .text-mega      { font-size: clamp(1.75rem, 6vw, 2.5rem);  line-height: 1.08; }
+  .text-huge      { font-size: clamp(1.375rem, 5vw, 2rem);   line-height: 1.08; }
+  .text-display   { font-size: clamp(2rem, 7vw, 3.25rem);    line-height: 1.04; }
+  .text-editorial { font-size: clamp(1.0625rem, 3.5vw, 1.25rem); line-height: 1.35; }
+  .hero-headline  { font-size: clamp(1.625rem, 5.5vw, 2.25rem) !important; line-height: 1.08 !important; }
 
   /* Hide live clock on small screens */
   #liveclock { display: none !important; }
