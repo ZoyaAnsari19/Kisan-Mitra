@@ -159,7 +159,7 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-8 sm:pt-10 md:pt-16 grid grid-cols-12 gap-6 md:gap-10 items-start lg:items-center">
           {/* LEFT — copy */}
           <div className="col-span-12 lg:col-span-6 pb-6 lg:pb-10">
-            <h1 className="reveal font-serif text-forest hero-headline text-[clamp(2.25rem,5vw,4.75rem)] leading-[1.02] tracking-[-0.03em]">
+            <h1 className="reveal font-serif text-forest hero-headline text-[clamp(1.75rem,2.5vw,2.375rem)] leading-[1.06] tracking-[-0.03em]">
               <span className="block">Building the</span>
               <span className="block italic font-light text-brown">future operating</span>
               <span className="block">system for <span className="italic font-light">Rural</span></span>
@@ -296,8 +296,8 @@ export default function Home() {
           {/* Timeline storytelling */}
           <div className="space-y-32">
             {/* Story block 1 */}
-            <article className="grid grid-cols-12 gap-10 items-center">
-              <div className="col-span-12 md:col-span-7 order-2 md:order-1">
+            <article className="grid grid-cols-12 gap-10 md:items-stretch">
+              <div className="col-span-12 md:col-span-7 order-2 md:order-1 flex flex-col justify-center">
                 <div className="kicker"><span className="dot"></span>The Field</div>
                 <h3 className="reveal font-serif text-huge mt-4 text-forest">
                   A farmer wakes before sunrise — and still finishes the day uncertain.
@@ -313,8 +313,8 @@ export default function Home() {
                   <li className="bullet">Only 9% of villages with cold-chain access</li>
                 </ul>
               </div>
-              <div className="col-span-12 md:col-span-5 order-1 md:order-2">
-                <div className="img-frame aspect-[4/5]" data-parallax="0.10">
+              <div className="col-span-12 md:col-span-5 order-1 md:order-2 flex min-h-[320px] md:min-h-0 md:h-full">
+                <div className="img-frame w-full h-full aspect-[4/5] md:aspect-auto" data-parallax="0.10">
                   <img src={IMG.farmerSorghum} alt="Farmer in field" className="w-full h-full object-cover img-warm" />
                 </div>
               </div>
