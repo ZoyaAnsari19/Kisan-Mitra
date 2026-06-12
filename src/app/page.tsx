@@ -322,11 +322,12 @@ export default function Home() {
 
             {/* Story block 2 — full bleed */}
             <article className="relative">
-              <div className="img-frame h-[60vh] min-h-[440px]" data-parallax="0.08">
+              <div className="img-frame img-frame-legend h-[60vh] min-h-[440px]" data-parallax="0.08">
                 <img src={IMG.villageRice} alt="Village India" className="w-full h-full object-cover img-warm" />
-                <div className="absolute inset-0 flex items-end p-10 md:p-16">
-                  <div className="max-w-2xl">
-                    <div className="kicker kicker-gold text-ivory/80"><span className="dot"></span>The Vision</div>
+                <div className="absolute inset-0 z-[1] bg-gradient-to-t from-forest/95 via-forest/60 to-forest/10 pointer-events-none" aria-hidden="true" />
+                <div className="absolute inset-0 z-[2] flex items-end p-10 md:p-16">
+                  <div className="max-w-2xl img-legend-copy">
+                    <div className="kicker kicker-gold text-ivory"><span className="dot"></span>The Vision</div>
                     <h3 className="reveal font-serif text-mega text-ivory mt-3">
                       A village that thinks, earns &amp; thrives — as one.
                     </h3>
@@ -336,9 +337,9 @@ export default function Home() {
             </article>
 
             {/* Story block 3 */}
-            <article className="grid grid-cols-12 gap-10 items-center">
-              <div className="col-span-12 md:col-span-5">
-                <div className="img-frame aspect-[4/5]" data-parallax="0.12">
+            <article className="grid grid-cols-12 gap-10 md:items-stretch">
+              <div className="col-span-12 md:col-span-5 flex min-h-[400px] md:min-h-0 md:h-full">
+                <div className="img-frame w-full h-full aspect-[4/5] md:aspect-auto" data-parallax="0.12">
                   <img src={IMG.solarIrrigation} alt="Solar" className="w-full h-full object-cover img-warm" />
                 </div>
               </div>
@@ -537,13 +538,13 @@ export default function Home() {
             { n:'10', t:'Livestock Services',  d:'Veterinary on-call, dairy collection, feed quality testing — for every household.',                      img: IMG.farmStay,        meta:['Vet on-call','Dairy collection','Feed quality'] },
           ].map((s, i) => (
             <article key={s.n} className={`grid grid-cols-12 gap-10 items-center py-16 border-t border-forest/10 ${i === 0 ? '' : ''}`}>
-              <div className={`col-span-12 md:col-span-7 ${i % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+              <div className={`col-span-12 md:col-span-6 ${i % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
                 <div className="img-frame aspect-[16/10] svc-panel" data-parallax="0.08">
                   <img src={s.img} alt={s.t} className="w-full h-full object-cover img-warm" />
                   <div className="absolute top-4 left-4 stamp text-ivory border-ivory/60">Service · {s.n}</div>
                 </div>
               </div>
-              <div className={`col-span-12 md:col-span-5 ${i % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+              <div className={`col-span-12 md:col-span-6 ${i % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
                 <div className="kicker"><span className="dot"></span>Module {s.n}</div>
                 <h3 className="reveal font-serif text-huge text-forest mt-4">{s.t}</h3>
                 <p className="reveal reveal-delay-1 mt-5 text-[16.5px] text-forest/70 leading-relaxed">{s.d}</p>
