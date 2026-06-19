@@ -34,39 +34,45 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000");
+    : process.env.NODE_ENV === "production"
+      ? "https://kisan.kalakar.tv"
+      : "http://localhost:3000");
+
+const siteTitle = "Kisan Mitra · The Operating System for Rural India";
+const siteDescription =
+  "किसान मित्र भारत का ग्रामीण ऑपरेटिंग सिस्टम है — गाँवों को तकनीक, बुनियादी ढांचे, किसान सेवाओं, नेतृत्व और सतत विकास से जोड़ने वाला एकीकृत पारिस्थितिकी तंत्र।";
+const ogImage = "/og-image.jpg?v=2";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Kisan Mitra | Building the future operating system for Rural India",
-  description:
-    "An integrated ecosystem empowering Indian villages with technology, infrastructure, and farmer services — designed with the dignity of Bharat at its heart.",
+  title: siteTitle,
+  description: siteDescription,
   icons: {
     icon: "/static/favicon.svg",
   },
   openGraph: {
     type: "website",
-    locale: "en_IN",
+    locale: "hi_IN",
+    alternateLocale: "en_IN",
     url: "/",
     siteName: "Kisan Mitra · Rural OS",
-    title: "Kisan Mitra | Building the future operating system for Rural India",
-    description:
-      "An integrated ecosystem empowering Indian villages with technology, infrastructure, and farmer services — designed with the dignity of Bharat at its heart.",
+    title: siteTitle,
+    description: siteDescription,
     images: [
       {
-        url: "/og-image.jpg",
+        url: ogImage,
         width: 1024,
         height: 547,
         alt: "Kisan Mitra — Building the future operating system for Rural India",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kisan Mitra | Building the future operating system for Rural India",
-    description:
-      "An integrated ecosystem empowering Indian villages with technology, infrastructure, and farmer services — designed with the dignity of Bharat at its heart.",
-    images: ["/og-image.jpg"],
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImage],
   },
 };
 
