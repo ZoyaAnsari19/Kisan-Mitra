@@ -31,7 +31,7 @@ const dmMono = DM_Mono({
 });
 
 const PRODUCTION_SITE = "https://kisan.kalakar.tv";
-const OG_IMAGE_PATH = "/static/og/kisan-mitra-hero.jpg";
+const OG_IMAGE_PATH = "/static/og/kisan-mitra-hero.png";
 
 function getSiteUrl(): string {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
@@ -71,10 +71,10 @@ export const metadata: Metadata = {
       {
         url: ogImageUrl,
         secureUrl: ogImageUrl,
-        width: 1024,
-        height: 547,
-        alt: "Kisan Mitra — Building the future operating system for Rural India",
-        type: "image/jpeg",
+        width: 753,
+        height: 428,
+        alt: "Kisan Mitra — किसान की सेवा, दरवाज़े तक",
+        type: "image/png",
       },
     ],
   },
