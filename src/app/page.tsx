@@ -355,7 +355,7 @@ export default function Home() {
                   <img src={IMG.solarIrrigation} alt="Solar" className="w-full h-full object-cover img-warm" />
                 </div>
               </div>
-              <div className="col-span-12 md:col-span-7">
+              <div className="col-span-12 md:col-span-7 min-w-0">
                 <div className="kicker"><span className="dot"></span>The System</div>
                 <h3 className="reveal font-serif text-huge mt-4 text-forest">
                   Technology, infrastructure &amp; leadership — woven together at panchayat scale.
@@ -707,7 +707,7 @@ export default function Home() {
           </div>
 
           {/* Blueprint layout */}
-          <div className="grid grid-cols-12 gap-6 auto-rows-[180px]">
+          <div className="infra-grid grid grid-cols-12 gap-6 auto-rows-[180px]">
             {/* Big featured */}
             <div className="col-span-12 md:col-span-7 row-span-3 img-frame relative" data-parallax="0.06">
               <img src={IMG.waterPlant} alt="Water plant" className="w-full h-full object-cover img-warm" />
@@ -944,7 +944,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-8 grid grid-cols-12 gap-6">
-                  <div className="col-span-12 md:col-span-7">
+                  <div className="col-span-12 md:col-span-7 min-w-0">
                     <div className="text-[11px] tracking-[0.22em] uppercase text-clay/80">Section 3 / 5 · Agronomy</div>
                     <h3 className="font-serif text-2xl mt-2 leading-snug">
                       Which deficiency causes interveinal chlorosis in
@@ -1049,9 +1049,9 @@ export default function Home() {
           </div>
 
           {/* Wizard */}
-          <div id="wizard" className="glass rounded-3xl p-6 md:p-10 shadow-premium">
+          <div id="wizard" className="glass rounded-3xl p-4 sm:p-6 md:p-10 shadow-premium max-w-full overflow-x-clip">
             {/* Progress */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
               <div data-step-label className="kicker"></div>
               <div className="flex items-center gap-2">
                 {Array(7).fill(0).map((_, i) => <div key={i} className="step-dot"></div>)}
@@ -1059,16 +1059,16 @@ export default function Home() {
             </div>
 
             {/* Step 1 — Personal */}
-            <div data-step className="grid grid-cols-12 gap-8 items-start">
-              <div className="col-span-12 md:col-span-5">
+            <div data-step className="grid grid-cols-12 gap-4 md:gap-8 items-start">
+              <div className="col-span-12 md:col-span-5 min-w-0">
                 <div className="img-frame aspect-[4/5]">
                   <img src={IMG.farmerWoman} alt="Farmer" className="w-full h-full object-cover img-warm" />
                 </div>
               </div>
-              <div className="col-span-12 md:col-span-7">
+              <div className="col-span-12 md:col-span-7 min-w-0">
                 <h3 className="font-serif text-huge text-forest">Tell us who you are.</h3>
-                <p className="mt-3 text-forest/65 max-w-md">हम आपका सम्मानपूर्वक स्वागत करते हैं। पहले, आपका नाम और संपर्क।</p>
-                <div className="grid grid-cols-2 gap-4 mt-7">
+                <p className="mt-3 text-forest/65 max-w-full break-words leading-relaxed">हम आपका सम्मानपूर्वक स्वागत करते हैं। पहले, आपका नाम और संपर्क।</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-7">
                   {[
                     ['Full name','Ramesh Kumar'],
                     ['Mobile number','+91 9XXXXXXXXX'],
@@ -1081,22 +1081,22 @@ export default function Home() {
                     </label>
                   ))}
                 </div>
-                <div className="mt-8 flex items-center justify-between">
-                  <button className="btn-ghost flex items-center gap-2 text-sm">
+                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <button className="btn-ghost flex items-center justify-center gap-2 text-sm w-full sm:w-auto">
                     <i className="fa-solid fa-microphone text-gold"></i>
                     Audio assist · हिन्दी
                   </button>
-                  <button data-next className="btn-primary">Next: Village <span className="arrow">→</span></button>
+                  <button data-next className="btn-primary w-full sm:w-auto justify-center">Next: Village <span className="arrow">→</span></button>
                 </div>
               </div>
             </div>
 
             {/* Step 2 — Village */}
-            <div data-step className="hidden grid grid-cols-12 gap-8">
-              <div className="col-span-12 md:col-span-7">
+            <div data-step className="hidden grid grid-cols-12 gap-4 md:gap-8">
+              <div className="col-span-12 md:col-span-7 min-w-0">
                 <h3 className="font-serif text-huge text-forest">Where do you farm?</h3>
                 <p className="mt-3 text-forest/65 max-w-md">Choose your district, taluka and village. We will assign your VLE.</p>
-                <div className="grid grid-cols-3 gap-4 mt-7">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-7">
                   {['State','District','Taluka','Block','Village','Pincode'].map((l) => (
                     <label key={l} className="block">
                       <span className="text-[11px] tracking-[0.22em] uppercase text-brown">{l}</span>
@@ -1104,12 +1104,12 @@ export default function Home() {
                     </label>
                   ))}
                 </div>
-                <div className="mt-8 flex items-center justify-between">
-                  <button data-prev className="btn-ghost">← Back</button>
-                  <button data-next className="btn-primary">Next: Land &amp; Crops <span className="arrow">→</span></button>
+                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <button data-prev className="btn-ghost w-full sm:w-auto justify-center">← Back</button>
+                  <button data-next className="btn-primary w-full sm:w-auto justify-center">Next: Land &amp; Crops <span className="arrow">→</span></button>
                 </div>
               </div>
-              <div className="col-span-12 md:col-span-5">
+              <div className="col-span-12 md:col-span-5 min-w-0">
                 <div className="img-frame aspect-[4/5]">
                   <img src={IMG.villageAerial} alt="Village" className="w-full h-full object-cover img-warm" />
                 </div>
@@ -1117,24 +1117,24 @@ export default function Home() {
             </div>
 
             {/* Step 3 — Land */}
-            <div data-step className="hidden grid grid-cols-12 gap-8">
-              <div className="col-span-12 md:col-span-5">
+            <div data-step className="hidden grid grid-cols-12 gap-4 md:gap-8">
+              <div className="col-span-12 md:col-span-5 min-w-0">
                 <div className="img-frame aspect-[4/5]">
                   <img src={IMG.fields} alt="Fields" className="w-full h-full object-cover img-warm" />
                 </div>
               </div>
-              <div className="col-span-12 md:col-span-7">
+              <div className="col-span-12 md:col-span-7 min-w-0">
                 <h3 className="font-serif text-huge text-forest">Your land &amp; what it grows.</h3>
-                <div className="grid grid-cols-2 gap-4 mt-7">
-                  <label className="block col-span-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-7">
+                  <label className="block col-span-1 min-w-0">
                     <span className="text-[11px] tracking-[0.22em] uppercase text-brown">Land area (acre)</span>
                     <input className="mt-2 w-full bg-cream/70 border border-forest/10 rounded-xl px-4 py-3" placeholder="2.5" />
                   </label>
-                  <label className="block col-span-1">
+                  <label className="block col-span-1 min-w-0">
                     <span className="text-[11px] tracking-[0.22em] uppercase text-brown">Khasra / Survey No.</span>
                     <input className="mt-2 w-full bg-cream/70 border border-forest/10 rounded-xl px-4 py-3" placeholder="124/B" />
                   </label>
-                  <div className="col-span-2">
+                  <div className="col-span-1 md:col-span-2 min-w-0">
                     <span className="text-[11px] tracking-[0.22em] uppercase text-brown">Primary crops</span>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {['Wheat','Mustard','Paddy','Cotton','Soybean','Bajra','Sugarcane','Pulses','Vegetables'].map((c) => (
@@ -1143,9 +1143,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-8 flex items-center justify-between">
-                  <button data-prev className="btn-ghost">← Back</button>
-                  <button data-next className="btn-primary">Next: Services <span className="arrow">→</span></button>
+                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <button data-prev className="btn-ghost w-full sm:w-auto justify-center">← Back</button>
+                  <button data-next className="btn-primary w-full sm:w-auto justify-center">Next: Services <span className="arrow">→</span></button>
                 </div>
               </div>
             </div>
@@ -1169,9 +1169,9 @@ export default function Home() {
                   </label>
                 ))}
               </div>
-              <div className="mt-8 flex items-center justify-between">
-                <button data-prev className="btn-ghost">← Back</button>
-                <button data-next className="btn-primary">Next: Membership <span className="arrow">→</span></button>
+              <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <button data-prev className="btn-ghost w-full sm:w-auto justify-center">← Back</button>
+                <button data-next className="btn-primary w-full sm:w-auto justify-center">Next: Membership <span className="arrow">→</span></button>
               </div>
             </div>
 
@@ -1194,15 +1194,15 @@ export default function Home() {
                   </button>
                 ))}
               </div>
-              <div className="mt-8 flex items-center justify-between">
-                <button data-prev className="btn-ghost">← Back</button>
-                <button data-next className="btn-primary">Next: Verification <span className="arrow">→</span></button>
+              <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <button data-prev className="btn-ghost w-full sm:w-auto justify-center">← Back</button>
+                <button data-next className="btn-primary w-full sm:w-auto justify-center">Next: Verification <span className="arrow">→</span></button>
               </div>
             </div>
 
             {/* Step 6 — Verification */}
-            <div data-step className="hidden grid grid-cols-12 gap-8">
-              <div className="col-span-12 md:col-span-7">
+            <div data-step className="hidden grid grid-cols-12 gap-4 md:gap-8">
+              <div className="col-span-12 md:col-span-7 min-w-0">
                 <h3 className="font-serif text-huge text-forest">Verification &amp; consent.</h3>
                 <p className="mt-3 text-forest/65 max-w-md">Aadhaar e-KYC, mobile OTP and panchayat record check.</p>
                 <div className="mt-7 space-y-4">
@@ -1221,12 +1221,12 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-8 flex items-center justify-between">
-                  <button data-prev className="btn-ghost">← Back</button>
-                  <button data-next className="btn-primary">Confirm &amp; Issue <span className="arrow">→</span></button>
+                <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                  <button data-prev className="btn-ghost w-full sm:w-auto justify-center">← Back</button>
+                  <button data-next className="btn-primary w-full sm:w-auto justify-center">Confirm &amp; Issue <span className="arrow">→</span></button>
                 </div>
               </div>
-              <div className="col-span-12 md:col-span-5">
+              <div className="col-span-12 md:col-span-5 min-w-0">
                 <div className="img-frame aspect-[4/5]">
                   <img src={IMG.farmerPortrait} alt="Verification" className="w-full h-full object-cover img-warm" />
                 </div>
