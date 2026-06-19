@@ -30,18 +30,28 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : process.env.NODE_ENV === "production"
-      ? "https://kisan.kalakar.tv"
-      : "http://localhost:3000");
+const PRODUCTION_SITE = "https://kisan.kalakar.tv";
 
+function getSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  // Production builds must use the public domain — VERCEL_URL preview URLs
+  // return 401 to crawlers (WhatsApp, Facebook) and break link previews.
+  if (process.env.NODE_ENV === "production") {
+    return PRODUCTION_SITE;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
+const siteUrl = getSiteUrl();
 const siteTitle = "Kisan Mitra · The Operating System for Rural India";
 const siteDescription =
   "किसान मित्र भारत का ग्रामीण ऑपरेटिंग सिस्टम है — गाँवों को तकनीक, बुनियादी ढांचे, किसान सेवाओं, नेतृत्व और सतत विकास से जोड़ने वाला एकीकृत पारिस्थितिकी तंत्र।";
-const ogImage = "/og-image.jpg?v=2";
+const ogImageUrl = `${siteUrl}/og-image.jpg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -54,13 +64,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "hi_IN",
     alternateLocale: "en_IN",
-    url: "/",
+    url: siteUrl,
     siteName: "Kisan Mitra · Rural OS",
     title: siteTitle,
     description: siteDescription,
     images: [
       {
-        url: ogImage,
+        url: ogImageUrl,
+        secureUrl: ogImageUrl,
         width: 1024,
         height: 547,
         alt: "Kisan Mitra — Building the future operating system for Rural India",
@@ -72,7 +83,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [ogImage],
+    images: [ogImageUrl],
   },
 };
 
