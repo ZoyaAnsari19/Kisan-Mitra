@@ -251,6 +251,31 @@ html.lenis, html.lenis body { height: auto; }
   background-size: cover; opacity: .35; pointer-events: none;
 }
 
+/* Passport card CTA — compact text, always one line */
+.passport .btn-primary,
+.passport .btn-gold {
+  font-size: .6875rem;
+  padding: .55rem .85rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  gap: .35rem;
+  line-height: 1.2;
+}
+@media (min-width: 480px) {
+  .passport .btn-primary,
+  .passport .btn-gold {
+    font-size: .75rem;
+    padding: .65rem 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .passport .btn-primary,
+  .passport .btn-gold {
+    font-size: .8125rem;
+    padding: .8rem 1.25rem;
+  }
+}
+
 /* Stamp */
 .stamp {
   border: 1.5px solid currentColor;
@@ -346,6 +371,59 @@ html.lenis, html.lenis body { height: auto; }
   width: 36px;
 }
 
+/* Onboarding wizard — mobile */
+@media (max-width: 1023.98px) {
+  #wizard {
+    padding: 1rem !important;
+    overflow-x: clip;
+    max-width: 100%;
+  }
+  #wizard [data-step] {
+    gap: 1.25rem !important;
+  }
+  #wizard [data-step] > [class*="col-span"] {
+    min-width: 0;
+    max-width: 100%;
+  }
+  #wizard [data-step-label] {
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+  }
+  #wizard h3,
+  #wizard p,
+  #wizard label,
+  #wizard label span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  #wizard label span {
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+  }
+  #wizard .img-frame[class*="aspect-"] {
+    aspect-ratio: 16 / 10;
+    max-height: min(48vw, 240px);
+    width: 100%;
+  }
+  #wizard input {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  #wizard .step-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+  }
+  #wizard .step-dot.active {
+    width: 22px;
+  }
+}
+
 /* Number stack */
 .num-stack {
   font-family: var(--font-fraunces), serif;
@@ -427,32 +505,7 @@ img, svg, video { max-width: 100%; height: auto; }
   .mb-24 { margin-bottom: 3rem; }
   .mb-16 { margin-bottom: 2.25rem; }
 
-  /* Collage on mobile — grid layout, no overlap */
-  .hero-collage { margin-top: 1.5rem; }
-  .hero-collage__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 0.65rem;
-  }
-  .hero-collage__main {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    aspect-ratio: 16 / 10;
-    min-height: 200px;
-  }
-  .hero-collage__village {
-    grid-column: 1;
-    grid-row: 2;
-    aspect-ratio: 4 / 3;
-    min-height: 140px;
-  }
-  .hero-collage__solar {
-    grid-column: 2;
-    grid-row: 2;
-    aspect-ratio: 4 / 3;
-    min-height: 140px;
-  }
+  /* Collage chip sizing on mobile */
   .hero-collage .chip { padding: .55rem .8rem; font-size: 12px; }
   .hero-collage .chip .num { font-size: 1.15rem !important; }
 
@@ -463,9 +516,78 @@ img, svg, video { max-width: 100%; height: auto; }
   /* Membership passports — make hero-tier sit flush with siblings on mobile */
   .passport.featured-up { margin-top: 0 !important; }
 
-  /* Infrastructure bento — let auto-rows stretch on mobile */
-  .infra-grid { grid-auto-rows: auto !important; }
-  .infra-grid > * { min-height: 240px; }
+  /* Infrastructure bento — equal-height 2-col mobile grid */
+  .infra-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto !important;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+  .infra-grid > * {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+  }
+  .infra-grid > [class*="col-span-12"],
+  .infra-grid > *:nth-child(6),
+  .infra-grid > *:nth-child(7),
+  .infra-grid > *:nth-child(8) {
+    grid-column: 1 / -1 !important;
+    aspect-ratio: 16 / 10;
+    min-height: 200px;
+    height: auto;
+  }
+  .infra-grid > .img-frame:first-child {
+    aspect-ratio: 16 / 10;
+    min-height: 220px;
+    height: auto;
+  }
+  .infra-grid > .img-frame:not(:first-child) {
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    height: auto;
+  }
+  .infra-grid > .img-frame:not(:first-child) img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .infra-grid > .glass,
+  .infra-grid > .bg-forest {
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    height: auto;
+    padding: 1rem !important;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .infra-grid > .bg-forest {
+    aspect-ratio: 16 / 10;
+    min-height: 200px;
+    padding: 1.25rem !important;
+  }
+  .infra-grid > .glass:last-child {
+    aspect-ratio: 16 / 10;
+    min-height: 200px;
+    padding: 1.25rem !important;
+  }
+  #infrastructure .infra-grid h3.font-serif {
+    font-size: clamp(1rem, 3.8vw, 1.35rem);
+    line-height: 1.15;
+  }
+  #infrastructure .infra-grid > .img-frame:first-child h3.font-serif {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  #infrastructure .infra-grid .kicker {
+    letter-spacing: 0.16em;
+  }
+  #infrastructure .infra-grid .num-stack {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
 
   /* Phone mockups — softer rotations on small screens */
   .phone-back  { right: 0 !important; top: 0 !important; transform: none; }
@@ -483,6 +605,61 @@ img, svg, video { max-width: 100%; height: auto; }
 
   /* Reduce blob noise on mobile (still subtle, just less heavy) */
   .blob { opacity: .35; filter: blur(60px); }
+
+  /* Grid/flex children — shrink inside viewport so text wraps instead of clipping */
+  .grid > *,
+  .grid > [class*="col-span"],
+  .flex > * {
+    min-width: 0;
+  }
+
+  /* Editorial headings — never clip on narrow screens */
+  h1, h2, h3, h4,
+  .text-huge, .text-mega, .text-display, .hero-headline {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+
+  /* Kickers in a flex row — wrap instead of overflowing */
+  .kicker.flex {
+    flex-wrap: wrap;
+    row-gap: .35rem;
+  }
+
+  /* Story/editorial portrait frames — cap height on phones */
+  .img-frame[class*="aspect-"] {
+    max-height: min(58vw, 380px);
+    width: 100%;
+  }
+
+  /* Full-bleed legend card */
+  .img-frame-legend {
+    height: min(48vh, 380px) !important;
+    min-height: 260px !important;
+  }
+
+  /* Story image wrappers — drop rigid min-heights that force tall tiles */
+  article .flex[class*="min-h-"] {
+    min-height: 0 !important;
+  }
+
+  /* Tighter section grids on phones */
+  .grid.gap-10 { gap: 1.5rem; }
+
+  /* Ecosystem story stack — less vertical air on mobile */
+  .space-y-32 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 4rem;
+  }
+
+  /* Phone mockup stage */
+  .min-h-\[640px\] { min-height: 26rem !important; }
+
+  /* Safe horizontal gutters on notched / narrow devices */
+  .mx-auto[class*="max-w-"] {
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+  }
 }
 
 /* Tablet refinements */
@@ -490,13 +667,17 @@ img, svg, video { max-width: 100%; height: auto; }
   .py-32 { padding-top: 6rem; padding-bottom: 6rem; }
 }
 
-/* Hero collage — grid layout, no overlapping images */
+/* Hero collage — mobile-first grid (desktop layout in min-width: 1024px below) */
+.hero-collage {
+  width: 100%;
+  margin-top: 1.5rem;
+}
 .hero-collage__grid {
   display: grid;
-  grid-template-columns: 42% 1fr;
-  grid-template-rows: 1fr 38%;
-  gap: 0.75rem;
-  min-height: 420px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.65rem;
+  width: 100%;
 }
 .hero-collage__village,
 .hero-collage__main,
@@ -505,7 +686,6 @@ img, svg, video { max-width: 100%; height: auto; }
   overflow: hidden;
   min-height: 0;
   width: 100%;
-  height: 100%;
 }
 .hero-collage__village img,
 .hero-collage__main img,
@@ -517,27 +697,56 @@ img, svg, video { max-width: 100%; height: auto; }
   object-fit: cover;
 }
 .hero-collage__main {
-  grid-column: 2;
-  grid-row: 1 / 3;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  aspect-ratio: 16 / 10;
+  min-height: 200px;
 }
 .hero-collage__village {
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 2;
+  aspect-ratio: 4 / 3;
+  min-height: 140px;
 }
 .hero-collage__solar {
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 2;
+  aspect-ratio: 4 / 3;
+  min-height: 140px;
 }
 
-/* Desktop ≥1024px — show radial diagram, hide grid fallback */
+/* Desktop ≥1024px — show radial diagram, hide grid fallback + desktop collage */
 @media (min-width: 1024px) {
   .rural-os-radial { display: block !important; }
   .rural-os-grid   { display: none  !important; }
 
+  .hero-collage { margin-top: 0; }
+
   .hero-collage__grid {
+    grid-template-columns: 42% 1fr;
+    grid-template-rows: 1fr 38%;
+    gap: 0.85rem;
     min-height: min(58vh, 520px);
     max-height: 520px;
-    gap: 0.85rem;
+  }
+  .hero-collage__village,
+  .hero-collage__main,
+  .hero-collage__solar {
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+  .hero-collage__main {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+  .hero-collage__village {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .hero-collage__solar {
+    grid-column: 1;
+    grid-row: 2;
   }
 }
 

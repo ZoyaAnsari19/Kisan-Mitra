@@ -30,12 +30,43 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
-  title: "Kisan Mitra · The Operating System for Rural India",
+  metadataBase: new URL(siteUrl),
+  title: "Kisan Mitra | Building the future operating system for Rural India",
   description:
-    "Kisan Mitra is an integrated rural ecosystem — empowering 600+ villages with technology, infrastructure, farmer services, leadership and sustainable growth.",
+    "An integrated ecosystem empowering Indian villages with technology, infrastructure, and farmer services — designed with the dignity of Bharat at its heart.",
   icons: {
     icon: "/static/favicon.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+    siteName: "Kisan Mitra · Rural OS",
+    title: "Kisan Mitra | Building the future operating system for Rural India",
+    description:
+      "An integrated ecosystem empowering Indian villages with technology, infrastructure, and farmer services — designed with the dignity of Bharat at its heart.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1024,
+        height: 547,
+        alt: "Kisan Mitra — Building the future operating system for Rural India",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kisan Mitra | Building the future operating system for Rural India",
+    description:
+      "An integrated ecosystem empowering Indian villages with technology, infrastructure, and farmer services — designed with the dignity of Bharat at its heart.",
+    images: ["/og-image.jpg"],
   },
 };
 
