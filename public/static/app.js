@@ -36,6 +36,17 @@
     });
   });
 
+  // ---- Reveal elements already in viewport (runs after hydration)
+  function revealInView() {
+    document.querySelectorAll('.reveal:not(.in)').forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) el.classList.add('in');
+    });
+  }
+  revealInView();
+  window.addEventListener('pageshow', (e) => { if (e.persisted) revealInView(); });
+  requestAnimationFrame(() => requestAnimationFrame(revealInView));
+
   // ---- Reveal on scroll
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -45,7 +56,7 @@
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  document.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el));
 
   // ---- Counter animation (skip if SSR already rendered final value)
   const counterIO = new IntersectionObserver((entries) => {

@@ -55,6 +55,16 @@ function formatCount(n: number, decimals = 0): string {
   return decimals > 0 ? n.toFixed(decimals) : Math.round(n).toLocaleString("en-IN");
 }
 
+function liveClockText(): string {
+  const opts: Intl.DateTimeFormatOptions = {
+    weekday: "short",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  };
+  return `Bharat · ${new Date().toLocaleDateString("en-IN", opts).toUpperCase()}`;
+}
+
 export default function Home() {
   return (
     <>
@@ -87,7 +97,7 @@ export default function Home() {
             </nav>
 
             <div className="flex items-center gap-2">
-              <span id="liveclock" className="hidden md:inline-block text-[10.5px] tracking-[0.28em] text-brown font-mono"></span>
+              <span id="liveclock" suppressHydrationWarning className="hidden md:inline-block text-[10.5px] tracking-[0.28em] text-brown font-mono">{liveClockText()}</span>
               <a href="#onboard" className="btn-primary py-2.5 px-4 sm:px-5 text-[12px] sm:text-[13px] whitespace-nowrap">
                 <span className="hidden sm:inline">Become a Mitra</span>
                 <span className="sm:hidden">Join</span>
@@ -160,7 +170,7 @@ export default function Home() {
         </div>
 
         {/* Main split editorial */}
-        <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-8 sm:pt-10 md:pt-16 grid grid-cols-12 gap-6 md:gap-10 items-start lg:items-center">
+        <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-8 sm:pt-10 md:pt-16 grid grid-cols-12 gap-6 md:gap-10 items-start">
           {/* LEFT — copy */}
           <div className="col-span-12 lg:col-span-6 pb-6 lg:pb-10">
             <h1 className="reveal font-serif text-forest hero-headline text-[clamp(1.75rem,2.5vw,2.375rem)] leading-[1.06] tracking-[-0.03em]">
@@ -207,46 +217,44 @@ export default function Home() {
           </div>
 
           {/* RIGHT — visual collage */}
-          <div className="col-span-12 lg:col-span-6 pb-6 lg:pb-10">
-            <div className="hero-collage relative h-[52vh] sm:h-[58vh] lg:h-[64vh] min-h-[340px] sm:min-h-[440px] lg:min-h-[520px] max-h-[640px]">
-              {/* big portrait */}
-              <div className="absolute top-0 right-0 w-[60%] h-[68%] img-frame" data-parallax="0.18">
-                <img src={IMG.farmerPortrait} alt="Indian farmer" className="w-full h-full object-cover img-warm" />
-                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between text-ivory/90 gap-2">
-                  <div className="font-serif italic text-xs sm:text-sm truncate">Ramesh-ji, Bundelkhand</div>
-                  <span className="stamp border-ivory/60 shrink-0 hidden sm:inline-flex">Reg · 0001</span>
+          <div className="col-span-12 lg:col-span-6 pb-6 lg:pb-10 lg:pt-1">
+            <div className="hero-collage w-full lg:max-w-[540px] lg:ml-auto">
+              <div className="hero-collage__grid">
+                {/* village aerial */}
+                <div className="hero-collage__village img-frame">
+                  <img src={IMG.villageIndia} alt="Village" className="w-full h-full object-cover img-warm" />
+                  <div className="chip chip-tl absolute top-3 left-3 sm:top-4 sm:left-4 glass rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 flex items-center gap-2.5 sm:gap-3 animate-float-slow z-10">
+                    <i className="fa-solid fa-tractor text-olive shrink-0"></i>
+                    <div className="min-w-0">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-brown">Live</div>
+                      <div className="text-[11px] sm:text-[13px] text-forest leading-tight">12 crop pickups today</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              {/* secondary — village aerial */}
-              <div className="absolute bottom-0 left-0 w-[55%] h-[45%] img-frame" data-parallax="0.10">
-                <img src={IMG.villageIndia} alt="Village" className="w-full h-full object-cover img-warm" />
-              </div>
-
-              {/* tertiary — solar */}
-              <div className="absolute bottom-[26%] right-[2%] w-[32%] h-[26%] img-frame" data-parallax="0.26">
-                <img src={IMG.solarIrrigation} alt="Solar irrigation" className="w-full h-full object-cover img-warm" />
-              </div>
-
-              {/* floating chips */}
-              <div className="chip chip-tl absolute top-[8%] left-[4%] glass rounded-2xl px-4 py-3 flex items-center gap-3 animate-float-slow max-w-[200px] sm:max-w-none">
-                <i className="fa-solid fa-tractor text-olive shrink-0"></i>
-                <div className="min-w-0">
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-brown">Live</div>
-                  <div className="text-[12px] sm:text-[13px] text-forest leading-tight">12 crop pickups today</div>
+                {/* big portrait — main */}
+                <div className="hero-collage__main img-frame">
+                  <img src={IMG.farmerPortrait} alt="Indian farmer" className="w-full h-full object-cover img-warm" />
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between text-ivory/90 gap-2 z-10">
+                    <div className="font-serif italic text-xs sm:text-sm truncate">Ramesh-ji, Bundelkhand</div>
+                    <span className="stamp border-ivory/60 shrink-0 hidden sm:inline-flex">Reg · 0001</span>
+                  </div>
+                  <div className="chip chip-br absolute top-3 right-3 sm:top-4 sm:right-4 glass rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 flex items-center gap-2.5 sm:gap-3 animate-float-slow z-10 max-w-[calc(100%-1.5rem)]">
+                    <span className="inline-flex w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-forest text-ivory items-center justify-center text-xs font-mono shrink-0">VLE</span>
+                    <div className="min-w-0">
+                      <div className="text-[10px] uppercase tracking-[0.22em] text-brown">Officer assigned</div>
+                      <div className="text-[11px] sm:text-[13px] text-forest leading-tight truncate">Ankit Yadav · Cluster 14</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              <div className="chip chip-ml absolute top-[44%] left-[-1%] glass rounded-2xl px-4 py-3 animate-float-slower max-w-[180px] sm:max-w-none">
-                <div className="text-[10px] uppercase tracking-[0.22em] text-brown">Soil pH · Banda</div>
-                <div className="num font-serif text-2xl text-forest leading-none mt-1">6.8 <span className="text-sm text-olive">optimal</span></div>
-              </div>
-
-              <div className="chip chip-br absolute bottom-[6%] right-[0%] glass rounded-2xl px-4 py-3 flex items-center gap-3 animate-float-slow max-w-[220px] sm:max-w-none">
-                <span className="inline-flex w-9 h-9 rounded-full bg-forest text-ivory items-center justify-center text-xs font-mono shrink-0">VLE</span>
-                <div className="min-w-0">
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-brown">Officer assigned</div>
-                  <div className="text-[12px] sm:text-[13px] text-forest leading-tight truncate">Ankit Yadav · Cluster 14</div>
+                {/* solar accent */}
+                <div className="hero-collage__solar img-frame">
+                  <img src={IMG.solarIrrigation} alt="Solar irrigation" className="w-full h-full object-cover img-warm" />
+                  <div className="chip chip-ml absolute top-3 left-3 sm:top-4 sm:left-4 glass rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3 animate-float-slower z-10">
+                    <div className="text-[10px] uppercase tracking-[0.22em] text-brown">Soil pH · Banda</div>
+                    <div className="num font-serif text-xl sm:text-2xl text-forest leading-none mt-1">6.8 <span className="text-sm text-olive">optimal</span></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -360,15 +368,15 @@ export default function Home() {
 
                 <div className="reveal reveal-delay-2 mt-10 grid grid-cols-3 gap-6 max-w-xl">
                   <div>
-                    <div className="num-stack text-4xl text-forest" data-count="11">0</div>
+                    <div className="num-stack text-4xl text-forest" data-count="11">{formatCount(11)}</div>
                     <div className="text-[11px] tracking-[0.22em] uppercase text-brown mt-2">Modules</div>
                   </div>
                   <div>
-                    <div className="num-stack text-4xl text-forest" data-count="4">0</div>
+                    <div className="num-stack text-4xl text-forest" data-count="4">{formatCount(4)}</div>
                     <div className="text-[11px] tracking-[0.22em] uppercase text-brown mt-2">Officer Tiers</div>
                   </div>
                   <div>
-                    <div className="num-stack text-4xl text-forest" data-count="1">0</div>
+                    <div className="num-stack text-4xl text-forest" data-count="1">{formatCount(1)}</div>
                     <div className="text-[11px] tracking-[0.22em] uppercase text-brown mt-2">Membership</div>
                   </div>
                 </div>
@@ -744,7 +752,7 @@ export default function Home() {
                 <h3 className="font-serif text-2xl text-forest mt-3 leading-tight">Food Processing<br/>Units</h3>
               </div>
               <div>
-                <div className="num-stack text-3xl text-forest" data-count="42">0</div>
+                <div className="num-stack text-3xl text-forest" data-count="42">{formatCount(42)}</div>
                 <div className="text-[11px] tracking-[0.22em] uppercase text-brown mt-1">Units commissioned</div>
               </div>
             </div>
@@ -775,11 +783,11 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <div className="num-stack text-2xl text-forest" data-count="11400">0</div>
+                  <div className="num-stack text-2xl text-forest" data-count="11400">{formatCount(11400)}</div>
                   <div className="text-[10px] tracking-[0.22em] uppercase text-brown mt-1">Sensors live</div>
                 </div>
                 <div>
-                  <div className="num-stack text-2xl text-forest" data-count="600">0</div>
+                  <div className="num-stack text-2xl text-forest" data-count="600">{formatCount(600)}</div>
                   <div className="text-[10px] tracking-[0.22em] uppercase text-brown mt-1">Smart offices</div>
                 </div>
               </div>
@@ -849,11 +857,11 @@ export default function Home() {
               </p>
               <div className="mt-8 grid grid-cols-2 gap-6 max-w-md">
                 <div>
-                  <div className="num-stack text-4xl text-ivory" data-count="452">0</div>
+                  <div className="num-stack text-4xl text-ivory" data-count="452">{formatCount(452)}</div>
                   <div className="text-[11px] tracking-[0.22em] uppercase text-clay/80 mt-2">Officers deployed</div>
                 </div>
                 <div>
-                  <div className="num-stack text-4xl text-ivory" data-count="184">0</div>
+                  <div className="num-stack text-4xl text-ivory" data-count="184">{formatCount(184)}</div>
                   <div className="text-[11px] tracking-[0.22em] uppercase text-clay/80 mt-2">EVs in field</div>
                 </div>
               </div>
@@ -1370,7 +1378,7 @@ export default function Home() {
             ].map((m) => (
               <div key={m.l} className={`${m.w} bg-cream/60 backdrop-blur-sm rounded-3xl p-8 border border-forest/5 lift`}>
                 <div className="flex items-baseline gap-2">
-                  <div className="num-stack text-6xl md:text-7xl text-forest tabular" data-count={m.v} data-decimals={m.dec || 0}>0</div>
+                  <div className="num-stack text-6xl md:text-7xl text-forest tabular" data-count={m.v} data-decimals={m.dec || 0}>{formatCount(m.v, m.dec || 0)}</div>
                   <div className="font-serif text-3xl text-brown">{m.suf}</div>
                 </div>
                 <div className="metric-line my-4"></div>

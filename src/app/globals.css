@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+  --font-hindi: var(--font-hindi), serif;
+
   --color-forest: #1f3a2e;
   --color-forest-soft: #2c4a3b;
   --color-olive: #4a5d3a;
@@ -17,11 +22,6 @@
   --color-dusty: #7a8b6b;
   --color-cream: #faf6ee;
   --color-bone: #ede5d2;
-
-  --font-family-serif: var(--font-fraunces), Georgia, serif;
-  --font-family-sans: var(--font-inter), system-ui, sans-serif;
-  --font-family-hindi: var(--font-hindi), serif;
-  --font-family-mono: var(--font-dm-mono), monospace;
 
   --text-display: clamp(2.625rem, 4.5vw, 4.5rem);
   --text-display--line-height: 1.02;
@@ -44,6 +44,8 @@
   --shadow-premium: 0 30px 80px -30px rgba(31, 58, 46, 0.25), 0 10px 30px -10px rgba(107, 79, 53, 0.1);
   --shadow-gold: 0 20px 50px -20px rgba(184, 153, 104, 0.35);
   --shadow-inner-soft: inset 0 1px 2px rgba(31, 58, 46, 0.06);
+
+  --blur-xs: 2px;
 
   --radius-xl2: 1.25rem;
   --radius-4xl: 2rem;
