@@ -47,16 +47,25 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-  // ---- Counter animation
+  // ---- Counter animation (skip if SSR already rendered final value)
   const counterIO = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
       const el = e.target;
+      if (el.closest('#hero')) {
+        counterIO.unobserve(el);
+        return;
+      }
       const target = parseFloat(el.dataset.count || '0');
       const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const fmt = (n) => decimals ? n.toFixed(decimals) : Math.round(n).toLocaleString('en-IN');
+      const current = parseFloat(el.textContent.replace(/,/g, '')) || 0;
+      if (fmt(current) === fmt(target)) {
+        counterIO.unobserve(el);
+        return;
+      }
       const dur = 1800;
       const start = performance.now();
-      const fmt = (n) => decimals ? n.toFixed(decimals) : Math.round(n).toLocaleString('en-IN');
       const tick = (t) => {
         const p = Math.min(1, (t - start) / dur);
         const eased = 1 - Math.pow(1 - p, 3);
@@ -90,6 +99,9 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+  requestAnimationFrame(() => {
+    parallaxEls.forEach((el) => el.classList.add('parallax-ready'));
+  });
 
   // ---- Onboarding wizard
   const wiz = document.getElementById('wizard');

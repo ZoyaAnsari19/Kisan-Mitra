@@ -51,6 +51,10 @@ const IMG = {
     'https://sspark.genspark.ai/cfimages?u1=uuQylCEOfu3uvLZBCoVAJC58o8rjxE8N%2FoXRvPF8%2FJKclA3MsgrwGhG5k4gKxXEmkVtDGDU4rFceZabMvgeVMQh%2BojF4QchowNGJ%2FSZXt%2B1Zj0Xf4ueyXUtKq44%3D&u2=JgCjQ%2BKvbWU8EoJ0&width=2560',
 }
 
+function formatCount(n: number, decimals = 0): string {
+  return decimals > 0 ? n.toFixed(decimals) : Math.round(n).toLocaleString("en-IN");
+}
+
 export default function Home() {
   return (
     <>
@@ -133,7 +137,7 @@ export default function Home() {
       </header>
 
       {/* ============ 1 · CINEMATIC HERO ============ */}
-      <section className="relative min-h-[100svh] overflow-hidden bg-ivory-grad grain">
+      <section id="hero" className="relative min-h-[100svh] overflow-hidden bg-ivory-grad grain">
         {/* organic blobs */}
         <div className="blob bg-clay/50 w-[520px] h-[520px] -top-40 -left-40 animate-float-slower"></div>
         <div className="blob bg-dusty/50 w-[600px] h-[600px] top-1/3 -right-48 animate-float-slow"></div>
@@ -193,7 +197,7 @@ export default function Home() {
                 { n: 200, l: 'Smart Clusters',  s: 'across rural Bharat' },
               ].map((s) => (
                 <div key={s.l}>
-                  <div className="num-stack text-3xl md:text-4xl text-forest tabular" data-count={s.n}>0</div>
+                  <div className="num-stack text-3xl md:text-4xl text-forest tabular" data-count={s.n}>{formatCount(s.n)}</div>
                   <div className="metric-line my-2"></div>
                   <div className="text-[11px] uppercase tracking-[0.2em] text-brown">{s.l}</div>
                   <div className="text-[11px] text-forest/55 mt-1 leading-tight">{s.s}</div>
