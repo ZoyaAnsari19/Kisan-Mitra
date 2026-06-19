@@ -31,13 +31,12 @@ const dmMono = DM_Mono({
 });
 
 const PRODUCTION_SITE = "https://kisan.kalakar.tv";
+const OG_IMAGE_PATH = "/static/og/kisan-mitra-hero.jpg";
 
 function getSiteUrl(): string {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL;
   }
-  // Production builds must use the public domain — VERCEL_URL preview URLs
-  // return 401 to crawlers (WhatsApp, Facebook) and break link previews.
   if (process.env.NODE_ENV === "production") {
     return PRODUCTION_SITE;
   }
@@ -51,7 +50,7 @@ const siteUrl = getSiteUrl();
 const siteTitle = "Kisan Mitra · The Operating System for Rural India";
 const siteDescription =
   "किसान मित्र भारत का ग्रामीण ऑपरेटिंग सिस्टम है — गाँवों को तकनीक, बुनियादी ढांचे, किसान सेवाओं, नेतृत्व और सतत विकास से जोड़ने वाला एकीकृत पारिस्थितिकी तंत्र।";
-const ogImageUrl = `${siteUrl}/og-image.jpg`;
+const ogImageUrl = `${PRODUCTION_SITE}${OG_IMAGE_PATH}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
