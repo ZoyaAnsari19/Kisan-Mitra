@@ -755,3 +755,109 @@ img, svg, video { max-width: 100%; height: auto; }
   .marquee { animation-duration: 48s; gap: 2.5rem; }
   .marquee > div { gap: 2.5rem; }
 }
+
+/* =========================================================
+   MARATHI (DEVANAGARI) TYPOGRAPHY
+   ---------------------------------------------------------
+   Loaded for every locale but scoped to html[lang^="mr"], so
+   the English page is untouched.
+
+   Devanagari is not a drop-in replacement for Latin here:
+   - Fraunces / Inter / DM Mono have no Devanagari at all
+   - matras sit above and below the line, so the tight display
+     leading (1.02–1.06) clips them
+   - letter-spacing breaks conjuncts (जोडाक्षरे) apart
+   - text-transform: uppercase is a no-op, so every small-caps
+     label loses its visual hierarchy
+   - there is no italic; browsers fake one by slanting, which
+     reads as a rendering bug
+   ========================================================= */
+
+/* ---- Faces --------------------------------------------- */
+/* `.font-sans` and `.font-serif` need NO override here. Their stacks in
+   globals.css already read `Inter, Mukta, …` and `Fraunces, Rozha One, …`,
+   and font fallback is per-glyph: Latin resolves to the Latin face, Devanagari
+   falls through to the Devanagari one. Replacing the whole stack instead would
+   strand the Latin that is all over the Marathi page — VLE, KCC, PM-KISAN,
+   ₹ 1,200, KM-MD, the dates — on a system font. */
+
+/* The `.font-hindi` accents (tier names, motto) get the Marathi cut, which
+   draws a few letters differently from the Hindi one. */
+html[lang^="mr"] .font-hindi {
+  font-family: var(--font-marathi), var(--font-hindi), serif;
+}
+
+/* DM Mono genuinely has no Devanagari and no Devanagari fallback of its own,
+   so kickers and stamps would drop to a random system font mid-page. Append
+   rather than replace, so the digits in "प्रकरण 01" keep the mono face. */
+html[lang^="mr"] .kicker,
+html[lang^="mr"] .stamp,
+html[lang^="mr"] .font-mono {
+  font-family: var(--font-dm-mono), var(--font-deva-sans), ui-monospace, monospace;
+}
+
+/* ---- No fake italics ----------------------------------- */
+html[lang^="mr"] .italic,
+html[lang^="mr"] .marquee {
+  font-style: normal;
+}
+
+/* ---- Tracking ------------------------------------------ */
+/* Negative display tracking pulls conjuncts into each other. */
+html[lang^="mr"] .text-display,
+html[lang^="mr"] .text-mega,
+html[lang^="mr"] .text-huge,
+html[lang^="mr"] .text-editorial,
+html[lang^="mr"] .hero-headline,
+html[lang^="mr"] .tracking-tight {
+  letter-spacing: 0;
+}
+
+/* Every arbitrary `tracking-[…]` utility on the page — the 0.2em–0.3em
+   editorial labels. Wide tracking splits जोडाक्षरे visually. */
+html[lang^="mr"] [class*="tracking-["] {
+  letter-spacing: 0.02em;
+}
+
+html[lang^="mr"] .kicker {
+  letter-spacing: 0.04em;
+  font-size: .74rem;
+  font-weight: 500;
+}
+
+html[lang^="mr"] .stamp {
+  letter-spacing: 0.03em;
+  font-size: .68rem;
+}
+
+/* uppercase does nothing to Devanagari, so the small labels lose the contrast
+   that made them read as labels. Weight replaces case. */
+html[lang^="mr"] [class*="tracking-["].uppercase {
+  font-weight: 500;
+}
+
+/* ---- Leading ------------------------------------------- */
+/* Devanagari needs room above (matras, reph) and below (ukar, halant). */
+html[lang^="mr"] .text-display { line-height: 1.24; }
+html[lang^="mr"] .text-mega    { line-height: 1.28; }
+html[lang^="mr"] .text-huge    { line-height: 1.3; }
+html[lang^="mr"] .text-editorial { line-height: 1.5; }
+html[lang^="mr"] .hero-headline {
+  line-height: 1.34;
+  letter-spacing: 0;
+}
+html[lang^="mr"] .leading-none  { line-height: 1.18; }
+html[lang^="mr"] .leading-tight { line-height: 1.45; }
+html[lang^="mr"] .leading-snug  { line-height: 1.5; }
+
+/* The chapter numerals ("02.", "03.") stay Latin and must stay tight. */
+html[lang^="mr"] .text-7xl.leading-none { line-height: 1; }
+
+/* ---- Length -------------------------------------------- */
+/* Marathi runs 15–25% longer than the English source, so the nav gets its
+   breakpoint pushed out one step rather than wrapping at lg. */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  html[lang^="mr"] #site-header nav.hidden.lg\:flex { display: none; }
+  html[lang^="mr"] #site-header #mobile-menu-btn { display: inline-flex; }
+  html[lang^="mr"] #mobile-menu { display: block; }
+}

@@ -1,0 +1,719 @@
+{
+  "meta": {
+    "title": "Kisan Mitra · The Operating System for Rural India",
+    "description": "Kisan Mitra is India's rural operating system — an integrated ecosystem connecting villages with technology, infrastructure, farmer services, leadership and sustainable growth.",
+    "siteName": "Kisan Mitra · Rural OS",
+    "ogImageAlt": "Kisan Mitra — service to the farmer, at the doorstep"
+  },
+
+  "nav": {
+    "brand": "Kisan Mitra",
+    "brandSub": "रूरल · ओएस",
+    "links": {
+      "ecosystem": "Ecosystem",
+      "services": "Services",
+      "infrastructure": "Infrastructure",
+      "membership": "Membership",
+      "leadership": "Leadership",
+      "mall": "Mini Mall",
+      "impact": "Impact"
+    },
+    "cta": "Become a Mitra",
+    "ctaShort": "Join",
+    "toggleMenu": "Toggle menu",
+    "navigate": "Navigate",
+    "clockPrefix": "Bharat",
+    "languageLabel": "Language"
+  },
+
+  "hero": {
+    "kickerLeft": "Mission · 2026 · Bharat",
+    "kickerLeftTail": "The Operating System for Rural India",
+    "kickerScript": "गाँव · सम्मान · समृद्धि",
+    "kickerRight": "An Editorial · Vol. 01",
+    "headline": {
+      "line1": "Building the",
+      "line2": "future operating",
+      "line3": "system for",
+      "line3Accent": "Rural",
+      "line4": "India."
+    },
+    "body": "An integrated ecosystem empowering villages with technology, infrastructure, farmer services, leadership and sustainable growth — designed with the dignity of Bharat at its heart.",
+    "ctaPrimary": "Begin Farmer Onboarding",
+    "ctaGhost": "Explore the Ecosystem",
+    "stats": [
+      { "label": "Villages", "sub": "connected to the network" },
+      { "label": "Officers", "sub": "in deployment by 2026" },
+      { "label": "Core Services", "sub": "available to every member" },
+      { "label": "Smart Clusters", "sub": "across rural Bharat" }
+    ],
+    "chips": {
+      "liveLabel": "Live",
+      "liveValue": "12 crop pickups today",
+      "portraitCaption": "Ramesh-ji, Bundelkhand",
+      "portraitStamp": "Reg · 0001",
+      "officerLabel": "Officer assigned",
+      "officerValue": "Ankit Yadav · Cluster 14",
+      "soilLabel": "Soil pH · Banda",
+      "soilNote": "optimal"
+    },
+    "marquee": [
+      "Soil Intelligence",
+      "Water Plants",
+      "Crop Marketplace",
+      "Solar Ecosystem",
+      "KCC & Finance",
+      "Drone Agriculture",
+      "Cold Storage",
+      "Super Mini Mall",
+      "Officer Network",
+      "EV Logistics"
+    ]
+  },
+
+  "ecosystem": {
+    "chapter": "Chapter 01",
+    "label": "Why Bharat Now",
+    "title": "Six hundred thousand villages.",
+    "titleAccent": "One ecosystem.",
+    "body": "The villages of India hold 65% of our people, 90% of our food, and the soul of a civilization. They have never lacked talent — only infrastructure to express it. Kisan Mitra is that infrastructure.",
+    "story1": {
+      "kicker": "The Field",
+      "title": "A farmer wakes before sunrise — and still finishes the day uncertain.",
+      "body": "Soil he cannot test. Water he cannot store. Markets that pay him last. This is the inheritance of 120 million Indian farmers. We did not inherit it. We choose to end it.",
+      "bullets": [
+        "68% of holdings smaller than 1 hectare",
+        "₹27,000 average annual income per farming household",
+        "Only 9% of villages with cold-chain access"
+      ]
+    },
+    "story2": {
+      "kicker": "The Vision",
+      "title": "A village that thinks, earns & thrives — as one."
+    },
+    "story3": {
+      "kicker": "The System",
+      "title": "Technology, infrastructure & leadership — woven together at panchayat scale.",
+      "body": "Kisan Mitra is not an app. It is a stack — soil intelligence, water plants, solar grids, cold storage, micro-mandis, and trained officers — operated together by the villages themselves.",
+      "stats": ["Modules", "Officer Tiers", "Membership"]
+    }
+  },
+
+  "ruralOs": {
+    "chapter": "Chapter 02",
+    "label": "The Rural OS",
+    "title": "Ten interconnected pillars,",
+    "titleAccent": "one living network.",
+    "body": "Every node strengthens the next. A farmer logs soil — the marketplace forecasts harvest — the cold chain reserves a slot — the mall prices supplies — the officer schedules a pickup. One ecosystem, ten heartbeats.",
+    "coreLabel": "Core",
+    "coreBrandLine1": "Kisan",
+    "coreBrandLine2": "Mitra",
+    "coreSub": "Rural OS",
+    "nodes": [
+      "Farmers",
+      "Village Officers",
+      "Infrastructure",
+      "Crop Marketplace",
+      "Water Plants",
+      "Solar Systems",
+      "Cold Storage",
+      "Mini Mall",
+      "Logistics · EV",
+      "Digital Platform"
+    ],
+    "meta": [
+      { "k": "API · v1", "v": "Soil + Crop + Identity stack" },
+      { "k": "Storage", "v": "Local + Edge + Sovereign cloud" },
+      { "k": "Power", "v": "Solar-first across all nodes" },
+      { "k": "Language", "v": "11 Indic languages · voice-ready" }
+    ]
+  },
+
+  "services": {
+    "chapter": "Chapter 03",
+    "label": "Farmer Services",
+    "title": "Ten services.",
+    "titleAccent": "One promise.",
+    "body": "Every Mitra member receives access to the full stack of services — priced fairly, delivered locally, and paid only at harvest.",
+    "serviceStamp": "Service",
+    "moduleLabel": "Module",
+    "cta": "Enrol for this service",
+    "items": [
+      {
+        "t": "Soil Intelligence",
+        "d": "Hyper-local soil sampling, nutrient mapping & AI-driven crop recommendations — refreshed every season.",
+        "meta": ["NPK · Moisture", "pH · Salinity", "Carbon · Yield"]
+      },
+      {
+        "t": "Water Management",
+        "d": "Drip & micro-irrigation engineered for your land, powered by solar — and managed by your VLE.",
+        "meta": ["Drip · Sprinkler", "Solar pumps", "Recharge wells"]
+      },
+      {
+        "t": "Crop Marketplace",
+        "d": "Direct buyer access without middlemen, transparent grade-based pricing, pickup at your gate.",
+        "meta": ["On-farm pickup", "Grade-based pricing", "24-hr settlement"]
+      },
+      {
+        "t": "Government Assistance",
+        "d": "PM-KISAN, MSP, subsidies — applied, tracked and disbursed by your village officer.",
+        "meta": ["PM-KISAN", "MSP linkage", "Subsidy filing"]
+      },
+      {
+        "t": "KCC & Finance",
+        "d": "Credit pre-approved on your harvest pipeline — fair rates, no paperwork queues.",
+        "meta": ["KCC · ₹3L", "Crop insurance", "Equipment loans"]
+      },
+      {
+        "t": "Machinery Access",
+        "d": "On-demand tractors, harvesters & rotavators — booked from the mall, priced by the hour.",
+        "meta": ["Tractor pool", "Harvesters", "Threshers"]
+      },
+      {
+        "t": "Drone Agriculture",
+        "d": "Precision spraying, crop scouting and yield estimation — operated by certified rural pilots.",
+        "meta": ["Crop scouting", "Spraying", "Yield maps"]
+      },
+      {
+        "t": "Solar Support",
+        "d": "Roof, pump & community-grid solar — installed, maintained, financed under one window.",
+        "meta": ["Pump sets", "Roof-top", "Community grid"]
+      },
+      {
+        "t": "Smart Storage",
+        "d": "Climate-controlled warehouses & cold rooms close to your village — no more distress sales.",
+        "meta": ["Cold rooms", "Silos", "Insured stock"]
+      },
+      {
+        "t": "Livestock Services",
+        "d": "Veterinary on-call, dairy collection, feed quality testing — for every household.",
+        "meta": ["Vet on-call", "Dairy collection", "Feed quality"]
+      }
+    ]
+  },
+
+  "membership": {
+    "chapter": "Chapter 04",
+    "label": "Membership",
+    "title": "Not a subscription.",
+    "titleAccent": "A Mitra passport.",
+    "body": "A premium identity card that opens access to every service, every discount, every officer in the network. Pay-at-harvest. Renewable every Kharif. Honoured everywhere.",
+    "passportLabel": "Mitra Passport",
+    "issueLabel": "Issue",
+    "payAtHarvest": "Pay-at-harvest",
+    "mostChosen": "Most Chosen",
+    "choose": "Choose",
+    "signature": "Kisan Mitra Bharat",
+    "tiers": [
+      {
+        "tier": "Chhota",
+        "native": "छोटा",
+        "desc": "Foundational membership for smallholder farms (<1 ha).",
+        "price": "₹ 1,200 / harvest",
+        "stamp": "KM-CH",
+        "perks": [
+          "Soil test · annual",
+          "Crop pickup · 2 tonnes",
+          "Mall discount · 8%",
+          "Officer call-back · 24h",
+          "KCC eligibility"
+        ]
+      },
+      {
+        "tier": "Madhyam",
+        "native": "मध्यम",
+        "desc": "For growing households (1–3 ha). Most popular tier.",
+        "price": "₹ 3,600 / harvest",
+        "stamp": "KM-MD",
+        "perks": [
+          "Soil test · seasonal",
+          "Crop pickup · 8 tonnes",
+          "Mall discount · 14%",
+          "Machinery priority",
+          "Water plant access",
+          "Drone scouting · 1 / season"
+        ]
+      },
+      {
+        "tier": "Bada",
+        "native": "बड़ा",
+        "desc": "For large holdings & FPOs (3+ ha). Concierge tier.",
+        "price": "₹ 9,800 / harvest",
+        "stamp": "KM-BD",
+        "perks": [
+          "Soil + water · monthly",
+          "Unlimited pickup",
+          "Mall discount · 22%",
+          "Dedicated officer",
+          "Cold storage block",
+          "Drone fleet · on-demand",
+          "Govt scheme concierge"
+        ]
+      }
+    ],
+    "notePre": "All memberships honoured across",
+    "noteEm": "600+ villages",
+    "notePost": "· pay only after Kharif"
+  },
+
+  "infrastructure": {
+    "chapter": "Chapter 05",
+    "label": "Infrastructure",
+    "title": "The hardware of a",
+    "titleAccent": "dignified village.",
+    "body": "Water, energy, storage, processing, logistics — engineered, deployed and maintained by Kisan Mitra. Every village a small civilization.",
+    "water": {
+      "module": "Module 06.01",
+      "live": "Live · Banda",
+      "kicker": "Water",
+      "title": "Community Water Plants",
+      "desc": "5,000 L/day per cluster · RO + UV · solar-pumped · operated by the village."
+    },
+    "solar": { "kicker": "Energy", "title": "Community Solar Grid" },
+    "storage": { "kicker": "Storage", "title": "Warehouses & Silos" },
+    "cold": { "kicker": "Cold Chain", "title": "Cold Storage" },
+    "processing": {
+      "kicker": "Processing",
+      "titleLine1": "Food Processing",
+      "titleLine2": "Units",
+      "statLabel": "Units commissioned"
+    },
+    "mandi": { "kicker": "Trade", "title": "Micro Mandi" },
+    "ev": {
+      "kicker": "Mobility",
+      "titleLine1": "Smart EV",
+      "titleLine2": "Logistics",
+      "desc": "Three-wheel EVs assigned to every cluster — silent, solar-charged, gate-to-gate.",
+      "code": "06.07",
+      "live": "Live · 184 units"
+    },
+    "iot": {
+      "kicker": "IoT",
+      "titleLine1": "Sensors & Smart",
+      "titleLine2": "Village Office",
+      "sensorsLabel": "Sensors live",
+      "officesLabel": "Smart offices"
+    }
+  },
+
+  "leadership": {
+    "chapter": "Chapter 06",
+    "label": "Leadership",
+    "title": "A four-tier officer corps —",
+    "titleAccent": "elected, trained, deployed.",
+    "body": "Recruited from the village, accountable to the village. Every Mitra officer is uniformed, equipped with an EV and a Field Connect tablet — a new authority of dignity.",
+    "deploymentLabel": "Deployment",
+    "officers": [
+      {
+        "code": "VLE",
+        "name": "Village Level Entrepreneur",
+        "region": "1 per village",
+        "count": "600 active",
+        "desc": "The face of Kisan Mitra in the village. Onboards farmers, manages services, runs the smart office."
+      },
+      {
+        "code": "VLM",
+        "name": "Village Level Manager",
+        "region": "1 per 5 villages",
+        "count": "120 active",
+        "desc": "Coordinates VLEs in the cluster, manages infrastructure rollout, audits services."
+      },
+      {
+        "code": "TLO",
+        "name": "Taluka Level Officer",
+        "region": "1 per taluka",
+        "count": "48 active",
+        "desc": "Owns multi-cluster operations, government liaison, machinery & logistics dispatch."
+      },
+      {
+        "code": "DLO",
+        "name": "District Level Officer",
+        "region": "1 per district",
+        "count": "12 active",
+        "desc": "Strategic command. Owns the district P&L, recruitment, and partnerships."
+      }
+    ],
+    "command": {
+      "kicker": "Field Operations",
+      "title": "A national command center for the village.",
+      "body": "Every officer's movement, every pickup, every grievance — logged on a single map. Live deployment, live impact, live accountability.",
+      "statOfficers": "Officers deployed",
+      "statEvs": "EVs in field",
+      "panelLive": "Live · Cluster 14",
+      "panelWeather": "UP · Banda · 22.4°C",
+      "metrics": [
+        { "l": "Pickups today", "v": "48" },
+        { "l": "Soil tests", "v": "126" },
+        { "l": "Grievances closed", "v": "17" }
+      ]
+    }
+  },
+
+  "recruitment": {
+    "chapter": "Chapter 07",
+    "label": "Recruitment",
+    "title": "A village officer's exam,",
+    "titleAccent": "finally worthy of one.",
+    "body": "AI-proctored, QR-verified, hardware-locked. We borrowed from the country's most secure exam systems and rebuilt them — for the field.",
+    "terminal": {
+      "kicker": "Secure Terminal · KM-EX/0418",
+      "proctoring": "Proctoring active",
+      "section": "Section 3 / 5 · Agronomy",
+      "question": "Which deficiency causes interveinal chlorosis in mature mustard leaves?",
+      "options": ["Nitrogen", "Sulphur", "Magnesium", "Zinc"],
+      "selected": "selected",
+      "candidateLabel": "Candidate",
+      "candidateName": "Ankit Yadav",
+      "candidateMeta": "VLE · Cluster 14 · Banda, UP",
+      "qrLabel": "QR · Verified",
+      "qrCode": "UP-BN-0418-0001",
+      "timeLabel": "Time remaining",
+      "timeValue": "42:18",
+      "integrityLabel": "Integrity",
+      "integrityValue": "Face + Eye + Mic",
+      "footerLeft": "Hardware-locked terminal · device fingerprint verified",
+      "footerRight": "v 3.04 · IndiaStack signed"
+    },
+    "flow": [
+      { "t": "Village nomination", "d": "Panchayat-endorsed application within the village." },
+      { "t": "Identity & background", "d": "Aadhaar, education and clean-record verification." },
+      { "t": "AI-secure exam", "d": "Three-hour proctored exam at the nearest KM terminal." },
+      { "t": "Field training", "d": "21-day residential training at the District Hub." },
+      { "t": "Posting & uniform", "d": "Officer issued uniform, ID card, EV & Field Connect tablet." }
+    ]
+  },
+
+  "onboard": {
+    "chapter": "Chapter 08",
+    "label": "Onboarding",
+    "title": "Seven steps to become",
+    "titleAccent": "a Mitra.",
+    "body": "Designed for thumbs in the field, voices in Hindi, and pride in belonging. No paperwork. No queues. Ten minutes.",
+    "stepWord": "Step",
+    "stepLabels": [
+      "Personal Details",
+      "Village Information",
+      "Land & Crops",
+      "Service Requirements",
+      "Membership Selection",
+      "Verification",
+      "Welcome"
+    ],
+    "back": "Back",
+    "step1": {
+      "title": "Tell us who you are.",
+      "body": "हम आपका सम्मानपूर्वक स्वागत करते हैं। पहले, आपका नाम और संपर्क।",
+      "fields": [
+        { "label": "Full name", "placeholder": "Ramesh Kumar" },
+        { "label": "Mobile number", "placeholder": "+91 9XXXXXXXXX" },
+        { "label": "Aadhaar (last 4)", "placeholder": "••••" },
+        { "label": "Preferred language", "placeholder": "हिन्दी" }
+      ],
+      "audioAssist": "Audio assist · हिन्दी",
+      "next": "Next: Village"
+    },
+    "step2": {
+      "title": "Where do you farm?",
+      "body": "Choose your district, taluka and village. We will assign your VLE.",
+      "fields": ["State", "District", "Taluka", "Block", "Village", "Pincode"],
+      "next": "Next: Land & Crops"
+    },
+    "step3": {
+      "title": "Your land & what it grows.",
+      "landLabel": "Land area (acre)",
+      "landPlaceholder": "2.5",
+      "khasraLabel": "Khasra / Survey No.",
+      "khasraPlaceholder": "124/B",
+      "cropsLabel": "Primary crops",
+      "crops": [
+        "Wheat",
+        "Mustard",
+        "Paddy",
+        "Cotton",
+        "Soybean",
+        "Bajra",
+        "Sugarcane",
+        "Pulses",
+        "Vegetables"
+      ],
+      "next": "Next: Services"
+    },
+    "step4": {
+      "title": "Which services do you need?",
+      "body": "Select as many as apply. Officers will reach you within 24 hours.",
+      "services": [
+        "Soil Test",
+        "Water",
+        "Machinery",
+        "Drone",
+        "Cold Store",
+        "Marketplace",
+        "KCC",
+        "Solar",
+        "Livestock",
+        "Govt Schemes"
+      ],
+      "next": "Next: Membership"
+    },
+    "step5": {
+      "title": "Choose your Mitra passport.",
+      "payAtHarvest": "Pay-at-harvest",
+      "tiers": [
+        { "t": "Chhota", "native": "छोटा", "price": "₹ 1,200" },
+        { "t": "Madhyam", "native": "मध्यम", "price": "₹ 3,600" },
+        { "t": "Bada", "native": "बड़ा", "price": "₹ 9,800" }
+      ],
+      "next": "Next: Verification"
+    },
+    "step6": {
+      "title": "Verification & consent.",
+      "body": "Aadhaar e-KYC, mobile OTP and panchayat record check.",
+      "items": [
+        { "t": "Aadhaar e-KYC", "s": "Encrypted · IndiaStack signed" },
+        { "t": "Mobile OTP", "s": "+91 9XXXXXXXXX" },
+        { "t": "Panchayat record", "s": "Auto-pulled · 1 click" }
+      ],
+      "verify": "Verify",
+      "next": "Confirm & Issue"
+    },
+    "step7": {
+      "issued": "Issued · KM-MD/00000218",
+      "title": "Welcome, Mitra.",
+      "body": "Your passport has been issued. A VLE will reach you within 24 hours. Bharat is proud of you.",
+      "passportLabel": "Mitra Passport",
+      "tier": "Madhyam",
+      "native": "मध्यम",
+      "idLabel": "ID",
+      "idValue": "KM-MD-0218",
+      "holder": "Ramesh Kumar · Banda",
+      "edit": "Edit",
+      "cta": "Explore my services"
+    }
+  },
+
+  "mall": {
+    "chapter": "Chapter 09",
+    "label": "Mini Mall",
+    "title": "The Super Mini Mall —",
+    "titleAccent": "a village's first department store.",
+    "body": "Inputs, electronics, dairy, building materials, and the goods that villages have always made. Member-priced. Pay-at-harvest. Stocked weekly by the cluster.",
+    "stamp": "Mall · Cluster 14",
+    "open": "Open · 7:00 — 21:00",
+    "heroKicker": "Pay at harvest",
+    "heroTitle": "Member-only pricing across 4,200 SKUs.",
+    "categories": [
+      { "t": "Agri Inputs", "n": "1,840 SKUs" },
+      { "t": "Electronics", "n": "620 SKUs" },
+      { "t": "Building Materials", "n": "380 SKUs" },
+      { "t": "Dairy & Foods", "n": "780 SKUs" }
+    ],
+    "cards": [
+      {
+        "kicker": "Village-made",
+        "titleLine1": "Made by the village,",
+        "titleLine2": "for the village.",
+        "body": "Pickles, papads, honey, ghee, hand-woven textiles — produced by the SHGs of your own cluster."
+      },
+      {
+        "kicker": "Member savings",
+        "titleLine1": "22%",
+        "titleLine2": "",
+        "body": "Average price advantage for Bada members vs. the open mandi rate, on essential inputs."
+      },
+      {
+        "kicker": "Pay-at-harvest",
+        "titleLine1": "Buy today.",
+        "titleLine2": "Pay after Kharif.",
+        "body": "Zero interest on member purchases · automatic settlement at crop pickup."
+      }
+    ]
+  },
+
+  "impact": {
+    "chapter": "Chapter 10",
+    "label": "Impact",
+    "title": "Numbers that",
+    "titleAccent": "mean something.",
+    "body": "We publish our impact dashboard openly. Every village, every officer, every rupee of farmer income generated — verifiable.",
+    "metrics": [
+      "Villages connected",
+      "Farmers onboarded",
+      "Crop value transacted",
+      "Water plants operational",
+      "Solar installations"
+    ],
+    "crore": "Cr",
+    "chart": {
+      "kicker": "Growth · last 12 months",
+      "title": "Onboarded farmers, monthly.",
+      "yoyValue": "38%",
+      "yoyLabel": "YoY",
+      "months": ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
+    },
+    "income": {
+      "kicker": "Household income",
+      "title": "Avg. uplift after 12 months",
+      "value": "+ 2.4×",
+      "body": "Median income of Madhyam-tier households, audited by an independent rural research firm."
+    },
+    "carbon": {
+      "kicker": "Carbon",
+      "title": "Diesel pumps retired",
+      "value": "11,200",
+      "body": "— equivalent to 41,000 tonnes of CO₂ saved across the network this year."
+    }
+  },
+
+  "app": {
+    "kicker": "Chapter 11 · Field Tool",
+    "title": "Argus Field",
+    "titleAccent": "Connect.",
+    "body": "The handset of every officer and member. Built offline-first for villages where networks flicker. A single, beautiful surface for every Kisan Mitra interaction.",
+    "features": [
+      { "t": "Farmer registry", "d": "Every household, every plot." },
+      { "t": "GPS check-ins", "d": "Officer attendance, automatic." },
+      { "t": "Offline sync", "d": "Capture now, sync when online." },
+      { "t": "Soil logging", "d": "In-field sample tagging." },
+      { "t": "Govt schemes", "d": "Apply, track, disburse." },
+      { "t": "Crop records", "d": "Sowing → harvest → mandi." }
+    ],
+    "download": "Download for Android",
+    "downloadMeta": "Version 3.04 · 22 MB · Hindi + 10 Indic",
+    "phone": {
+      "time": "9:24",
+      "kicker": "Today · Cluster 14",
+      "greeting": "नमस्ते, Ankit-ji",
+      "pickupsLabel": "Today's pickups",
+      "pickupsValue": "12",
+      "tiles": ["Soil", "Water", "Pickup"],
+      "routeLabel": "Next route",
+      "routeValue": "Mau → Mahokar → Banda"
+    },
+    "chipOfflineLabel": "Offline-ready",
+    "chipOfflineValue": "412 records queued",
+    "chipVoiceLabel": "Voice · हिन्दी",
+    "chipVoiceValue": "“पंजीकरण शुरू करें”"
+  },
+
+  "voices": {
+    "chapter": "Chapter 12",
+    "label": "Voices",
+    "title": "Documentaries from",
+    "titleAccent": "the field.",
+    "impactLabel": "Impact",
+    "items": [
+      {
+        "name": "Sunita Devi",
+        "village": "Mahokar, Banda",
+        "tier": "Madhyam",
+        "quote": "Pehli baar, mujhe apne kheth ka mol kisi aur ne nahin, mujhne tay kiya. Yeh chhoti baat nahin hai.",
+        "metric": "Income · ₹ 84,000 → ₹ 1.9 L"
+      },
+      {
+        "name": "Ramesh Kumar",
+        "village": "Sehari, Banda",
+        "tier": "Bada",
+        "quote": "Ankit babu humein subah panch baje gaadi se pickup karne aate hain. Mandi tak jaane ki zaroorat nahin.",
+        "metric": "Yield · 18 → 27 quintal / acre"
+      },
+      {
+        "name": "Rajaram Singh",
+        "village": "Banda · Cluster 14",
+        "tier": "Chhota",
+        "quote": "Ab mera beta gaon mein hi VLE ban gaya hai. Sheher jaane ki majboori khatm.",
+        "metric": "Beta · KM Officer · uniformed"
+      }
+    ]
+  },
+
+  "faq": {
+    "chapter": "Chapter 13",
+    "title": "Questions",
+    "titleAccent": "answered honestly.",
+    "body": "The most common questions we receive at our District Hubs — answered the same way we'd answer in a panchayat meeting.",
+    "cta": "Speak to an officer",
+    "items": [
+      {
+        "q": "Do I need to pay anything upfront?",
+        "a": "No. All Mitra memberships are pay-at-harvest. We deduct dues at the time of your first crop pickup, transparently and only with your consent."
+      },
+      {
+        "q": "Is my land record safe with Kisan Mitra?",
+        "a": "Yes. We do not store original land documents. We use one-time verification through your panchayat record, and your data sits in sovereign Indian cloud, encrypted."
+      },
+      {
+        "q": "What if there is no officer in my village yet?",
+        "a": "You can still register today. The moment a VLE is posted in your panchayat, your services activate automatically and you are notified in your preferred language."
+      },
+      {
+        "q": "How is the crop pickup price decided?",
+        "a": "Grade-based pricing, published transparently every morning at 6 AM on the app. You can choose to accept or reject. Either way, the price is yours to see — not negotiated by middlemen."
+      },
+      {
+        "q": "Can I upgrade my membership later?",
+        "a": "Yes. You can move from Chhota → Madhyam → Bada at any time. The pro-rated difference is added to your harvest settlement."
+      },
+      {
+        "q": "What languages does the app and officer support?",
+        "a": "Hindi, English and 9 Indic languages — Marathi, Punjabi, Bengali, Tamil, Telugu, Kannada, Malayalam, Gujarati, Odia."
+      }
+    ]
+  },
+
+  "footer": {
+    "kicker": "Vision · Bharat 2030",
+    "title": "A village must not be left behind —",
+    "titleAccent": "by anything. Ever again.",
+    "cta": "Become a Mitra",
+    "ops": "Live operations · 600 villages · 12 districts · 4 states",
+    "brandSub": "रूरल · ओएस · भारत",
+    "about": "Building the operating system for rural India — one village, one officer, one harvest at a time.",
+    "columns": [
+      {
+        "h": "Ecosystem",
+        "l": ["The Rural OS", "Architecture", "Sustainability", "Press & News", "Partners"]
+      },
+      {
+        "h": "Farmer Support",
+        "l": ["Onboarding", "Membership", "Officer locator", "Grievance", "Helpline"]
+      },
+      {
+        "h": "Infrastructure",
+        "l": ["Water Plants", "Solar Grid", "Cold Storage", "Logistics", "Mini Mall"]
+      },
+      {
+        "h": "Services",
+        "l": ["Soil Intelligence", "Crop Marketplace", "KCC & Finance", "Drone Agri", "Govt Schemes"]
+      }
+    ],
+    "districtsLabel": "Districts · Live",
+    "contactLabel": "Contact",
+    "helplineValue": "1800-MITRA-99",
+    "helplineNote": "Farmer helpline · 6 AM — 10 PM · Hindi & English",
+    "emailValue": "hello@kisanmitra.in",
+    "emailNote": "Press, partnerships & institutional enquiries",
+    "addressValue": "Banda · Uttar Pradesh",
+    "addressNote": "Mission HQ · District Hub · 210001",
+    "copyright": "© 2026 Kisan Mitra Foundation · Bharat. All rights reserved.",
+    "legal": ["Privacy", "Terms", "Data Sovereignty", "RTI"],
+    "motto": "सत्यमेव जयते · सर्वे भवन्तु सुखिनः"
+  },
+
+  "alt": {
+    "village": "Village",
+    "villageIndia": "Village India",
+    "farmer": "Farmer",
+    "farmerPortrait": "Indian farmer",
+    "farmerField": "Farmer in field",
+    "solar": "Solar",
+    "solarIrrigation": "Solar irrigation",
+    "fields": "Fields",
+    "waterPlant": "Water plant",
+    "silos": "Silos",
+    "warehouse": "Warehouse",
+    "mandi": "Mandi",
+    "mallInterior": "Mall interior",
+    "appScreen": "App screen",
+    "verification": "Verification"
+  }
+}

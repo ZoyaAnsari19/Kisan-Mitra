@@ -6,9 +6,16 @@
    - Counter animation
    - Onboarding wizard
    - FAQ accordions (native <details>)
+
+   Locale-aware: every user-visible string below comes from the server via
+   data-* attributes (see src/app/[lang]/page.tsx and layout.tsx). Nothing
+   here is hardcoded to one language.
    ============================================================ */
 
 (() => {
+  // ---- Locale handed down by the server on <html>
+  const root = document.documentElement;
+  const INTL_LOCALE = root.dataset.intlLocale || 'en-IN';
   // ---- Lenis smooth scroll
   let lenis;
   try {
@@ -69,7 +76,7 @@
       }
       const target = parseFloat(el.dataset.count || '0');
       const decimals = parseInt(el.dataset.decimals || '0', 10);
-      const fmt = (n) => decimals ? n.toFixed(decimals) : Math.round(n).toLocaleString('en-IN');
+      const fmt = (n) => decimals ? n.toFixed(decimals) : Math.round(n).toLocaleString(INTL_LOCALE);
       const current = parseFloat(el.textContent.replace(/,/g, '')) || 0;
       if (fmt(current) === fmt(target)) {
         counterIO.unobserve(el);
@@ -122,14 +129,16 @@
     const next  = wiz.querySelectorAll('[data-next]');
     const prev  = wiz.querySelectorAll('[data-prev]');
     const labelEl = wiz.querySelector('[data-step-label]');
-    const labels = ['Personal Details','Village Information','Land & Crops','Service Requirements','Membership Selection','Verification','Welcome'];
+    const stepWord = wiz.dataset.stepWord || 'Step';
+    let labels = [];
+    try { labels = JSON.parse(wiz.dataset.stepLabels || '[]'); } catch (e) { labels = []; }
     let cur = 0;
     const render = () => {
       steps.forEach((s, i) => {
         s.classList.toggle('hidden', i !== cur);
       });
       dots.forEach((d, i) => d.classList.toggle('active', i === cur));
-      if (labelEl) labelEl.textContent = `Step ${String(cur+1).padStart(2,'0')} · ${labels[cur]}`;
+      if (labelEl) labelEl.textContent = `${stepWord} ${String(cur+1).padStart(2,'0')} · ${labels[cur] || ''}`;
     };
     next.forEach((b) => b.addEventListener('click', () => { cur = Math.min(steps.length-1, cur+1); render(); }));
     prev.forEach((b) => b.addEventListener('click', () => { cur = Math.max(0, cur-1); render(); }));
@@ -162,10 +171,20 @@
     const tick = () => {
       const now = new Date();
       const opts = { weekday:'short', day:'2-digit', month:'short', year:'numeric' };
-      clock.textContent = `Bharat · ${now.toLocaleDateString('en-IN', opts).toUpperCase()}`;
+      const prefix = clock.dataset.prefix || 'Bharat';
+      clock.textContent = `${prefix} · ${now.toLocaleDateString(INTL_LOCALE, opts).toUpperCase()}`;
     };
     tick(); setInterval(tick, 60000);
   }
+
+  // ---- Language switcher: keep the reader where they were.
+  // Progressive enhancement only — the links work without this.
+  document.querySelectorAll('a[data-locale-link]').forEach((a) => {
+    a.addEventListener('click', () => {
+      const hash = window.location.hash;
+      if (hash && hash.length > 1) a.href = a.getAttribute('href') + hash;
+    });
+  });
 
   // ---- Mobile menu (hamburger) — visible only below lg
   const mBtn  = document.getElementById('mobile-menu-btn');
