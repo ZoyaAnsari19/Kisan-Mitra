@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), Georgia, serif;
+  /* Devanagari faces sit in the fallback chain so the few Devanagari glyphs on
+     the English page (the क mark, रूरल · ओएस, the motto) render from a font we
+     chose instead of whatever the operating system happens to supply. */
+  --font-sans: var(--font-inter), var(--font-deva-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), var(--font-deva-display), Georgia, serif;
   --font-mono: var(--font-dm-mono), ui-monospace, monospace;
   --font-hindi: var(--font-hindi), serif;
+  --font-marathi: var(--font-marathi), serif;
+  --font-deva-display: var(--font-deva-display), serif;
+  --font-deva-sans: var(--font-deva-sans), sans-serif;
 
   --color-forest: #1f3a2e;
   --color-forest-soft: #2c4a3b;
