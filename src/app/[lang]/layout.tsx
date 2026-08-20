@@ -22,7 +22,13 @@ import {
   ogLocales,
 } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { OG_IMAGE_PATH, PRODUCTION_SITE, absoluteLocaleUrl, getSiteUrl } from "@/site";
+import {
+  OG_IMAGE,
+  SHARE,
+  absoluteLocaleUrl,
+  getSiteUrl,
+  ogImageUrl,
+} from "@/site";
 
 /**
  * Only Inter and Fraunces are preloaded. Both carry the Latin text that appears
@@ -101,7 +107,6 @@ const dmMono = DM_Mono({
 });
 
 const siteUrl = getSiteUrl();
-const ogImageUrl = `${PRODUCTION_SITE}${OG_IMAGE_PATH}`;
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -133,6 +138,7 @@ export async function generateMetadata({
         "x-default": localePath(defaultLocale),
       },
     },
+    // Link-preview card: English on every locale, see SHARE in @/site.
     openGraph: {
       type: "website",
       locale: ogLocales[lang],
@@ -140,24 +146,24 @@ export async function generateMetadata({
         .filter((other) => other !== lang)
         .map((other) => ogLocales[other]),
       url: absoluteLocaleUrl(path),
-      siteName: dict.meta.siteName,
-      title: dict.meta.title,
-      description: dict.meta.description,
+      siteName: "Kisan Mitra",
+      title: SHARE.title,
+      description: SHARE.description,
       images: [
         {
           url: ogImageUrl,
           secureUrl: ogImageUrl,
-          width: 753,
-          height: 428,
-          alt: dict.meta.ogImageAlt,
-          type: "image/png",
+          width: OG_IMAGE.width,
+          height: OG_IMAGE.height,
+          alt: OG_IMAGE.alt,
+          type: OG_IMAGE.type,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: dict.meta.title,
-      description: dict.meta.description,
+      title: SHARE.title,
+      description: SHARE.description,
       images: [ogImageUrl],
     },
   };
