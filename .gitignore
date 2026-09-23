@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local development files
+CLAUDE.md
+**/CLAUDE.md
+changelog.md
+**/changelog.md
+changelog-*/
+**/changelog-*/
+.claude/

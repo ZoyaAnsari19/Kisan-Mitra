@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 
 import { intlLocales, isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { LanguageSwitcher, LanguageSwitcherBlock } from "./LanguageSwitcher";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 const IMG = {
   farmerPortrait:
@@ -125,28 +126,10 @@ const VERIFY_ICONS = ['fa-id-card', 'fa-mobile', 'fa-stamp'];
 
 const VOICE_IMAGES = [IMG.farmerWoman, IMG.farmerPortrait, IMG.farmerCotton];
 
-const SOCIAL_ICONS = [
-  'fa-x-twitter',
-  'fa-instagram',
-  'fa-youtube',
-  'fa-linkedin-in',
-  'fa-facebook-f',
-];
-
 function formatCount(n: number, locale: Locale, decimals = 0): string {
   return decimals > 0
     ? n.toFixed(decimals)
     : Math.round(n).toLocaleString(intlLocales[locale]);
-}
-
-function liveClockText(locale: Locale, prefix: string): string {
-  const opts: Intl.DateTimeFormatOptions = {
-    weekday: "short",
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  };
-  return `${prefix} · ${new Date().toLocaleDateString(intlLocales[locale], opts).toUpperCase()}`;
 }
 
 export default async function Home({
@@ -160,92 +143,9 @@ export default async function Home({
   const d = getDictionary(lang);
   const num = (n: number, decimals = 0) => formatCount(n, lang, decimals);
 
-  const NAV = [
-    { href: '#ecosystem',      label: d.nav.links.ecosystem },
-    { href: '#services',       label: d.nav.links.services },
-    { href: '#infrastructure', label: d.nav.links.infrastructure },
-    { href: '#membership',     label: d.nav.links.membership },
-    { href: '#leadership',     label: d.nav.links.leadership },
-    { href: '#mall',           label: d.nav.links.mall },
-    { href: '#impact',         label: d.nav.links.impact },
-  ];
-
   return (
     <>
-      {/* ============ HEADER ============ */}
-      <header
-        id="site-header"
-        className="fixed top-0 inset-x-0 z-50 transition-all duration-500"
-      >
-        <div className="mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 pt-4 sm:pt-5">
-          <div className="glass rounded-3xl lg:rounded-full pl-4 sm:pl-5 pr-2 sm:pr-3 py-2.5 sm:py-3 flex items-center justify-between">
-            <a href="#" className="flex items-center gap-3 group min-w-0">
-              <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-full bg-forest text-ivory shrink-0">
-                <span className="font-serif text-lg leading-none">क</span>
-                <span className="absolute -inset-1 rounded-full border border-gold/40"></span>
-              </span>
-              <div className="leading-tight min-w-0">
-                <div className="font-serif text-[15px] tracking-tight text-forest truncate">{d.nav.brand}</div>
-                <div className="text-[10px] tracking-[0.28em] text-brown uppercase truncate">{d.nav.brandSub}</div>
-              </div>
-            </a>
-
-            <nav className="hidden lg:flex items-center gap-7 text-[13.5px] text-forest/85">
-              {NAV.map((n) => (
-                <a key={n.href} href={n.href} className="hover:text-forest">{n.label}</a>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-2">
-              <span
-                id="liveclock"
-                suppressHydrationWarning
-                data-prefix={d.nav.clockPrefix}
-                className="hidden xl:inline-block text-[10.5px] tracking-[0.28em] text-brown font-mono"
-              >
-                {liveClockText(lang, d.nav.clockPrefix)}
-              </span>
-              <LanguageSwitcher current={lang} label={d.nav.languageLabel} />
-              <a href="#onboard" className="btn-primary py-2.5 px-4 sm:px-5 text-[12px] sm:text-[13px] whitespace-nowrap">
-                <span className="hidden sm:inline">{d.nav.cta}</span>
-                <span className="sm:hidden">{d.nav.ctaShort}</span>
-                <span className="arrow">↗</span>
-              </a>
-              {/* Mobile hamburger — visible only below lg */}
-              <button
-                id="mobile-menu-btn"
-                aria-label={d.nav.toggleMenu}
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-                className="lg:hidden ml-1 inline-flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-full hover:bg-forest/5 transition"
-              >
-                <span className="hamburger-line"></span>
-                <span className="hamburger-line"></span>
-                <span className="hamburger-line"></span>
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile menu panel (below lg only) */}
-          <div id="mobile-menu" className="lg:hidden mt-0">
-            <div className="glass rounded-3xl p-5 sm:p-6">
-              <div className="kicker mb-4"><span className="dot"></span>{d.nav.navigate}</div>
-              <nav className="grid grid-cols-1 divide-y divide-forest/10">
-                {NAV.map((n) => (
-                  <a key={n.href} href={n.href} className="font-serif text-xl text-forest py-3 flex items-center justify-between hover:text-forest-soft transition">
-                    <span>{n.label}</span>
-                    <span className="text-gold text-base">→</span>
-                  </a>
-                ))}
-              </nav>
-              <a href="#onboard" className="btn-primary w-full justify-center mt-5">
-                {d.nav.cta} <span className="arrow">→</span>
-              </a>
-              <LanguageSwitcherBlock current={lang} label={d.nav.languageLabel} />
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header lang={lang} d={d} />
 
       {/* ============ 1 · CINEMATIC HERO ============ */}
       <section id="hero" className="relative min-h-[100svh] overflow-hidden bg-ivory-grad grain">
@@ -1564,126 +1464,7 @@ export default async function Home({
         </div>
       </section>
 
-      {/* ============ 15 · FOOTER ============ */}
-      <footer className="relative bg-forest text-ivory pt-28 pb-12 overflow-hidden grain">
-        <div className="absolute inset-x-0 top-0 hairline"></div>
-        <div className="absolute inset-0 map-grid opacity-30 pointer-events-none"></div>
-
-        <div className="relative mx-auto max-w-[1480px] px-6 md:px-10">
-          {/* Vision masthead */}
-          <div className="grid grid-cols-12 gap-10 items-end pb-16 border-b border-ivory/10">
-            <div className="col-span-12 md:col-span-7">
-              <div className="kicker kicker-gold"><span className="dot"></span>{d.footer.kicker}</div>
-              <h2 className="font-serif text-mega mt-6">
-                {d.footer.title}
-                <span className="italic font-light text-clay"> {d.footer.titleAccent}</span>
-              </h2>
-            </div>
-            <div className="col-span-12 md:col-span-5 md:text-right">
-              <a href="#onboard" className="btn-gold">{d.footer.cta} <span className="arrow">→</span></a>
-              <div className="mt-6 text-ivory/60 text-sm">
-                {d.footer.ops}
-              </div>
-            </div>
-          </div>
-
-          {/* Link columns */}
-          <div className="grid grid-cols-12 gap-10 py-16">
-            <div className="col-span-12 md:col-span-4">
-              <a href="#" className="flex items-center gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-ivory text-forest">
-                  <span className="font-serif text-lg leading-none">क</span>
-                </span>
-                <div>
-                  <div className="font-serif text-lg">{d.nav.brand}</div>
-                  <div className="text-[10px] tracking-[0.28em] uppercase text-clay/80">{d.footer.brandSub}</div>
-                </div>
-              </a>
-              <p className="mt-6 text-ivory/65 max-w-sm leading-relaxed">
-                {d.footer.about}
-              </p>
-
-              <div className="mt-8 flex items-center gap-3">
-                {SOCIAL_ICONS.map((i) => (
-                  <a key={i} href="#" className="w-10 h-10 rounded-full border border-ivory/20 flex items-center justify-center hover:bg-ivory/10 transition">
-                    <i className={`fa-brands ${i} text-sm`}></i>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {d.footer.columns.map((col) => (
-              <div key={col.h} className="col-span-6 md:col-span-2">
-                <div className="text-[11px] tracking-[0.22em] uppercase text-clay/80 mb-5">{col.h}</div>
-                <ul className="space-y-3 text-ivory/80 text-sm">
-                  {col.l.map((x) => (
-                    <li key={x}><a href="#" className="hover:text-ivory transition">{x}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* Stylized India map */}
-          <div className="border-t border-ivory/10 pt-12 grid grid-cols-12 gap-10 items-center">
-            <div className="col-span-12 md:col-span-7">
-              <div className="text-[11px] tracking-[0.22em] uppercase text-clay/80 mb-5">{d.footer.districtsLabel}</div>
-              <svg viewBox="0 0 600 300" className="w-full h-auto">
-                {/* Stylized India outline (abstract) */}
-                <path d="M180,30 C 240,20 300,40 330,70 C 360,100 410,110 440,150 C 470,200 430,250 380,260 C 320,280 270,260 250,220 C 220,210 180,230 160,200 C 140,170 130,130 150,90 C 160,60 160,40 180,30 Z"
-                      fill="rgba(184,153,104,0.10)" stroke="rgba(184,153,104,0.55)" strokeWidth="1.2"/>
-                {[
-                  [200, 80, 'PB'],[245, 75, 'UK'],[230, 110, 'HR'],[260, 130, 'UP-W'],[300, 150, 'UP-E'],
-                  [200, 150, 'RJ'],[230, 195, 'MP'],[280, 215, 'MH'],[330, 200, 'CH'],[360, 220, 'OD'],
-                  [310, 245, 'TS'],[290, 270, 'KA'],[330, 285, 'TN'],
-                ].map((p) => (
-                  <g key={String(p[2])}>
-                    <circle cx={p[0]} cy={p[1]} r="3.5" fill="#B89968"/>
-                    <text x={Number(p[0])+8} y={Number(p[1])+4} fill="#F7F3EA" fontSize="10" fontFamily="DM Mono" opacity="0.7">{p[2]}</text>
-                  </g>
-                ))}
-              </svg>
-            </div>
-            <div className="col-span-12 md:col-span-5">
-              <div className="text-[11px] tracking-[0.22em] uppercase text-clay/80 mb-5">{d.footer.contactLabel}</div>
-              <div className="space-y-4 text-ivory/80">
-                <div className="flex items-start gap-4">
-                  <i className="fa-solid fa-headset text-gold mt-1"></i>
-                  <div>
-                    <div className="font-serif text-lg text-ivory">{d.footer.helplineValue}</div>
-                    <div className="text-xs text-ivory/55">{d.footer.helplineNote}</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <i className="fa-solid fa-envelope text-gold mt-1"></i>
-                  <div>
-                    <div className="font-serif text-lg text-ivory">{d.footer.emailValue}</div>
-                    <div className="text-xs text-ivory/55">{d.footer.emailNote}</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <i className="fa-solid fa-location-dot text-gold mt-1"></i>
-                  <div>
-                    <div className="font-serif text-lg text-ivory">{d.footer.addressValue}</div>
-                    <div className="text-xs text-ivory/55">{d.footer.addressNote}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Legal */}
-          <div className="mt-12 pt-8 border-t border-ivory/10 flex flex-wrap items-center justify-between gap-4 text-[11px] text-ivory/55">
-            <div>{d.footer.copyright}</div>
-            <div className="flex items-center gap-6">
-              {d.footer.legal.map((l) => (
-                <a key={l} href="#" className="hover:text-ivory">{l}</a>
-              ))}
-            </div>
-            <div className="font-hindi text-ivory/70 italic">{d.footer.motto}</div>
-          </div>
-        </div>
-      </footer>
+      <Footer lang={lang} d={d} />
     </>
   );
 }
