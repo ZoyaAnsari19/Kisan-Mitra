@@ -18,6 +18,7 @@
     },
     "cta": "Become a Mitra",
     "ctaShort": "Join",
+    "appsLink": "Apps",
     "toggleMenu": "Toggle menu",
     "navigate": "Navigate",
     "clockPrefix": "Bharat",
@@ -669,7 +670,7 @@
     "columns": [
       {
         "h": "Ecosystem",
-        "l": ["The Rural OS", "Architecture", "Sustainability", "Press & News", "Partners"]
+        "l": ["The Rural OS", "Architecture", "Sustainability", "Press & News", "Partners", "Our Apps"]
       },
       {
         "h": "Farmer Support",
@@ -697,6 +698,430 @@
     "motto": "सत्यमेव जयते · सर्वे भवन्तु सुखिनः"
   },
 
+  "apps": {
+    "meta": {
+      "title": "Our Apps · Kisan Mitra",
+      "description": "The Kisan Mitra family of apps — one app for farmers, and dedicated partner apps for machinery owners, transporters, storage operators and mandi buyers who fulfil their requests."
+    },
+    "kicker": "Our Ecosystem",
+    "backHome": "Back to home",
+    "backToApps": "Back to apps",
+    "title": "Five Partner Apps.",
+    "titleAccent": "One Stronger Ecosystem.",
+    "body": "Kisan Mitra is the single app a farmer opens for every service. Behind it sit four dedicated partner apps — for machinery owners, transporters, storage operators and mandi buyers — that receive and fulfil the requests a farmer raises.",
+    "heroSubtitle": "Different needs. One connected platform — Kisan Mitra.",
+    "exploreApps": "Explore Apps",
+    "watchVideo": "Watch Video",
+    "statAppsValue": "5 Apps",
+    "statAppsLabel": "One Ecosystem",
+    "statServicesValue": "25+",
+    "statServicesLabel": "Services in Kisan Mitra",
+    "statLanguagesValue": "11",
+    "statLanguagesLabel": "Languages Supported",
+    "statFoundationValue": "1",
+    "statFoundationLabel": "Foundation Behind It All",
+    "panelKicker": "Built to Empower",
+    "panelTitle": "Stronger Farmers.",
+    "panelTitleAccent": "A Brighter Tomorrow.",
+    "panelBody": "Every app plays a role in building a connected, self-reliant farming ecosystem.",
+    "panelCta": "Explore the Ecosystem",
+    "ctaBannerTitle": "Be a Part of the Kisan Mitra Ecosystem",
+    "ctaBannerBody": "Whether you're a farmer, service provider or field partner — there's an app for you.",
+    "badgeMainApp": "Main App",
+    "comingSoonBadge": "Coming Soon",
+    "liveBadge": "Live",
+    "notAvailable": "Not available yet",
+    "viewMore": "View More",
+    "download": "Download",
+    "downloadNow": "Download Now",
+    "featuresLabel": "What it does",
+    "forLabel": "Built for",
+    "howItWorksLabel": "How it works",
+    "faqLabel": "Frequently asked",
+    "benefitsLabel": "Why farmers use it",
+    "categoriesLabel": "What you can do",
+    "journeyLabel": "How the app introduces itself",
+    "signupLabel": "Getting started",
+    "screensLabel": "Inside the app",
+    "items": [
+      {
+        "id": "kisan-mitra",
+        "name": "Kisan Mitra App",
+        "tagline": "Every farmer's digital companion",
+        "for": "Farmers",
+        "description": "A single app for smallholder farmers that combines farm-service bookings, crop selling at real mandi prices, land records, a digital wallet and government scheme applications — built around a local VLE relationship, not a self-service-only app.",
+        "longDescription": "Your farm, now in your pocket. From soil to mandi — every service in one app. A Rajesh Kaithwas Foundation initiative built around a simple idea: a smallholder farmer shouldn't need five different apps, or a middleman, to run their farm well.",
+        "features": [
+          "Sell crops at live, transparent mandi prices",
+          "Book equipment, transport & storage — no haggling",
+          "Your land on record, with live soil readings where installed",
+          "A wallet built for a farmer's income pattern",
+          "Apply for government schemes you're actually eligible for",
+          "A trained VLE in your own village"
+        ],
+        "faq": [
+          { "q": "Does the app work without internet?", "a": "Key screens are designed to stay usable on patchy rural networks; features that need a live server response (like mandi price submission) sync as soon as signal returns." },
+          { "q": "Is there a fee to join?", "a": "Downloading and registering is free. Membership is a separate paid plan, priced per hectare of your approved land, purchased from your in-app wallet — it unlocks discounts and priority on services." },
+          { "q": "Who surveys my land?", "a": "A trained VLE (Village Level Entrepreneur) in your area conducts the survey. Once approved, your plot's area, documents and status are visible in My Land." },
+          { "q": "How do I know the mandi price is real?", "a": "Prices are published per region and the app always shows which level — village, taluka or district — a price applies to, rather than implying false village-level precision." }
+        ],
+        "badges": ["Android & iOS", "Free to download", "RKF Foundation Initiative"],
+        "benefits": [
+          { "i": "fa-chart-line", "t": "Real, transparent mandi prices", "d": "Sell at published rates for your own village, taluka or district — never a guess." },
+          { "i": "fa-handshake", "t": "Book without haggling", "d": "Request equipment, transport or storage — the app broadcasts it to nearby providers and connects you the moment one accepts." },
+          { "i": "fa-map-location-dot", "t": "Your land, on record", "d": "Once a VLE surveys your plot, see its area, documents, approval status and live soil readings where a sensor is installed." },
+          { "i": "fa-wallet", "t": "A wallet built for your income", "d": "Track earnings, see savings the app has generated for you, and manage a bank account for withdrawal." },
+          { "i": "fa-landmark", "t": "Schemes you're actually eligible for", "d": "Eligibility is computed from your own land, age, gender, crop and locality — apply and track status end to end." },
+          { "i": "fa-user-tie", "t": "A human helper in your village", "d": "Kisan Mitra connects every farmer to a trained local VLE for guidance on loans, insurance and government schemes." }
+        ],
+        "categories": [
+          {
+            "h": "Identity & Membership",
+            "items": [
+              { "t": "KYC Verification", "d": "Aadhaar and PAN-based identity verification as part of registration." },
+              { "t": "Membership", "d": "A paid plan priced per hectare of your approved land, purchased from your wallet — unlocks discounts, free-service counts, rate bonuses on crop sales and priority." }
+            ]
+          },
+          {
+            "h": "Buy, Rent & Sell",
+            "items": [
+              { "t": "Mandi Prices", "d": "Live crop prices for your own village, taluka or district — the section stays hidden rather than showing a fake price where none exists." },
+              { "t": "Equipment Rental", "d": "Request tractors and other equipment by job and schedule; the app broadcasts your request to nearby owners and connects you the moment one accepts." },
+              { "t": "Sell Crop", "d": "Submit a sell request against the live mandi rate — price and amount are always computed by the server, never entered by hand." },
+              { "t": "Storage Booking", "d": "Book storage and warehousing the same way, with tracked in-transit, stored and withdrawn status." },
+              { "t": "Transport", "d": "The same request-and-match flow, for moving goods." }
+            ]
+          },
+          {
+            "h": "Land & Soil",
+            "items": [
+              { "t": "My Land", "d": "View your surveyed plots — area, ownership type, documents and approval status. Request a VLE survey for land that isn't recorded yet." },
+              { "t": "Live Soil Readings", "d": "Where a sensor is physically installed, see live moisture, temperature, pH, nitrogen, phosphorus and potassium readings." }
+            ]
+          },
+          {
+            "h": "Finance & Welfare",
+            "items": [
+              { "t": "Government Schemes", "d": "Browse schemes with eligibility computed live from your land, age, gender, crop and locality. Apply, attach documents, and track status from submitted through to disbursed." },
+              { "t": "Wallet", "d": "A real balance, full transaction history, and a personal QR code for identification." },
+              { "t": "Savings Tracker", "d": "A server-calculated summary of how much the app has saved you across equipment, storage, transport, labour and lab testing over a chosen period." }
+            ]
+          },
+          {
+            "h": "Community & Support",
+            "items": [
+              { "t": "Events & Notices", "d": "Register for local events — with instant wallet debit for paid ones — and see real notices posted by field staff." },
+              { "t": "Kisan Yatra", "d": "Browse pilgrimage and trip packages, book for multiple passengers, and cancel under a tiered refund policy." },
+              { "t": "Notifications", "d": "A real inbox for account and service updates, with unread counts and mark-as-read." }
+            ]
+          }
+        ],
+        "journey": [
+          { "t": "Welcome to Kisan Mitra", "s": "Your farm, now in your pocket", "d": "From soil to mandi — every service in one app. A Rajesh Kaithwas Foundation initiative." },
+          { "t": "Everything in one place", "s": "Buy, sell & rent — all here", "d": "Order inputs, sell crops at live mandi prices, and rent equipment — from one home screen." },
+          { "t": "Know your land", "s": "Land records that mean something", "d": "Once surveyed by a VLE, see your plot's area, documents, approval status and live soil readings where installed." },
+          { "t": "You are not alone", "s": "Your own VLE assistance", "d": "A trained local VLE supports you with loans, insurance and scheme guidance behind the scenes." }
+        ],
+        "signupSteps": ["Download the app", "Verify your mobile number", "Complete your profile", "Add your land", "Start using services"],
+        "helper": {
+          "kicker": "The human behind the app",
+          "title": "A trained VLE, working behind the scenes",
+          "body": "Kisan Mitra connects every farmer to a trained VLE (Village Level Entrepreneur) in their area. VLEs conduct land surveys, help with government scheme applications, and support the services you book on the app — real, on-the-ground work behind every request you raise."
+        }
+      },
+      {
+        "id": "machinery-rental",
+        "name": "Machinery Provider App",
+        "tagline": "Your machine, to every field",
+        "for": "Farm equipment owners",
+        "description": "An app for individual farm-equipment owners — tractors, harvesters, drones and more — to register their machines, receive real rental requests broadcast from farmer bookings on Kisan Mitra, accept or reject jobs, run the rental with an OTP-secured completion handshake, and get paid into a real in-app wallet.",
+        "longDescription": "The Machinery Provider App turns any farm equipment owner into a rental provider on the Kisan Mitra platform. Real farmer requests are broadcast to you, pricing is calculated transparently by the platform — no haggling — and a secure code-based handshake confirms every job before payment is released to your wallet.",
+        "features": [
+          "Real rental requests from real farmers",
+          "List every kind of equipment, fully verified",
+          "Platform-computed pricing, no haggling",
+          "Fair first-accept system",
+          "OTP-secured job completion",
+          "One wallet for balance, withdrawals & payments"
+        ],
+        "faq": [
+          { "q": "What equipment can I list?", "a": "Tractor, rotavator, cultivator, seed drill, plough, harvester, thresher, sprayer, agricultural drone, water pump, trolley, or other — each registered and verified independently." },
+          { "q": "Do I set my own rental rate?", "a": "No — every booking's rate is computed by the platform from its own rate card, so there's no pricing disputes or undercutting on either side." },
+          { "q": "How does drone rental verification work?", "a": "Agricultural drones require additional documentation — UIN number, DGCA certificate and pilot licence — reflecting real regulatory requirements for drone operation." },
+          { "q": "How do I know a job is genuinely finished?", "a": "A 6-digit code is sent to the farmer and read back to you to confirm the job is done before payment moves — protecting both sides." }
+        ],
+        "badges": ["Android & iOS", "Free to download", "RKF Foundation Initiative"],
+        "benefits": [
+          { "i": "fa-user-check", "t": "Real requests from real farmers", "d": "Every booking comes from an actual Kisan Mitra farmer's request, broadcast to available equipment owners nearby." },
+          { "i": "fa-tractor", "t": "List every kind of equipment", "d": "Tractors, rotavators, cultivators, seed drills, ploughs, harvesters, threshers, sprayers, agricultural drones, water pumps, trolleys and more — each independently verified." },
+          { "i": "fa-calculator", "t": "No pricing headaches", "d": "Every booking's rate is computed by the platform from its own rate card. You never set, negotiate or send a price." },
+          { "i": "fa-shield-halved", "t": "Secure job completion", "d": "A 6-digit code is sent to the farmer and read back to you to confirm the job is genuinely done before payment moves." },
+          { "i": "fa-wallet", "t": "One wallet for everything", "d": "Real balance, transaction history, bank-verified withdrawals, and QR-based peer payments." },
+          { "i": "fa-headset", "t": "Real support, not a dead end", "d": "A genuine complaint/ticketing system and direct contact with your local Kisan Mitra field team." }
+        ],
+        "categories": [
+          {
+            "h": "Home",
+            "items": [
+              { "t": "Owner Availability Toggle", "d": "A single \"Accept bookings\" switch on Home controls whether you receive new requests at all." },
+              { "t": "New Requests", "d": "Incoming rental requests appear on the Home dashboard; accept or reject (with a required reason) in one tap." }
+            ]
+          },
+          {
+            "h": "Equipment",
+            "items": [
+              { "t": "My Equipment", "d": "Register and manage multiple machines across 11 types. Each machine is independently document-verified — drones specifically collect UIN number, DGCA certificate and pilot licence." },
+              { "t": "Per-Machine Availability", "d": "Set each machine's status to Available, Maintenance or Inactive; \"Busy\" is set automatically whenever that machine is actively on a job." }
+            ]
+          },
+          {
+            "h": "Bookings",
+            "items": [
+              { "t": "Full Booking Lifecycle", "d": "Bookings move through Requested, Accepted, In Progress and Completed (or Cancelled), tracked with a timeline on the Booking Detail screen." },
+              { "t": "OTP-Secured Job Completion", "d": "Starting a job requires tapping \"Start job\"; completing it requires entering a 6-digit code the farmer reads aloud to you." },
+              { "t": "Transparent, Platform-Computed Pricing", "d": "Every booking's rate — hourly, daily, per-bigha or per-acre — is calculated by the platform's own rate card, never entered or negotiated by the owner." }
+            ]
+          },
+          {
+            "h": "Wallet",
+            "items": [
+              { "t": "Wallet", "d": "Real balance and full transaction history, bank-account-linked withdrawals, QR-code peer transfers, and a 6-digit transaction PIN for security." },
+              { "t": "Withdrawals", "d": "Request a withdrawal once your bank account is verified; approved requests settle in 1–2 working days." },
+              { "t": "Earnings Report", "d": "Week, month and year views — total earned, number of bookings, average per booking, and busiest day." }
+            ]
+          },
+          {
+            "h": "Support",
+            "items": [
+              { "t": "My Assistance Team", "d": "Real contacts for your local Village Level Executive, Village Level Manager, Taluka Extension Officer and District Level Officer, with call/message actions." },
+              { "t": "My Complaints", "d": "A formal ticketing system with category, priority, status tracking and escalation — real issue resolution, not a black hole." }
+            ]
+          }
+        ],
+        "journey": [],
+        "signupSteps": ["Download the app", "Verify your mobile number", "Add your equipment", "Add your bank account", "Start accepting bookings"],
+        "helper": null
+      },
+      {
+        "id": "logistics",
+        "name": "Logistic and Transport App",
+        "tagline": "Every harvest, on your wheels",
+        "for": "Transporters & drivers",
+        "description": "A driver and vehicle-owner app that receives real transport job requests generated when farmers book transportation in the Kisan Mitra app — accept or reject jobs, manage your vehicle fleet, run pickup-to-delivery trips with OTP confirmation, and get paid straight to your wallet.",
+        "longDescription": "The Logistic and Transport App connects individual transport owner-drivers directly to real farmer transport requests from the Kisan Mitra platform — no negotiating, no middlemen for job-finding. Jobs broadcast to nearby drivers, the fare is calculated transparently by the system before you accept, and payment lands in your wallet the moment delivery is confirmed.",
+        "features": [
+          "Real jobs from real Kisan Mitra farmers",
+          "Transparent, system-calculated fares",
+          "One-tap accept, no bidding wars",
+          "OTP-confirmed pickup and delivery",
+          "Get paid straight to your wallet",
+          "Available in English, Hindi and Marathi"
+        ],
+        "faq": [
+          { "q": "How do I know a job is genuine?", "a": "Every trip request comes from an actual Kisan Mitra farmer booking — the app tags the requester as a \"Kisan Mitra member\" on the request screen, not test or demo data." },
+          { "q": "Does the app track my live location on a map?", "a": "The in-trip screen shows your route step-by-step, but there's no live GPS map tracking today — that's on the roadmap. You always confirm pickup and delivery with an OTP read aloud by the farmer instead." },
+          { "q": "How am I rated?", "a": "There's no rating system yet — the app honestly shows \"No ratings yet\" rather than a made-up number." },
+          { "q": "Is there a fee to withdraw my earnings?", "a": "No processing fee. Withdrawals are reviewed and typically paid out within 24 hours to 1–2 working days to your verified bank account." }
+        ],
+        "badges": ["Android & iOS", "Free to download", "RKF Foundation Initiative"],
+        "benefits": [
+          { "i": "fa-user-check", "t": "Real jobs from real farmers", "d": "Every trip request comes from an actual Kisan Mitra farmer booking — the app tags the requester as a \"Kisan Mitra member.\"" },
+          { "i": "fa-calculator", "t": "Transparent, system-calculated fares", "d": "See the full fare breakdown — base, distance, quantity and loading, with a guaranteed minimum — before you accept. Never negotiate." },
+          { "i": "fa-bolt", "t": "One-tap accept, no bidding wars", "d": "Jobs broadcast to available drivers; the first to accept gets it." },
+          { "i": "fa-truck-fast", "t": "Manage your whole fleet", "d": "Register and manage multiple vehicles — tractor-trolley, tempo, mini-truck, pickup van and more — each with document verification." },
+          { "i": "fa-wallet", "t": "Get paid straight to your wallet", "d": "Payment is credited automatically the moment delivery is confirmed by OTP, with no processing fee on withdrawal." },
+          { "i": "fa-toggle-on", "t": "Work when you want", "d": "A simple online/offline toggle controls whether you receive new job offers." }
+        ],
+        "categories": [
+          {
+            "h": "Home",
+            "items": [
+              { "t": "Online / Offline Toggle", "d": "One switch controls whether you're receiving new job offers. Requires your KYC to be approved first." },
+              { "t": "New Requests", "d": "An auto-refreshing job feed shows incoming trip requests with pickup/drop, crop and quantity. Accept or reject with one tap — a rejection needs a reason and the job stays open for other drivers." }
+            ]
+          },
+          {
+            "h": "Vehicle",
+            "items": [
+              { "t": "My Vehicles", "d": "Register and manage multiple vehicles — tractor-trolley, tempo, mini-truck, pickup van or other. Each has its own RC, insurance and permit document upload, with a verification status." }
+            ]
+          },
+          {
+            "h": "Trips",
+            "items": [
+              { "t": "Trip Lifecycle with OTP Confirmation", "d": "Each trip moves through: going to pickup, reached farm, loaded, in transit, delivered. Both pickup and delivery are confirmed by an OTP read aloud by the farmer." },
+              { "t": "My Trips & Trip History", "d": "Active trip tracking plus a full history screen with date-range filtering." },
+              { "t": "Server-Computed Fare Breakdown", "d": "Every fare — base, distance, quantity and loading, plus a minimum-fare floor — is calculated by the platform, never entered by the driver." }
+            ]
+          },
+          {
+            "h": "Wallet",
+            "items": [
+              { "t": "Wallet", "d": "Real balance, held amount and available amount, with full transaction history. Payment is credited automatically on delivery confirmation." },
+              { "t": "Bank Account & Withdrawals", "d": "Add a bank account for verification; once verified, request withdrawals with no processing fee, typically paid out within 24 hours to 1–2 working days." },
+              { "t": "Earnings Summary", "d": "Week, month and year views — total earned, number of trips, average per trip and busiest day, built from your actual completed trips." }
+            ]
+          },
+          {
+            "h": "Alerts & Support",
+            "items": [
+              { "t": "Alerts Inbox", "d": "A real notification inbox with All / Requests / Payments / System filters and mark-all-read." },
+              { "t": "Support Tickets", "d": "A real support-ticket system for raising and tracking issues — a genuine help channel, not a dead-end contact list." }
+            ]
+          }
+        ],
+        "journey": [],
+        "signupSteps": ["Download the app", "Verify your mobile number", "Register your vehicle", "Go online", "Start accepting trips"],
+        "helper": null
+      },
+      {
+        "id": "storage",
+        "name": "Storage Provider App",
+        "tagline": "Crop secured, better price",
+        "for": "Cold storage, godown & open yard owners",
+        "description": "An app for storage facility owners — cold storage, covered godowns, open yards — to register their facilities, receive real farmer storage requests, manage goods coming in and going out (including partial withdrawals) with OTP-secured gate handling, and get paid through a real wallet, with pricing set entirely by the platform.",
+        "longDescription": "The Storage Provider App connects storage facility owners directly to real farmer storage requests — transparent, platform-set pricing that runs as a daily accrual for as long as the produce stays, OTP-secured gate-in/gate-out with full movement history, and support for partial withdrawal so a farmer can take out part of their stock now and the rest later, all tracked accurately.",
+        "features": [
+          "Real storage requests from real farmers",
+          "List multiple facilities, every storage type",
+          "Transparent, platform-set pricing",
+          "Full visibility into every quintal",
+          "Partial withdrawal, properly handled",
+          "Secure, OTP-confirmed gate handovers"
+        ],
+        "faq": [
+          { "q": "Can I list multiple facilities?", "a": "Yes, register more than one storage unit under a single account — each is independently verified." },
+          { "q": "Do I set my own storage rate?", "a": "No — a per-quintal-per-day rate card is applied automatically by the platform, so there's never a pricing dispute." },
+          { "q": "Can a farmer collect their stock in parts?", "a": "Yes — partial withdrawal is fully supported. A farmer can take out part of their stored quantity now and the rest later; every gate-in and gate-out is logged with its own history." },
+          { "q": "Can I extend an active booking?", "a": "Not yet — that capability isn't available today. Storage billing runs as a daily accrual for as long as produce stays, until it's fully withdrawn." }
+        ],
+        "badges": ["Android & iOS", "Free to download", "RKF Foundation Initiative"],
+        "benefits": [
+          { "i": "fa-user-check", "t": "Real requests from real farmers", "d": "Every booking request comes from an actual farmer's storage need on Kisan Mitra." },
+          { "i": "fa-warehouse", "t": "Every storage type covered", "d": "Cold Storage for fruits and vegetables, Covered Godown for grains and dry crop, and Open Yard for bales and bag stacks." },
+          { "i": "fa-calculator", "t": "Transparent, platform-set pricing", "d": "You don't set or negotiate rates — a per-quintal-per-day rate card is applied automatically, so there's never a pricing dispute." },
+          { "i": "fa-boxes-stacked", "t": "Full visibility into every quintal", "d": "Capacity, occupied space and available space are always accurate and server-calculated — never a number you have to track yourself." },
+          { "i": "fa-right-left", "t": "Partial withdrawal, done right", "d": "A farmer can collect part of their stored produce now and the rest later; every gate-in and gate-out is logged in full history." },
+          { "i": "fa-shield-halved", "t": "Secure, OTP-confirmed handovers", "d": "Both check-in and check-out are confirmed with a code the farmer reads out to you, protecting both sides." }
+        ],
+        "categories": [
+          {
+            "h": "Home",
+            "items": [
+              { "t": "Capacity Summary", "d": "See total capacity, available space, reserved space and filled space — all calculated by the platform in real time." },
+              { "t": "New Requests & Today's Inward", "d": "Booking requests broadcast to you; accept or reject on a first-owner-to-accept basis, with today's expected arrivals front and centre." }
+            ]
+          },
+          {
+            "h": "My Storage",
+            "items": [
+              { "t": "Facility Management", "d": "Register and manage multiple storage facilities; each goes through its own independent verification." },
+              { "t": "Record Inward (Gate-In)", "d": "When produce arrives, confirm with a farmer OTP, then log quantity, lot number, sack count, moisture %, vehicle number and photos. This starts the storage rent clock." },
+              { "t": "Outward — Release (Gate-Out)", "d": "Release produce fully or partially, confirmed again with a farmer OTP. The system determines whether the booking is complete or still partially active." },
+              { "t": "Running Storage Statement", "d": "A live, day-by-day accruing cost figure for each active booking, finalized only once the produce is fully withdrawn." }
+            ]
+          },
+          {
+            "h": "Bookings",
+            "items": [
+              { "t": "Bookings Workflow", "d": "Bookings organized into New Requests, Upcoming, Active and Completed tabs, so you always know where every lot stands." },
+              { "t": "Storage Receipt", "d": "Generate a receipt for a stored lot, giving farmers proper documentation of their stored produce." }
+            ]
+          },
+          {
+            "h": "Wallet",
+            "items": [
+              { "t": "Wallet", "d": "Real balance, held amount and transaction history, tracked accurately and securely." },
+              { "t": "Wallet-to-Wallet Transfer", "d": "Look up another wallet and transfer funds directly, protected by a separate transaction PIN." },
+              { "t": "Bank Account & Withdrawals", "d": "Add and verify a bank account for real payouts, subject to platform limits and an optional processing fee." }
+            ]
+          },
+          {
+            "h": "Account & Support",
+            "items": [
+              { "t": "My Assistance Team", "d": "Real contact details for your local Village Level Executive and Village Level Manager." },
+              { "t": "My Complaints", "d": "A real, tracked support-ticket system for genuine issue resolution." }
+            ]
+          }
+        ],
+        "journey": [],
+        "signupSteps": ["Download the app", "Verify your mobile number", "Register your facility", "Get verified", "Start accepting storage requests"],
+        "helper": null
+      },
+      {
+        "id": "mandi",
+        "name": "Mandi Buyers App",
+        "tagline": "Buy fresh produce directly from the mandi",
+        "for": "Trading firms & licensed buyers",
+        "description": "A procurement app for mandi and wholesale crop buyers — trading firms and licensed buyers — to receive real farmer crop-lot listings, accept and weigh purchases, settle payment through a real wallet, and track mandi prices, all connected to the same backend the farmer-facing Kisan Mitra app runs on.",
+        "longDescription": "The Mandi Buyers App connects licensed trading buyers directly to real farmer crop listings — no middlemen for discovery, transparent region-resolved mandi pricing, and a secure accept, weigh, confirm purchase flow settled through a real digital wallet.",
+        "features": [
+          "Real crop listings from real farmers",
+          "Transparent, region-resolved mandi pricing",
+          "Fair first-accept system",
+          "Secure, OTP-confirmed settlement",
+          "A real wallet built for trading",
+          "Full GST, PAN & Aadhaar-backed verification"
+        ],
+        "faq": [
+          { "q": "Who can register as a buyer?", "a": "This is a trade/business tool for trading firms and licensed buyers — registration requires a trader/firm name and GST or license number, not an individual shopper account." },
+          { "q": "Can I set or negotiate the crop price?", "a": "No — mandi prices are published by the platform and always labelled with the region level they apply to. Buyers view real published rates and accept lots, rather than publishing or negotiating a price." },
+          { "q": "Can I reject a crop lot?", "a": "There's no explicit reject action — you accept the lots you want, and any lot you don't accept simply passes to another buyer." },
+          { "q": "How is a deal confirmed?", "a": "At the point of weighing, you record the actual quantity; the farmer reads out a confirmation code which you enter to finalize and settle the deal." }
+        ],
+        "badges": ["Android & iOS", "Free to download", "RKF Foundation Initiative"],
+        "benefits": [
+          { "i": "fa-user-check", "t": "Real crop listings from real farmers", "d": "Every \"sell request\" you see is an actual farmer's crop lot, broadcast to buyers in range." },
+          { "i": "fa-chart-line", "t": "Transparent mandi pricing", "d": "Live prices resolved to the correct region level — locality, taluka, district or division — always disclosed so you know exactly what area a price applies to." },
+          { "i": "fa-bolt", "t": "Fair first-accept system", "d": "New lots broadcast to buyers; the first to accept secures the deal." },
+          { "i": "fa-shield-halved", "t": "Secure, OTP-confirmed settlement", "d": "The farmer reads out a confirmation code at the point of weighing, so payment only releases once both sides agree the deal is done." },
+          { "i": "fa-wallet", "t": "A real wallet built for trading", "d": "Balance, held amount, transaction history, bank-linked withdrawals, and buyer-specific deposit and top-up." },
+          { "i": "fa-file-shield", "t": "Full KYC & document verification", "d": "GST/license, PAN and Aadhaar-backed registration builds trust in the marketplace." }
+        ],
+        "categories": [
+          {
+            "h": "Home",
+            "items": [
+              { "t": "Buying On/Off Toggle", "d": "Toggle \"Buying: ON\" to start receiving new crop-lot requests." },
+              { "t": "New Sell Requests", "d": "Farmer-listed crop lots broadcast to buyers; accept the ones you want on a first-accept basis." }
+            ]
+          },
+          {
+            "h": "Requests",
+            "items": [
+              { "t": "Requests Workflow", "d": "Track accepted lots through New, Locked, Done and Cancelled — accepted, weighed, confirmed and completed." },
+              { "t": "Weighment & OTP Confirmation", "d": "At the point of physical weighing, record the real quantity; enter the farmer's confirmation code to finalize and settle the deal." }
+            ]
+          },
+          {
+            "h": "Rates",
+            "items": [
+              { "t": "Mandi Rates", "d": "A live crop price feed with historical trend data, resolved to the correct region level and always labelled with which level a price applies to." }
+            ]
+          },
+          {
+            "h": "Wallet",
+            "items": [
+              { "t": "Wallet", "d": "Real balance, held amount locked against accepted-but-unsettled lots, transaction history, and bank-account linking with passbook verification." },
+              { "t": "Buyer Deposits", "d": "A buyer-specific deposit flow to fund your wallet ahead of purchases." }
+            ]
+          },
+          {
+            "h": "Account & Support",
+            "items": [
+              { "t": "KYC Documents", "d": "Upload and manage GST license, PAN and Aadhaar documents for account verification." },
+              { "t": "My Complaints", "d": "A real, ticket-tracked complaint and support system." },
+              { "t": "My Assistance Team", "d": "Contacts for your local Village Level Executive and Village Level Manager, with call and message actions." }
+            ]
+          }
+        ],
+        "journey": [],
+        "signupSteps": ["Download the app", "Verify your mobile number", "Register your firm (GST/license)", "Get verified", "Start buying"],
+        "helper": null
+      }
+    ]
+  },
+
   "alt": {
     "village": "Village",
     "villageIndia": "Village India",
@@ -712,6 +1137,7 @@
     "mandi": "Mandi",
     "mallInterior": "Mall interior",
     "appScreen": "App screen",
-    "verification": "Verification"
+    "verification": "Verification",
+    "appPreview": "App preview"
   }
 }

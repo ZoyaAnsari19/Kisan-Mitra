@@ -204,8 +204,8 @@
     mMenu.querySelectorAll('a').forEach((a) =>
       a.addEventListener('click', () => setOpen(false))
     );
-    // Close when window grows to lg (defensive)
-    const mq = window.matchMedia('(min-width: 1024px)');
+    // Close when window grows to xl (defensive)
+    const mq = window.matchMedia('(min-width: 1280px)');
     mq.addEventListener('change', (e) => { if (e.matches) setOpen(false); });
     // Escape key closes
     document.addEventListener('keydown', (e) => {
