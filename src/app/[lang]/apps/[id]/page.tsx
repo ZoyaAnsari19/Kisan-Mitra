@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { defaultLocale, isLocale, localePath, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { absoluteLocaleUrl, getSiteUrl } from "@/site";
+import { Header } from "../../Header";
 import {
   APPS_META,
   DETAIL_HERO_IMG,
+  DETAIL_HERO_LEFT_FADE,
   DETAIL_PHONE_IMG,
+  DETAIL_PHONE_OFFSET,
+  DETAIL_PHONE_SIDE,
   GALLERY_IMAGES,
 } from "../apps-data";
 import { AppDownloadButton } from "../AppDownloadButton";
@@ -70,37 +75,9 @@ export default async function AppDetailPage({
   const meta = APPS_META.find((a) => a.id === id);
   if (!app || !meta) notFound();
 
-  const home = localePath(lang);
-  const appsHref = `${home === "/" ? "" : home}/apps`;
-
   return (
     <>
-      {/* ============ HEADER ============ */}
-      <header className='fixed top-0 inset-x-0 z-50'>
-        <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 pt-4 sm:pt-5'>
-          <div className='glass rounded-3xl lg:rounded-full pl-4 sm:pl-5 pr-4 sm:pr-5 py-2.5 sm:py-3 flex items-center justify-between'>
-            <a href={home} className='flex items-center gap-3 group min-w-0'>
-              <span className='relative inline-flex h-9 w-9 items-center justify-center rounded-full bg-forest text-ivory shrink-0'>
-                <span className='font-serif text-lg leading-none'>क</span>
-                <span className='absolute -inset-1 rounded-full border border-gold/40'></span>
-              </span>
-              <div className='leading-tight min-w-0'>
-                <div className='font-serif text-[15px] tracking-tight text-forest truncate'>
-                  {d.nav.brand}
-                </div>
-                <div className='text-[10px] tracking-[0.28em] text-brown uppercase truncate'>
-                  {d.nav.brandSub}
-                </div>
-              </div>
-            </a>
-            <a
-              href={appsHref}
-              className='text-[13.5px] text-forest/85 hover:text-forest flex items-center gap-2'>
-              <span className='arrow'>←</span> {d.apps.backToApps}
-            </a>
-          </div>
-        </div>
-      </header>
+      <Header lang={lang} d={d} />
 
       {/* ============ 1 · HERO — full-bleed background, copy overlaid on the left ============ */}
       {/* Height stays content-driven so text never collides with the next
@@ -111,15 +88,23 @@ export default async function AppDetailPage({
         {/* Banner hidden on mobile — same reasoning as the /apps list hero.
             The banner carries its own headline/copy baked into the image, so
             there's no text overlay or gradient here on sm+ — just the CTA. */}
-        <img
+        <Image
           src={DETAIL_HERO_IMG[app.id]}
           alt={app.name}
-          className='hidden sm:block absolute inset-0 w-full h-full object-cover'
+          fill
+          priority
+          sizes="100vw"
+          className='hidden sm:block object-cover'
         />
+        {DETAIL_HERO_LEFT_FADE.has(app.id) && (
+          <div className='hidden sm:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-black/70 via-black/30 to-transparent' />
+        )}
 
-        <div className='relative mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 pt-32 sm:pt-40 pb-14 sm:pb-16 w-full'>
+        <div className='relative mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 pt-24 sm:pt-40 pb-4 sm:pb-16 w-full'>
           {/* Mobile-only fallback copy — the banner (with its baked-in text)
-              is hidden below sm, so small screens still need something here. */}
+              is hidden below sm, so small screens still need something here.
+              Trimmed vertical rhythm below sm only, so this reads as one
+              block with the About section right under it. */}
           <div className='sm:hidden max-w-xl'>
             <div className='stamp text-forest border-forest/30 inline-flex'>
               {meta.status === "live" ?
@@ -137,23 +122,41 @@ export default async function AppDetailPage({
             about section, where the hero has no text to collide with.
             Positioned well inside the section width so it never triggers
             horizontal overflow. Hidden on mobile since the hero banner
-            itself is hidden there too. */}
-        <img
-          src={DETAIL_PHONE_IMG[app.id]}
-          alt={app.name}
-          className='hidden md:block absolute -bottom-24 right-10 lg:right-20 w-[240px] lg:w-[290px] h-auto z-10 drop-shadow-2xl'
-        />
+            itself is hidden there too. Apps without a real mockup yet
+            (DETAIL_PHONE_IMG[app.id] is null) skip this entirely rather
+            than showing a placeholder. */}
+        {DETAIL_PHONE_IMG[app.id] && (
+          <Image
+            src={DETAIL_PHONE_IMG[app.id]!}
+            alt={app.name}
+            width={290}
+            height={580}
+            className={`hidden md:block absolute ${DETAIL_PHONE_OFFSET[app.id] ?? "-bottom-24"} w-[240px] lg:w-[290px] h-auto z-10 drop-shadow-2xl ${
+              DETAIL_PHONE_SIDE[app.id] === "left" ?
+                "left-28 lg:left-44"
+              : "right-10 lg:right-20"
+            }`}
+          />
+        )}
       </section>
 
       {/* ============ 2 · ABOUT — the "Built for" copy that used to overlay the hero ============ */}
-      <section className='relative bg-white py-16 md:py-20'>
-        <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 flex flex-col md:flex-row md:items-end gap-6 md:gap-10'>
-          <div className='min-w-0 md:max-w-2xl'>
+      <section className='relative bg-white pt-5 pb-8 sm:py-16 md:py-20'>
+        <div
+          className={`mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 flex flex-col gap-5 md:gap-10 ${
+            DETAIL_PHONE_SIDE[app.id] === "left" ?
+              "md:items-end md:text-right"
+            : "md:flex-row md:items-end"
+          }`}>
+          <div
+            className={`min-w-0 md:max-w-2xl ${
+              DETAIL_PHONE_SIDE[app.id] === "left" ? "md:ml-auto" : ""
+            }`}>
             <div className='kicker'>
               <span className='dot'></span>
               {d.apps.forLabel} · {app.for}
             </div>
-            <p className='mt-5 text-[15px] sm:text-[17px] text-forest/75 leading-relaxed'>
+            <p className='mt-4 sm:mt-5 text-[15px] sm:text-[17px] text-forest/75 leading-relaxed'>
               {app.longDescription}
             </p>
           </div>
@@ -193,18 +196,20 @@ export default async function AppDetailPage({
               {d.apps.benefitsLabel}
             </div>
 
-            <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6'>
+            <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6'>
               {app.benefits.map((b) => (
-                <div key={b.t} className='glass rounded-3xl p-6 sm:p-7'>
-                  <span className='w-11 h-11 rounded-xl bg-cream border border-forest/10 flex items-center justify-center'>
+                <div key={b.t} className='glass rounded-3xl p-5 sm:p-7 flex sm:block gap-4'>
+                  <span className='w-11 h-11 rounded-xl bg-cream border border-forest/10 flex items-center justify-center shrink-0'>
                     <i className={`fa-solid ${b.i} text-forest text-lg`}></i>
                   </span>
-                  <h3 className='font-serif text-lg sm:text-xl text-forest mt-5'>
-                    {b.t}
-                  </h3>
-                  <p className='text-forest/65 text-sm mt-3 leading-relaxed'>
-                    {b.d}
-                  </p>
+                  <div className='min-w-0'>
+                    <h3 className='font-serif text-lg sm:text-xl text-forest mt-0 sm:mt-5'>
+                      {b.t}
+                    </h3>
+                    <p className='text-forest/65 text-sm mt-2 sm:mt-3 leading-relaxed'>
+                      {b.d}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -248,11 +253,11 @@ export default async function AppDetailPage({
               {app.journey.map((j, i) => (
                 <div
                   key={j.t}
-                  className='glass rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-start gap-5 sm:gap-8'>
-                  <span className='font-serif text-3xl sm:text-4xl text-gold leading-none shrink-0'>
+                  className='glass rounded-3xl p-5 sm:p-8 flex flex-row items-start gap-4 sm:gap-8'>
+                  <span className='font-serif text-2xl sm:text-4xl text-gold leading-none shrink-0'>
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <div>
+                  <div className='min-w-0'>
                     <div className='text-[11px] tracking-[0.22em] uppercase text-brown'>
                       {j.t}
                     </div>
@@ -274,8 +279,8 @@ export default async function AppDetailPage({
       {app.helper && (
         <section className='relative bg-ivory py-20 md:py-28'>
           <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10'>
-            <div className='bg-forest text-ivory rounded-3xl p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden grain'>
-              <div className='lg:col-span-8'>
+            <div className='bg-forest text-ivory rounded-3xl p-6 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center relative overflow-hidden grain'>
+              <div className='order-2 lg:order-1 lg:col-span-8'>
                 <div className='kicker kicker-gold'>
                   <span className='dot'></span>
                   {app.helper.kicker}
@@ -287,9 +292,9 @@ export default async function AppDetailPage({
                   {app.helper.body}
                 </p>
               </div>
-              <div className='lg:col-span-4 flex lg:justify-end'>
-                <span className='w-24 h-24 rounded-full bg-ivory/10 border border-ivory/15 flex items-center justify-center'>
-                  <i className='fa-solid fa-user-tie text-gold text-4xl'></i>
+              <div className='order-1 lg:order-2 lg:col-span-4 flex lg:justify-end'>
+                <span className='w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-ivory/10 border border-ivory/15 flex items-center justify-center'>
+                  <i className='fa-solid fa-user-tie text-gold text-2xl sm:text-4xl'></i>
                 </span>
               </div>
             </div>
@@ -306,9 +311,9 @@ export default async function AppDetailPage({
               {d.apps.signupLabel}
             </div>
 
-            <div className='mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4'>
+            <div className='mt-10 flex sm:grid overflow-x-auto sm:overflow-visible -mx-4 sm:mx-0 px-4 sm:px-0 gap-4 sm:grid-cols-3 lg:grid-cols-5 snap-x snap-mandatory sm:snap-none'>
               {app.signupSteps.map((s, i) => (
-                <div key={s} className='glass rounded-2xl p-5'>
+                <div key={s} className='glass rounded-2xl p-5 shrink-0 w-[70vw] xs:w-[60vw] sm:w-auto snap-start'>
                   <span className='font-serif text-2xl text-gold'>
                     {String(i + 1).padStart(2, "0")}
                   </span>
