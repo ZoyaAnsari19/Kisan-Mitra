@@ -308,7 +308,7 @@ export default async function AppsPage({
                 key={app.id}
                 className="mt-10 mx-auto max-w-3xl rounded-[2rem] bg-white p-6 sm:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-start"
               >
-                <div className="relative w-full sm:w-40 md:w-32 lg:w-40 shrink-0 self-stretch min-h-[220px] rounded-2xl overflow-hidden">
+                <div className="relative w-full sm:w-40 md:w-32 lg:w-40 shrink-0 h-40 sm:h-auto sm:self-stretch sm:min-h-[220px] rounded-2xl overflow-hidden">
                   <div className="w-full h-full bg-forest/90 flex items-center justify-center p-2 text-center">
                     <span className="text-ivory text-[11px] font-medium tracking-[0.08em] uppercase">
                       {d.apps.comingSoonBadge}
