@@ -1118,6 +1118,47 @@
         "journey": [],
         "signupSteps": ["Download the app", "Verify your mobile number", "Register your firm (GST/license)", "Get verified", "Start buying"],
         "helper": null
+      },
+      {
+        "id": "labor-provider",
+        "name": "Labor (Manpower) Provider App",
+        "tagline": "Field work, staffed on demand",
+        "for": "Labor contractors and workers",
+        "description": "Manages the labor contractor and worker pool for field work — sowing, harvesting, mandi loading. Matches a farmer's manpower request with available workers.",
+        "longDescription": "The Labor (Manpower) Provider App connects labor contractors and workers directly to real farmer manpower requests raised in Kisan Mitra — for sowing, harvesting, mandi loading and other field work — matching demand with an available worker pool.",
+        "features": [],
+        "faq": [],
+        "badges": ["Android & iOS", "Free to download", "RKF Foundation Initiative"],
+        "benefits": [],
+        "categories": [],
+        "journey": [],
+        "signupSteps": [],
+        "helper": null
+      }
+    ],
+    "moreItems": [
+      {
+        "id": "supermart-pos",
+        "name": "SuperMart Billing / POS Terminal App",
+        "for": "Super Mini Mall counters",
+        "description": "Runs at the counter of the Super Mini Mall — bills a farmer's marketplace order, decreases stock, applies membership discounts, and generates the payment/invoice. The store-level backend behind the farmer's Marketplace."
+      },
+      {
+        "id": "doctor-provider",
+        "name": "Cattle / Crop / Human Doctor Provider App",
+        "for": "Veterinary, crop and health experts",
+        "description": "One app for all three kinds of doctors. When a farmer books an appointment in Crop Doctor, Pashudhan-Vet or Healthcare, the doctor sees the case here, schedules a video call or visit, and sends back the report or prescription."
+      }
+    ],
+    "fieldOpsLabel": "Field Operations Apps",
+    "fieldOpsTitle": "Built for RKF's Own People.",
+    "fieldOpsSubtitle": "The internal apps that keep every VLE, VLM and district officer connected to the field.",
+    "fieldOpsItems": [
+      {
+        "id": "staff-app",
+        "name": "Staff App",
+        "for": "Officers, VLEs and VLMs",
+        "description": "The command center for Taluka/District officers — an aggregated dashboard of every VLE/VLM, order, revenue, complaint and inventory item, where targets are set and performance is monitored. It's also the daily-work reporting tool for the Village Level Entrepreneur/Manager (the \"My Helper\" the farmer sees), and the offline-first field tool used on-site for soil/water sampling, KYC verification, and photo/GPS capture."
       }
     ]
   },

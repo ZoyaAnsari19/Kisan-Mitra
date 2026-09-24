@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { defaultLocale, isLocale, localePath, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { absoluteLocaleUrl, getSiteUrl } from "@/site";
+import { Header } from "../../Header";
 import {
   APPS_META,
   DETAIL_HERO_IMG,
@@ -73,37 +75,9 @@ export default async function AppDetailPage({
   const meta = APPS_META.find((a) => a.id === id);
   if (!app || !meta) notFound();
 
-  const home = localePath(lang);
-  const appsHref = `${home === "/" ? "" : home}/apps`;
-
   return (
     <>
-      {/* ============ HEADER ============ */}
-      <header className='fixed top-0 inset-x-0 z-50'>
-        <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 pt-4 sm:pt-5'>
-          <div className='glass rounded-3xl lg:rounded-full pl-4 sm:pl-5 pr-4 sm:pr-5 py-2.5 sm:py-3 flex items-center justify-between'>
-            <a href={home} className='flex items-center gap-3 group min-w-0'>
-              <span className='relative inline-flex h-9 w-9 items-center justify-center rounded-full bg-forest text-ivory shrink-0'>
-                <span className='font-serif text-lg leading-none'>क</span>
-                <span className='absolute -inset-1 rounded-full border border-gold/40'></span>
-              </span>
-              <div className='leading-tight min-w-0'>
-                <div className='font-serif text-[15px] tracking-tight text-forest truncate'>
-                  {d.nav.brand}
-                </div>
-                <div className='text-[10px] tracking-[0.28em] text-brown uppercase truncate'>
-                  {d.nav.brandSub}
-                </div>
-              </div>
-            </a>
-            <a
-              href={appsHref}
-              className='text-[13.5px] text-forest/85 hover:text-forest flex items-center gap-2'>
-              <span className='arrow'>←</span> {d.apps.backToApps}
-            </a>
-          </div>
-        </div>
-      </header>
+      <Header lang={lang} d={d} />
 
       {/* ============ 1 · HERO — full-bleed background, copy overlaid on the left ============ */}
       {/* Height stays content-driven so text never collides with the next
@@ -114,10 +88,13 @@ export default async function AppDetailPage({
         {/* Banner hidden on mobile — same reasoning as the /apps list hero.
             The banner carries its own headline/copy baked into the image, so
             there's no text overlay or gradient here on sm+ — just the CTA. */}
-        <img
+        <Image
           src={DETAIL_HERO_IMG[app.id]}
           alt={app.name}
-          className='hidden sm:block absolute inset-0 w-full h-full object-cover'
+          fill
+          priority
+          sizes="100vw"
+          className='hidden sm:block object-cover'
         />
         {DETAIL_HERO_LEFT_FADE.has(app.id) && (
           <div className='hidden sm:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-black/70 via-black/30 to-transparent' />
@@ -149,9 +126,11 @@ export default async function AppDetailPage({
             (DETAIL_PHONE_IMG[app.id] is null) skip this entirely rather
             than showing a placeholder. */}
         {DETAIL_PHONE_IMG[app.id] && (
-          <img
+          <Image
             src={DETAIL_PHONE_IMG[app.id]!}
             alt={app.name}
+            width={290}
+            height={580}
             className={`hidden md:block absolute ${DETAIL_PHONE_OFFSET[app.id] ?? "-bottom-24"} w-[240px] lg:w-[290px] h-auto z-10 drop-shadow-2xl ${
               DETAIL_PHONE_SIDE[app.id] === "left" ?
                 "left-28 lg:left-44"
