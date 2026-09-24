@@ -118,12 +118,9 @@ export default async function AppsPage({
               {d.apps.body}
             </p>
 
-            <div className="reveal reveal-delay-2 mt-9 flex flex-wrap items-center gap-4">
-              <a href="#app-grid" className="btn-primary">
+            <div className="reveal reveal-delay-2 mt-9 flex items-center gap-3 sm:gap-4">
+              <a href="#app-grid" className="btn-primary text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3">
                 {d.apps.exploreApps} <span className="arrow">→</span>
-              </a>
-              <a href="#app-grid" className="btn-ghost">
-                {d.apps.watchVideo}
               </a>
             </div>
           </div>
@@ -157,10 +154,6 @@ export default async function AppsPage({
                   comingSoonLabel={d.apps.comingSoonBadge}
                   className={`group relative rounded-[2rem] p-6 sm:p-7 h-full flex gap-5 items-start lift ${CARD_TINTS[i % CARD_TINTS.length]}`}
                 >
-                  <span className="absolute top-5 right-5 z-10 w-8 h-8 rounded-full bg-ivory/70 flex items-center justify-center text-forest/60 group-hover:text-forest transition-colors shrink-0">
-                    <i className="fa-solid fa-chevron-right text-xs"></i>
-                  </span>
-
                   {/* Image — no background/border, just the cutout art */}
                   <div className="relative w-28 sm:w-32 shrink-0 self-stretch min-h-[220px] rounded-2xl overflow-hidden">
                     <img
@@ -172,7 +165,7 @@ export default async function AppsPage({
 
                   <div className="min-w-0 flex-1 flex flex-col h-full">
                     <div className="flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-lg bg-ivory border border-forest/10 flex items-center justify-center shrink-0">
+                      <span className="hidden sm:flex w-9 h-9 rounded-lg bg-ivory border border-forest/10 items-center justify-center shrink-0">
                         <i className={`fa-solid ${APP_ICONS[app.id]} text-forest text-sm`}></i>
                       </span>
                       <h2 className="font-serif text-xl text-forest min-w-0 leading-tight">{app.name}</h2>
@@ -198,7 +191,7 @@ export default async function AppsPage({
                       </div>
                       {meta.status === "coming-soon" && (
                         <span
-                          className="flex items-center gap-1.5 rounded-full bg-forest pl-3 pr-2.5 py-1.5 text-ivory shrink-0"
+                          className="hidden sm:flex items-center gap-1.5 rounded-full bg-forest pl-3 pr-2.5 py-1.5 text-ivory shrink-0"
                           title={d.apps.comingSoonBadge}
                         >
                           <span className="text-[11px] font-medium whitespace-nowrap">{d.apps.downloadNow}</span>
@@ -232,12 +225,12 @@ export default async function AppsPage({
       {/* ============ FINAL CTA BANNER ============ */}
       <section className="relative bg-ivory pb-20 md:pb-28">
         <div className="mx-auto max-w-[1480px] px-6 md:px-10">
-          <div className="rounded-[2rem] bg-sand-grad px-7 sm:px-10 py-8 sm:py-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="rounded-[2rem] bg-sand-grad px-6 sm:px-10 py-7 sm:py-10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6">
             <div>
               <h2 className="font-serif text-xl sm:text-2xl text-forest">{d.apps.ctaBannerTitle}</h2>
               <p className="mt-2 text-forest/65 text-[14.5px] max-w-lg">{d.apps.ctaBannerBody}</p>
             </div>
-            <a href={`${appsBase}/kisan-mitra`} className="btn-primary shrink-0">
+            <a href={`${appsBase}/kisan-mitra`} className="btn-primary shrink-0 w-fit text-sm sm:text-base px-4 sm:px-6 py-2.5 sm:py-3">
               {d.apps.download} <span className="arrow">↓</span>
             </a>
           </div>

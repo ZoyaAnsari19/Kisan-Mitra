@@ -29,10 +29,10 @@ export const APPS_META: AppMeta[] = [
       android: "https://github.com/ZoyaAnsari19/Kisan-Mitra/releases/download/apk-kisan-mitra-v1/kisan-mitra.apk",
     },
   },
-  { id: "machinery-rental", status: "coming-soon" },
-  { id: "logistics", status: "coming-soon" },
-  { id: "storage", status: "coming-soon" },
-  { id: "mandi", status: "coming-soon" },
+  { id: "machinery-rental", status: "live" },
+  { id: "logistics", status: "live" },
+  { id: "storage", status: "live" },
+  { id: "mandi", status: "live" },
 ];
 
 export const PLACEHOLDER_IMG = "/static/apps/placeholder.jpg";
@@ -59,8 +59,16 @@ export const GALLERY_IMAGES: Record<string, string[]> = {
     "/static/apps/gallery-kisan-mitra-4.png",
   ],
   "machinery-rental": [PLACEHOLDER_IMG],
-  logistics: [PLACEHOLDER_IMG],
-  storage: [PLACEHOLDER_IMG],
+  logistics: [
+    "/static/apps/gallery-logistics-1.png",
+    "/static/apps/gallery-logistics-2.png",
+    "/static/apps/gallery-logistics-3.png",
+  ],
+  storage: [
+    "/static/apps/gallery-storage-1.png",
+    "/static/apps/gallery-storage-2.png",
+    "/static/apps/gallery-storage-3.png",
+  ],
   mandi: [PLACEHOLDER_IMG],
 };
 
@@ -72,22 +80,46 @@ export const GALLERY_IMAGES: Record<string, string[]> = {
 const DETAIL_HERO_PLACEHOLDER = "/static/apps/detail-hero.jpg";
 export const DETAIL_HERO_IMG: Record<string, string> = {
   "kisan-mitra": DETAIL_HERO_PLACEHOLDER,
-  "machinery-rental": DETAIL_HERO_PLACEHOLDER,
-  logistics: DETAIL_HERO_PLACEHOLDER,
-  storage: DETAIL_HERO_PLACEHOLDER,
-  mandi: DETAIL_HERO_PLACEHOLDER,
+  "machinery-rental": "/static/apps/detail-hero-machinery-rental.png",
+  logistics: "/static/apps/detail-hero-logistics.png",
+  storage: "/static/apps/detail-hero-storage.png",
+  mandi: "/static/apps/detail-hero-mandi.png",
 };
 
 /**
  * Floating phone mockup that overlaps the hero/about boundary on the detail
- * page. All 5 apps share the same placeholder for now — swap per app once
- * real mockups are supplied.
+ * page. `null` means the app has no mockup yet — the detail page hides the
+ * floating image entirely for that app instead of falling back to a
+ * placeholder.
  */
 const DETAIL_PHONE_PLACEHOLDER = "/static/apps/detail-phone-mockup.png";
-export const DETAIL_PHONE_IMG: Record<string, string> = {
+export const DETAIL_PHONE_IMG: Record<string, string | null> = {
   "kisan-mitra": DETAIL_PHONE_PLACEHOLDER,
-  "machinery-rental": DETAIL_PHONE_PLACEHOLDER,
-  logistics: DETAIL_PHONE_PLACEHOLDER,
-  storage: DETAIL_PHONE_PLACEHOLDER,
-  mandi: DETAIL_PHONE_PLACEHOLDER,
+  "machinery-rental": null,
+  logistics: "/static/apps/detail-phone-logistics.png",
+  storage: null,
+  mandi: "/static/apps/detail-phone-mandi.png",
 };
+
+/**
+ * Which side the floating phone mockup docks to. Defaults to "right" (the
+ * original layout); apps can override to "left" when their mockup art was
+ * composed to sit on the opposite side.
+ */
+export const DETAIL_PHONE_SIDE: Record<string, "left" | "right"> = {
+  mandi: "left",
+};
+
+/**
+ * How far the floating phone mockup dips below the hero into the About
+ * section. Defaults to "-bottom-24"; apps can override to sit lower (more
+ * of the phone shown against the About section) when their mockup was
+ * composed for that framing.
+ */
+export const DETAIL_PHONE_OFFSET: Record<string, string> = {};
+
+/**
+ * Apps whose hero banner needs a left-to-mid white fade so light copy stays
+ * readable over the photo, fully transparent past the midpoint.
+ */
+export const DETAIL_HERO_LEFT_FADE = new Set(["mandi"]);
