@@ -77,14 +77,14 @@ export default async function AppDetailPage({
 
   return (
     <>
-      <Header lang={lang} d={d} />
+      <Header lang={lang} d={d} noTopGap />
 
       {/* ============ 1 · HERO — full-bleed background, copy overlaid on the left ============ */}
       {/* Height stays content-driven so text never collides with the next
           section at any zoom level or viewport; 2xl:min-h scales with
           viewport width so object-cover doesn't crop in tight on very wide
           screens (same approach as the /apps list hero). */}
-      <section className='relative bg-ivory mt-[35px] sm:min-h-[560px] md:min-h-[620px] 2xl:min-h-[38vw]'>
+      <section className='relative bg-ivory mt-8.75 sm:min-h-140 md:min-h-155 2xl:min-h-[38vw]'>
         {/* Banner hidden on mobile — same reasoning as the /apps list hero.
             The banner carries its own headline/copy baked into the image, so
             there's no text overlay or gradient here on sm+ — just the CTA. */}
@@ -97,10 +97,10 @@ export default async function AppDetailPage({
           className='hidden sm:block object-cover'
         />
         {DETAIL_HERO_LEFT_FADE.has(app.id) && (
-          <div className='hidden sm:block absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-black/70 via-black/30 to-transparent' />
+          <div className='hidden sm:block absolute inset-y-0 left-0 w-1/2 bg-linear-to-r from-black/70 via-black/30 to-transparent' />
         )}
 
-        <div className='relative mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 pt-24 sm:pt-40 pb-4 sm:pb-16 w-full'>
+        <div className='relative mx-auto max-w-370 px-4 sm:px-6 md:px-10 pt-24 sm:pt-40 pb-4 sm:pb-16 w-full'>
           {/* Mobile-only fallback copy — the banner (with its baked-in text)
               is hidden below sm, so small screens still need something here.
               Trimmed vertical rhythm below sm only, so this reads as one
@@ -131,7 +131,7 @@ export default async function AppDetailPage({
             alt={app.name}
             width={290}
             height={580}
-            className={`hidden md:block absolute ${DETAIL_PHONE_OFFSET[app.id] ?? "-bottom-24"} w-[240px] lg:w-[290px] h-auto z-10 drop-shadow-2xl ${
+            className={`hidden md:block absolute ${DETAIL_PHONE_OFFSET[app.id] ?? "-bottom-24"} w-60 lg:w-72.5 h-auto z-10 drop-shadow-2xl ${
               DETAIL_PHONE_SIDE[app.id] === "left" ?
                 "left-28 lg:left-44"
               : "right-10 lg:right-20"
@@ -143,13 +143,13 @@ export default async function AppDetailPage({
       {/* ============ 2 · ABOUT — the "Built for" copy that used to overlay the hero ============ */}
       <section className='relative bg-white pt-5 pb-8 sm:py-16 md:py-20'>
         <div
-          className={`mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 flex flex-col gap-5 md:gap-10 ${
+          className={`mx-auto max-w-370 px-4 sm:px-6 md:px-10 flex flex-col gap-5 md:gap-10 ${
             DETAIL_PHONE_SIDE[app.id] === "left" ?
               "md:items-end md:text-right"
             : "md:flex-row md:items-end"
           }`}>
           <div
-            className={`min-w-0 md:max-w-2xl ${
+            className={`min-w-0 ${DETAIL_PHONE_IMG[app.id] ? "md:max-w-2xl" : "md:flex-1"} ${
               DETAIL_PHONE_SIDE[app.id] === "left" ? "md:ml-auto" : ""
             }`}>
             <div className='kicker'>
@@ -166,7 +166,7 @@ export default async function AppDetailPage({
               status={meta.status}
               href={meta.downloadUrl?.android}
               label={d.apps.download}
-              notAvailableLabel={d.apps.notAvailable}
+              notAvailableLabel={d.apps.comingSoonBadge}
               className='btn-primary'
             />
           </div>
@@ -175,7 +175,7 @@ export default async function AppDetailPage({
 
       {/* ============ 2b · SCREENSHOT GALLERY ============ */}
       <section className='relative bg-forest-grad text-ivory py-20 md:py-28 overflow-hidden grain'>
-        <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10'>
+        <div className='mx-auto max-w-370 px-4 sm:px-6 md:px-10'>
           <div className='kicker kicker-gold'>
             <span className='dot'></span>
             {d.apps.screensLabel}
@@ -190,7 +190,7 @@ export default async function AppDetailPage({
       {/* ============ 3 · KEY BENEFITS ============ */}
       {app.benefits.length > 0 && (
         <section className='relative bg-ivory py-20 md:py-28'>
-          <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10'>
+          <div className='mx-auto max-w-370 px-4 sm:px-6 md:px-10'>
             <div className='kicker'>
               <span className='dot'></span>
               {d.apps.benefitsLabel}
@@ -220,7 +220,7 @@ export default async function AppDetailPage({
       {/* ============ 4 · WHAT YOU CAN DO — stacked accordion by category ============ */}
       {app.categories.length > 0 && (
         <section className='relative bg-ivory py-20 md:py-28'>
-          <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10'>
+          <div className='mx-auto max-w-370 px-4 sm:px-6 md:px-10'>
             <div className='grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14'>
               <div className='lg:col-span-4'>
                 <div className='kicker'>
@@ -242,8 +242,8 @@ export default async function AppDetailPage({
       {/* ============ 5 · APP'S OWN INTRODUCTION (journey / onboarding story) ============ */}
       {app.journey.length > 0 && (
         <section className='relative bg-sand-grad py-20 md:py-28 overflow-hidden'>
-          <div className='blob bg-gold/30 w-[500px] h-[500px] -top-40 -right-40 animate-float-slower'></div>
-          <div className='relative mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10'>
+          <div className='blob bg-gold/30 w-125 h-125 -top-40 -right-40 animate-float-slower'></div>
+          <div className='relative mx-auto max-w-370 px-4 sm:px-6 md:px-10'>
             <div className='kicker'>
               <span className='dot'></span>
               {d.apps.journeyLabel}
@@ -278,7 +278,7 @@ export default async function AppDetailPage({
       {/* ============ 6 · VLE HELPER CALLOUT ============ */}
       {app.helper && (
         <section className='relative bg-ivory py-20 md:py-28'>
-          <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10'>
+          <div className='mx-auto max-w-370 px-4 sm:px-6 md:px-10'>
             <div className='bg-forest text-ivory rounded-3xl p-6 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center relative overflow-hidden grain'>
               <div className='order-2 lg:order-1 lg:col-span-8'>
                 <div className='kicker kicker-gold'>
@@ -305,7 +305,7 @@ export default async function AppDetailPage({
       {/* ============ 7 · SIGNUP STEPS ============ */}
       {app.signupSteps.length > 0 && (
         <section className='relative bg-ivory pb-20 md:pb-28'>
-          <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10'>
+          <div className='mx-auto max-w-370 px-4 sm:px-6 md:px-10'>
             <div className='kicker'>
               <span className='dot'></span>
               {d.apps.signupLabel}
@@ -329,7 +329,7 @@ export default async function AppDetailPage({
 
       {/* ============ 8 · FAQ ============ */}
       <section className='relative bg-ivory pb-20 md:pb-28'>
-        <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10'>
+        <div className='mx-auto max-w-370 px-4 sm:px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10'>
           <div className='md:col-span-4'>
             <div className='kicker'>
               <span className='dot'></span>
@@ -354,7 +354,7 @@ export default async function AppDetailPage({
                     +
                   </span>
                 </summary>
-                <div className='faq-content mt-4 sm:mt-5 pl-[40px] sm:pl-[52px] text-forest/70 max-w-3xl leading-relaxed text-[15px] sm:text-base'>
+                <div className='faq-content mt-4 sm:mt-5 pl-10 sm:pl-13 text-forest/70 max-w-3xl leading-relaxed text-[15px] sm:text-base'>
                   {f.a}
                 </div>
               </details>
@@ -365,7 +365,7 @@ export default async function AppDetailPage({
 
       {/* ============ 9 · FINAL CTA ============ */}
       <section className='relative bg-forest text-ivory py-14 sm:py-16'>
-        <div className='mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6'>
+        <div className='mx-auto max-w-370 px-4 sm:px-6 md:px-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6'>
           <div>
             <div className='text-[11px] tracking-[0.22em] uppercase text-clay/80'>
               {d.apps.download}
@@ -376,7 +376,7 @@ export default async function AppDetailPage({
             status={meta.status}
             href={meta.downloadUrl?.android}
             label={d.apps.download}
-            notAvailableLabel={d.apps.notAvailable}
+            notAvailableLabel={d.apps.comingSoonBadge}
             className='btn-gold'
           />
         </div>

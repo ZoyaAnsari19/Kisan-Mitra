@@ -18,7 +18,16 @@ function liveClockText(locale: Locale, prefix: string): string {
  * sub-page clicking "Services" should land on the homepage's Services
  * section, not a dead anchor on the current page.
  */
-export function Header({ lang, d }: { lang: Locale; d: Dictionary }) {
+export function Header({
+  lang,
+  d,
+  noTopGap = false,
+}: {
+  lang: Locale;
+  d: Dictionary;
+  /** Removes the pt-4/pt-5 gap above the floating pill — the app detail page docks the header flush to the top instead. */
+  noTopGap?: boolean;
+}) {
   const home = localePath(lang);
   const appsHref = `${home === "/" ? "" : home}/apps`;
 
@@ -35,7 +44,7 @@ export function Header({ lang, d }: { lang: Locale; d: Dictionary }) {
 
   return (
     <header id="site-header" className="fixed top-0 inset-x-0 z-50 transition-all duration-500">
-      <div className="mx-auto max-w-[1480px] px-4 sm:px-6 md:px-10 pt-4 sm:pt-5">
+      <div className={`mx-auto max-w-370 px-4 sm:px-6 md:px-10 ${noTopGap ? "" : "pt-4 sm:pt-5"}`}>
         <div className="glass rounded-3xl lg:rounded-full pl-4 sm:pl-5 pr-2 sm:pr-3 py-2.5 sm:py-3 flex items-center justify-between">
           <a href={home} className="flex items-center gap-3 group min-w-0">
             <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-full bg-forest text-ivory shrink-0">
@@ -75,7 +84,7 @@ export function Header({ lang, d }: { lang: Locale; d: Dictionary }) {
               aria-label={d.nav.toggleMenu}
               aria-controls="mobile-menu"
               aria-expanded="false"
-              className="xl:hidden ml-1 inline-flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-full hover:bg-forest/5 transition"
+              className="xl:hidden ml-1 inline-flex flex-col items-center justify-center gap-1.25 w-11 h-11 rounded-full hover:bg-forest/5 transition"
             >
               <span className="hamburger-line"></span>
               <span className="hamburger-line"></span>
