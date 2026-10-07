@@ -27,15 +27,17 @@ const CARD_TINTS = [
 type CardItem = { id: string; name: string; for: string; description: string };
 
 /**
- * Renders one app card. Used both by the live/coming-soon partner-apps grid
- * (where `href` points at a real detail page for live apps) and by the
- * always-coming-soon sections (SuperMart POS, doctor/labor providers, the
- * internal Staff App) that have no detail page at all — those pass
- * `status="coming-soon"` and an href that AppCard never navigates to.
+ * Renders one app card. Whether the card navigates to a detail page and
+ * whether its download is available are independent: an app can be fully
+ * browsable (hasDetailPage) while its APK is still "coming soon" (status).
+ * Used both by the partner-apps grid (apps with a real detail page) and by
+ * the always-coming-soon items (SuperMart POS, doctor provider) that have no
+ * detail page at all — those pass `hasDetailPage={false}`.
  */
 function AppGridCard({
   app,
   href,
+  hasDetailPage,
   status,
   downloadUrl,
   tint,
@@ -47,6 +49,7 @@ function AppGridCard({
 }: {
   app: CardItem;
   href: string;
+  hasDetailPage: boolean;
   status: "live" | "coming-soon";
   downloadUrl?: string;
   tint: string;
@@ -59,15 +62,15 @@ function AppGridCard({
   return (
     <AppCard
       href={href}
-      status={status}
+      hasDetailPage={hasDetailPage}
       comingSoonLabel={comingSoonLabel}
-      className={`group relative rounded-[2rem] p-6 sm:p-7 h-full flex gap-5 items-start lift ${tint}`}
+      className={`group relative rounded-4xl p-6 sm:p-7 h-full flex gap-5 items-start lift ${tint}`}
     >
-      {/* Image — no background/border, just the cutout art. Coming-soon
-          apps show the label in place of a screenshot rather than a real
-          or placeholder image, since there's nothing real to show yet. */}
-      <div className="relative w-28 sm:w-32 shrink-0 self-stretch min-h-[220px] rounded-2xl overflow-hidden">
-        {status === "coming-soon" ?
+      {/* Image — no background/border, just the cutout art. Apps without a
+          detail page show the label in place of a screenshot rather than a
+          real or placeholder image, since there's nothing real to show yet. */}
+      <div className="relative w-28 sm:w-32 shrink-0 self-stretch min-h-55 rounded-2xl overflow-hidden">
+        {!hasDetailPage ?
           <div className="w-full h-full bg-forest/90 flex items-center justify-center p-2 text-center">
             <span className="text-ivory text-[11px] font-medium tracking-[0.08em] uppercase">
               {comingSoonLabel}
@@ -189,12 +192,22 @@ export default async function AppsPage({
   ];
 
   // Display order for the grid — reordered for visual presentation while
-  // leaving the underlying dictionary/data order untouched. The remaining
-  // "moreItems" apps (SuperMart POS, doctor provider) are always coming-soon
-  // and have no detail page, so they're appended after the apps that do.
-  const GRID_ORDER = ["kisan-mitra", "logistics", "machinery-rental", "mandi", "storage", "labor-provider"];
+  // leaving the underlying dictionary/data order untouched. Every app here
+  // now has a real detail page; some (storage, labor-provider, supermart-pos,
+  // doctor-provider) just have their download still marked coming-soon in
+  // APPS_META, which only affects the download button, not the card's
+  // ability to navigate to the detail page.
+  const GRID_ORDER = [
+    "kisan-mitra",
+    "logistics",
+    "machinery-rental",
+    "mandi",
+    "storage",
+    "labor-provider",
+    "supermart-pos",
+    "doctor-provider",
+  ];
   const gridItems = GRID_ORDER.map((id) => d.apps.items.find((a) => a.id === id)!);
-  const moreItems = d.apps.moreItems;
 
   return (
     <>
@@ -207,7 +220,7 @@ export default async function AppsPage({
           object-cover to crop in tight and "zoom" the farmer's face — so
           above that breakpoint min-h scales with viewport width instead,
           keeping the crop proportional to the photo. */}
-      <section className="relative overflow-hidden bg-ivory-grad sm:min-h-[620px] md:min-h-[680px] 2xl:min-h-[42vw]">
+      <section className="relative overflow-hidden bg-ivory-grad sm:min-h-155 md:min-h-170 2xl:min-h-[42vw]">
         {/* Banner hidden on mobile — the photo's important detail gets too
             cropped at narrow widths to read well, so small screens get a
             plain background instead. */}
@@ -220,7 +233,7 @@ export default async function AppsPage({
           className="hidden sm:block object-cover object-bottom"
         />
 
-        <div className="relative mx-auto max-w-[1480px] px-6 md:px-10 pt-32 sm:pt-40 pb-14 sm:pb-16 w-full">
+        <div className="relative mx-auto max-w-370 px-6 md:px-10 pt-32 sm:pt-40 pb-14 sm:pb-16 w-full">
           <div className="max-w-xl">
             <div className="kicker"><span className="dot"></span>{d.apps.kicker}</div>
             <h1 className="reveal font-serif text-mega text-forest mt-6">
@@ -244,11 +257,11 @@ export default async function AppsPage({
 
       {/* ============ COMPACT STATS STRIP ============ */}
       <section className="relative bg-ivory border-y border-forest/10">
-        <div className="mx-auto max-w-[1480px] px-6 md:px-10 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="mx-auto max-w-370 px-6 md:px-10 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
           {STATS.map((s) => (
             <div key={s.l} className="text-center md:text-left">
               <div className="font-serif text-2xl sm:text-3xl text-forest">{s.v}</div>
-              <div className="text-[11px] tracking-[0.18em] uppercase text-brown mt-1">{s.l}</div>
+              <div className="text-[11px] tracking-wide-lux uppercase text-brown mt-1">{s.l}</div>
             </div>
           ))}
         </div>
@@ -256,7 +269,7 @@ export default async function AppsPage({
 
       {/* ============ APP GRID ============ */}
       <section id="app-grid" className="relative bg-ivory py-20 md:py-28">
-        <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+        <div className="mx-auto max-w-370 px-6 md:px-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
             {gridItems.map((app, i) => {
               const meta = APPS_META.find((m) => m.id === app.id)!;
@@ -265,6 +278,7 @@ export default async function AppsPage({
                   key={app.id}
                   app={app}
                   href={`${appsBase}/${app.id}`}
+                  hasDetailPage
                   status={meta.status}
                   downloadUrl={meta.downloadUrl?.android}
                   tint={CARD_TINTS[i % CARD_TINTS.length]}
@@ -276,74 +290,75 @@ export default async function AppsPage({
                 />
               );
             })}
-
-            {moreItems.map((app, i) => (
-              <AppGridCard
-                key={app.id}
-                app={app}
-                href={`${appsBase}/${app.id}`}
-                status="coming-soon"
-                tint={CARD_TINTS[(gridItems.length + i) % CARD_TINTS.length]}
-                isMain={false}
-                mainAppLabel={d.apps.badgeMainApp}
-                comingSoonLabel={d.apps.comingSoonBadge}
-                viewMoreLabel={d.apps.viewMore}
-                downloadNowLabel={d.apps.downloadNow}
-              />
-            ))}
           </div>
 
           {/* ---- Field Operations Apps — RKF's own internal apps. One
               unified panel (heading + app, no separate inner card) rather
               than the partner-apps grid pattern above. ---- */}
-          <div className="mt-20 md:mt-28 rounded-[2rem] bg-sand/25 p-8 sm:p-12">
+          <div className="mt-20 md:mt-28 rounded-4xl bg-sand/25 p-8 sm:p-12">
             <div className="text-center">
               <div className="kicker"><span className="dot"></span>{d.apps.fieldOpsLabel}</div>
               <h2 className="font-serif text-3xl sm:text-4xl text-forest mt-4">{d.apps.fieldOpsTitle}</h2>
               <p className="mt-4 text-forest/70 text-[15px] leading-relaxed">{d.apps.fieldOpsSubtitle}</p>
             </div>
 
-            {d.apps.fieldOpsItems.map((app) => (
-              <div
-                key={app.id}
-                className="mt-10 mx-auto max-w-3xl rounded-[2rem] bg-white p-6 sm:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-start"
-              >
-                <div className="relative w-full sm:w-40 md:w-32 lg:w-40 shrink-0 self-stretch min-h-[220px] rounded-2xl overflow-hidden">
-                  <div className="w-full h-full bg-forest/90 flex items-center justify-center p-2 text-center">
-                    <span className="text-ivory text-[11px] font-medium tracking-[0.08em] uppercase">
-                      {d.apps.comingSoonBadge}
-                    </span>
+            {(() => {
+              const staffApp = d.apps.items.find((a) => a.id === "staff-app")!;
+              const staffMeta = APPS_META.find((m) => m.id === "staff-app")!;
+              return (
+                <AppCard
+                  href={`${appsBase}/staff-app`}
+                  hasDetailPage
+                  comingSoonLabel={d.apps.comingSoonBadge}
+                  className="mt-10 mx-auto max-w-3xl rounded-4xl bg-white p-6 sm:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-start cursor-pointer"
+                >
+                  <div className="relative w-full sm:w-40 md:w-32 lg:w-40 shrink-0 h-40 sm:h-auto sm:self-stretch sm:min-h-55 rounded-2xl overflow-hidden">
+                    <Image
+                      src={CARD_IMG["staff-app"]}
+                      alt={staffApp.name}
+                      fill
+                      sizes="(min-width: 768px) 160px, 100vw"
+                      className="object-cover object-top"
+                    />
                   </div>
-                </div>
 
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-3">
-                    <span className="hidden sm:flex w-9 h-9 rounded-lg bg-ivory border border-forest/10 items-center justify-center shrink-0">
-                      <i className={`fa-solid ${APP_ICONS[app.id]} text-forest text-sm`}></i>
-                    </span>
-                    <h3 className="font-serif text-xl text-forest min-w-0 leading-tight">{app.name}</h3>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-3">
+                      <span className="hidden sm:flex w-9 h-9 rounded-lg bg-ivory border border-forest/10 items-center justify-center shrink-0">
+                        <i className={`fa-solid ${APP_ICONS["staff-app"]} text-forest text-sm`}></i>
+                      </span>
+                      <h3 className="font-serif text-xl text-forest min-w-0 leading-tight">{staffApp.name}</h3>
+                    </div>
+
+                    <div className="text-[13px] text-forest/55 mt-2">{staffApp.for}</div>
+
+                    <p className="mt-3 text-[14px] text-forest/65 leading-relaxed">{staffApp.description}</p>
+
+                    <div className="mt-6 flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-forest text-sm font-medium">{d.apps.viewMore}</span>
+                        <span className="w-7 h-7 rounded-full bg-ivory flex items-center justify-center text-forest shrink-0">
+                          <i className="fa-solid fa-arrow-right text-[10px]"></i>
+                        </span>
+                      </div>
+                      {staffMeta.status === "coming-soon" && (
+                        <span className="rounded-full bg-forest pl-3 pr-3 py-1.5 text-ivory text-[11px] font-medium">
+                          {d.apps.comingSoonBadge}
+                        </span>
+                      )}
+                    </div>
                   </div>
-
-                  <div className="text-[13px] text-forest/55 mt-2">{app.for}</div>
-
-                  <p className="mt-3 text-[14px] text-forest/65 leading-relaxed">{app.description}</p>
-
-                  <div className="mt-6 flex justify-end">
-                    <span className="btn-primary" title={d.apps.comingSoonBadge}>
-                      {d.apps.comingSoonBadge}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
+                </AppCard>
+              );
+            })()}
           </div>
         </div>
       </section>
 
       {/* ============ FINAL CTA BANNER ============ */}
       <section className="relative bg-ivory pb-20 md:pb-28">
-        <div className="mx-auto max-w-[1480px] px-6 md:px-10">
-          <div className="rounded-[2rem] bg-sand-grad px-6 sm:px-10 py-7 sm:py-10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6">
+        <div className="mx-auto max-w-370 px-6 md:px-10">
+          <div className="rounded-4xl bg-sand-grad px-6 sm:px-10 py-7 sm:py-10 flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6">
             <div>
               <h2 className="font-serif text-xl sm:text-2xl text-forest">{d.apps.ctaBannerTitle}</h2>
               <p className="mt-2 text-forest/65 text-[14.5px] max-w-lg">{d.apps.ctaBannerBody}</p>

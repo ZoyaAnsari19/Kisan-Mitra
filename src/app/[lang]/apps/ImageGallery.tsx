@@ -37,7 +37,7 @@ export function ImageGallery({ images, alt }: Props) {
           just caps how tall the slide can grow, it never crops the image.
           Two slides side by side on sm+ screens when there's more than one
           image; mobile stays single since there's no room for a pair. */}
-      <div className="relative w-full flex items-center justify-center gap-1.5 sm:gap-2 min-h-[220px] max-h-[46vh]">
+      <div className="relative w-full flex items-center justify-center gap-1.5 sm:gap-2 min-h-55 max-h-[46vh]">
         <Image
           src={images[index]}
           alt={`${alt} ${index + 1}`}
@@ -45,6 +45,7 @@ export function ImageGallery({ images, alt }: Props) {
           height={844}
           sizes="(min-width: 640px) 45vw, 90vw"
           className="max-w-full max-h-[46vh] w-auto h-auto object-contain"
+          priority={index === 0}
         />
         {showTwo && (
           <Image

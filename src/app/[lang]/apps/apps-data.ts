@@ -65,6 +65,9 @@ export const APPS_META: AppMeta[] = [
       android: "https://api.rkf.co.in/downloads/man-power-app.apk",
     },
   },
+  { id: "supermart-pos", status: "coming-soon" },
+  { id: "doctor-provider", status: "coming-soon" },
+  { id: "staff-app", status: "coming-soon" },
 ];
 
 export const PLACEHOLDER_IMG = "/static/apps/placeholder.jpg";
@@ -77,9 +80,9 @@ export const CARD_IMG: Record<string, string> = {
   storage: "/static/apps/storage/list-card.png",
   mandi: "/static/apps/mandi/list-card.png",
   "labor-provider": "/static/apps/labor-provider/list-card.png",
-  "supermart-pos": PLACEHOLDER_IMG,
-  "doctor-provider": PLACEHOLDER_IMG,
-  "staff-app": PLACEHOLDER_IMG,
+  "supermart-pos": "/static/apps/supermart-pos/list-card.png",
+  "doctor-provider": "/static/apps/doctor-provider/list-card.png",
+  "staff-app": "/static/apps/staff-app/list-card.png",
 };
 
 /**
@@ -121,6 +124,18 @@ export const GALLERY_IMAGES: Record<string, string[]> = {
     "/static/apps/labor-provider/gallery/2.png",
     "/static/apps/labor-provider/gallery/3.png",
   ],
+  "supermart-pos": [
+    "/static/apps/supermart-pos/gallery/1.png",
+    "/static/apps/supermart-pos/gallery/2.png",
+    "/static/apps/supermart-pos/gallery/3.png",
+  ],
+  "doctor-provider": [
+    "/static/apps/doctor-provider/gallery/1.png",
+    "/static/apps/doctor-provider/gallery/2.png",
+    "/static/apps/doctor-provider/gallery/3.png",
+    "/static/apps/doctor-provider/gallery/4.png",
+  ],
+  "staff-app": [PLACEHOLDER_IMG],
 };
 
 /** Full-bleed hero banner for each app's detail page. */
@@ -131,6 +146,9 @@ export const DETAIL_HERO_IMG: Record<string, string> = {
   storage: "/static/apps/storage/hero.png",
   mandi: "/static/apps/mandi/hero.png",
   "labor-provider": "/static/apps/labor-provider/hero.png",
+  "supermart-pos": "/static/apps/supermart-pos/hero.png",
+  "doctor-provider": "/static/apps/doctor-provider/hero.png",
+  "staff-app": "/static/apps/staff-app/hero.png",
 };
 
 /**
@@ -146,6 +164,9 @@ export const DETAIL_PHONE_IMG: Record<string, string | null> = {
   storage: null,
   mandi: "/static/apps/mandi/phone.png",
   "labor-provider": null,
+  "supermart-pos": null,
+  "doctor-provider": null,
+  "staff-app": null,
 };
 
 /**
