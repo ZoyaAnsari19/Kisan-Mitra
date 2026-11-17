@@ -27,6 +27,21 @@ const AUTO_DETECT_FROM_BROWSER = true;
 
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
+/** Pages (and everything under them) with no translation yet; see the note where this is used. */
+const ENGLISH_ONLY_PREFIXES = ["/privacy-policy", "/delete-account"];
+
+/** Per-app policies, e.g. /apps/logistics/privacy-policy. */
+const APP_POLICY_PATH = /^\/apps\/[^/]+\/privacy-policy$/;
+
+function isEnglishOnly(pathname: string) {
+  return (
+    APP_POLICY_PATH.test(pathname) ||
+    ENGLISH_ONLY_PREFIXES.some(
+      (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+    )
+  );
+}
+
 export const config = {
   // Skip Next internals, the static asset folder, and anything with a file
   // extension (favicon.svg, og images, style.css, app.js …).
@@ -55,7 +70,11 @@ export function proxy(request: NextRequest) {
 
   // Unprefixed path. Either send the reader to their preferred locale, or
   // render the default one in place.
-  const preferred = resolvePreferredLocale(request);
+  // The legal pages exist in English only and must stay at one stable URL
+  // (Google Play and app stores link to them), so they never redirect to /mr.
+  const preferred = isEnglishOnly(pathname)
+    ? defaultLocale
+    : resolvePreferredLocale(request);
 
   if (preferred !== defaultLocale) {
     const url = request.nextUrl.clone();

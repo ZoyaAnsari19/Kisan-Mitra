@@ -130,8 +130,10 @@ export function Footer({ lang, d }: { lang: Locale; d: Dictionary }) {
         <div className="mt-12 pt-8 border-t border-ivory/10 flex flex-wrap items-center justify-between gap-4 text-[11px] text-ivory/55">
           <div>{d.footer.copyright}</div>
           <div className="flex items-center gap-6">
-            {d.footer.legal.map((l) => (
-              <a key={l} href="#" className="hover:text-ivory">{l}</a>
+            {/* First entry is "Privacy" in every locale. The policy is English-only
+                for now, so the link is the same unprefixed URL on /mr too. */}
+            {d.footer.legal.map((l, i) => (
+              <a key={l} href={i === 0 ? "/privacy-policy" : "#"} className="hover:text-ivory">{l}</a>
             ))}
           </div>
           <div className="font-hindi text-ivory/70 italic">{d.footer.motto}</div>

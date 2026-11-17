@@ -70,6 +70,16 @@ export const APPS_META: AppMeta[] = [
   { id: "staff-app", status: "coming-soon" },
 ];
 
+/**
+ * Privacy policy page per app, shown on the app's detail page. Only apps that
+ * have a published policy page appear here — no entry, no link. The policy
+ * pages are English-only, so the same path is used on /mr as well.
+ */
+export const PRIVACY_POLICY_HREF: Record<string, string> = {
+  logistics: "/apps/logistics/privacy-policy",
+  "machinery-rental": "/apps/machinery-rental/privacy-policy",
+};
+
 export const PLACEHOLDER_IMG = "/static/apps/placeholder.jpg";
 
 /** Card visual for each app on the /apps grid — cutout-style product photo, not a screenshot. */

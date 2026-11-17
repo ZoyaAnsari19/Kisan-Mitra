@@ -10,10 +10,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
   languages["x-default"] = absoluteLocaleUrl(localePath(defaultLocale));
 
-  return locales.map((locale) => ({
+  const pages = locales.map((locale) => ({
     url: absoluteLocaleUrl(localePath(locale)),
     changeFrequency: "monthly" as const,
     priority: locale === defaultLocale ? 1 : 0.9,
     alternates: { languages },
   }));
+
+  // English-only legal pages: no `alternates`, there is no translation to point to.
+  const legal = [
+    "/privacy-policy",
+    "/apps/logistics/privacy-policy",
+    "/apps/machinery-rental/privacy-policy",
+    "/delete-account",
+    "/delete-account/logistic",
+    "/delete-account/machinery",
+  ].map((path) => ({
+    url: absoluteLocaleUrl(path),
+    changeFrequency: "yearly" as const,
+    priority: 0.3,
+  }));
+
+  return [...pages, ...legal];
 }

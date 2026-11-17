@@ -14,6 +14,7 @@ import {
   DETAIL_PHONE_OFFSET,
   DETAIL_PHONE_SIDE,
   GALLERY_IMAGES,
+  PRIVACY_POLICY_HREF,
 } from "../apps-data";
 import { AppDownloadButton } from "../AppDownloadButton";
 import { ImageGallery } from "../ImageGallery";
@@ -74,6 +75,8 @@ export default async function AppDetailPage({
   const app = d.apps.items.find((a) => a.id === id);
   const meta = APPS_META.find((a) => a.id === id);
   if (!app || !meta) notFound();
+
+  const privacyHref = PRIVACY_POLICY_HREF[id];
 
   return (
     <>
@@ -169,6 +172,13 @@ export default async function AppDetailPage({
               notAvailableLabel={d.apps.comingSoonBadge}
               className='btn-primary'
             />
+            {privacyHref && (
+              <a
+                href={privacyHref}
+                className='mt-3 block text-sm text-forest/65 underline underline-offset-4 hover:text-forest'>
+                {d.apps.privacyPolicy}
+              </a>
+            )}
           </div>
         </div>
       </section>
@@ -372,13 +382,22 @@ export default async function AppDetailPage({
             </div>
             <h2 className='font-serif text-huge mt-2'>{app.name}</h2>
           </div>
-          <AppDownloadButton
-            status={meta.status}
-            href={meta.downloadUrl?.android}
-            label={d.apps.download}
-            notAvailableLabel={d.apps.comingSoonBadge}
-            className='btn-gold'
-          />
+          <div className='flex flex-col items-start sm:items-end gap-3'>
+            <AppDownloadButton
+              status={meta.status}
+              href={meta.downloadUrl?.android}
+              label={d.apps.download}
+              notAvailableLabel={d.apps.comingSoonBadge}
+              className='btn-gold'
+            />
+            {privacyHref && (
+              <a
+                href={privacyHref}
+                className='text-sm text-ivory/70 underline underline-offset-4 hover:text-ivory'>
+                {d.apps.privacyPolicy}
+              </a>
+            )}
+          </div>
         </div>
       </section>
     </>
