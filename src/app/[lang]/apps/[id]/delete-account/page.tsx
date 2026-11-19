@@ -9,11 +9,12 @@ import {
   legalMetadata,
   requireEnglish,
   type Section,
-} from "../../legal-ui";
+} from "../../../legal-ui";
 
 /**
- * Delete-account page for each partner app, at /delete-account/<app>.
- * (The Kisan Mitra farmer app's page is /delete-account.)
+ * Delete-account page for each app, at /apps/<id>/delete-account — the same
+ * format as /apps/<id>/privacy-policy. An app only has one if it is listed in
+ * APPS below; any other id is a 404.
  *
  * The apps have no in-app "Delete my account" and the backend has no endpoint
  * for it, so these pages describe a support-led process. The process itself is
@@ -21,15 +22,25 @@ import {
  * Do not claim the user can delete from inside an app unless that is built.
  */
 type AppDeletion = {
+  /** Page heading. A placeholder until the Play Store name is final. */
+  heading: string;
   /** Used in the intro, e.g. "This page is for the Transporter app." */
   appLabel: string;
   /** Short name for the page title and the email subject. */
   shortName: string;
   policyHref: string;
+  /** "[N]" until the company has decided how many days. */
+  days: string;
   /** What we erase — the exact list is still to be confirmed per app. */
-  erasedList: string;
+  erasedText: string;
+  /** What we must keep; shown as a list after the retention sentence. */
+  financialRecords: string;
   /** What else needs a decision before the account is deleted. */
   keepQuestion: string;
+  /** Things that must be settled before we can delete. */
+  beforeYouAsk?: string[];
+  /** Which account is removed, when the user has other Kisan Mitra apps. */
+  scopeNote?: string;
   /** Things the user can do in the app without deleting the account. */
   inAppActions: string[];
   /** What to write to us to remove, beyond the in-app actions. */
@@ -37,12 +48,35 @@ type AppDeletion = {
 };
 
 const APPS: Record<string, AppDeletion> = {
-  logistic: {
+  "kisan-mitra": {
+    heading: "Kisan Mitra — Delete your account",
+    appLabel: "Kisan Mitra farmer app",
+    shortName: "Kisan Mitra",
+    policyHref: "/apps/kisan-mitra/privacy-policy",
+    days: "[N]",
+    erasedText:
+      "We delete your account and the personal data tied to it. [CONFIRM: list of what is erased — profile, addresses, KYC photos and numbers, chats, uploaded files, notifications]",
+    financialRecords:
+      "Financial records: wallet, credit and settlement records, and bank and transaction records.",
+    keepQuestion:
+      "what happens to any balance left in your wallet when the account is deleted",
+    inAppActions: [
+      "Delete a saved address, notifications, price alerts, and items in your cart or wishlist.",
+      "Replace your KYC documents.",
+      "Refuse or turn off camera, microphone and location in your phone’s settings.",
+    ],
+    removeOnRequest: "your Aadhaar or PAN",
+  },
+  logistics: {
+    heading: "[PLAY STORE APP NAME] — Delete your account",
     appLabel: "Transporter app",
     shortName: "Transporter",
     policyHref: "/apps/logistics/privacy-policy",
-    erasedList:
-      "profile, documents and their photos, Aadhaar and PAN numbers, vehicles, driver and emergency-contact details, bank details, chats, tickets, trip trail and location points",
+    days: "[N]",
+    erasedText:
+      "We delete your account and the personal data tied to it. [CONFIRM: list of what is erased — profile, documents and their photos, Aadhaar and PAN numbers, vehicles, driver and emergency-contact details, bank details, chats, tickets, trip trail and location points]",
+    financialRecords:
+      "Financial records: wallet, withdrawal and transfer records, and bank and transaction records.",
     keepQuestion:
       "what happens to any balance left in your wallet, and to completed trip records that also belong to the farmer",
     inAppActions: [
@@ -54,28 +88,38 @@ const APPS: Record<string, AppDeletion> = {
     ],
     removeOnRequest: "your Aadhaar, PAN or driving licence",
   },
+  // The Machinery Owner policy and delete page live at /apps/machinery/...,
+  // not /apps/machinery-rental/... — that is the URL the app and the Play
+  // Console are given. (/apps/machinery-rental/... redirects here.)
   machinery: {
-    appLabel: "Machinery Rental app",
-    shortName: "Machinery Rental",
-    policyHref: "/apps/machinery-rental/privacy-policy",
-    erasedList:
-      "profile, documents and their photos, Aadhaar and PAN numbers, machines, operator and emergency-contact details, bank details, chats, tickets, push token",
+    heading: "RKF Machinery Owner — Delete your account",
+    appLabel: "RKF Machinery Owner app",
+    shortName: "Machinery Owner",
+    policyHref: "/apps/machinery/privacy-policy",
+    days: "7",
+    erasedText:
+      "We delete or anonymise your personal data: your name, mobile number, address, photos, KYC documents and bank details. [CONFIRM: what happens to your machine listings and photos — removed or made inactive]",
+    financialRecords:
+      "Financial records: money transactions, wallet, bookings and billing records.",
     keepQuestion:
-      "what happens to any balance left in your wallet, and to completed job records that also belong to the farmer",
+      "whether these records are kept without your name and mobile number",
+    beforeYouAsk: [
+      "If your wallet still has money, you have dues to pay, or you have an open booking, finish it first. We can delete your account only after that.",
+    ],
+    scopeNote:
+      "We delete only your machinery owner account. If you also have an account in another Kisan Mitra service, that account stays.",
     inAppActions: [
       "Edit your profile and bank details.",
       "Replace your documents.",
-      "Remove a machine.",
       "Delete notifications.",
-      "Turn off notifications or camera access in your phone’s settings.",
-      "Log out. This also removes your push token from our server.",
+      "Turn off camera access in your phone’s settings. The photo and QR features then stop working, and the rest of the app still works.",
     ],
     removeOnRequest: "your Aadhaar, PAN or driving licence",
   },
 };
 
 function buildSections(a: AppDeletion): Section[] {
-  return [
+  const sections: Section[] = [
     {
       id: "how-to-request",
       title: "How to ask us to delete your account",
@@ -90,19 +134,28 @@ function buildSections(a: AppDeletion): Section[] {
             `Write to [PRIVACY CONTACT EMAIL] with the subject “Delete my ${a.shortName} account”. [CONFIRM: also accept a support ticket from inside the app]`,
             "Tell us the mobile number you registered with.",
             "We will send an OTP to that number to check that the request is yours. [CONFIRM: OTP verification, once the SMS service is live]",
-            "We will finish the deletion within [N] days and tell you when it is done.",
+            `Our team reviews your request and approves it. We will finish the deletion within ${a.days} days${a.days === "[N]" ? "" : " [CONFIRM: number of days]"} and tell you when it is done. After that, the data does not come back.`,
           ],
         },
       ],
     },
+  ];
+
+  if (a.beforeYouAsk) {
+    sections.push({
+      id: "before-you-ask",
+      title: "Before you ask",
+      blocks: [{ type: "ul", items: a.beforeYouAsk }],
+    });
+  }
+
+  sections.push(
     {
       id: "what-we-delete",
       title: "What we delete",
       blocks: [
-        {
-          type: "p",
-          text: `We delete your account and the personal data tied to it. [CONFIRM: list of what is erased — ${a.erasedList}]`,
-        },
+        { type: "p", text: a.erasedText },
+        ...(a.scopeNote ? [{ type: "p" as const, text: a.scopeNote }] : []),
       ],
     },
     {
@@ -116,7 +169,7 @@ function buildSections(a: AppDeletion): Section[] {
         {
           type: "ul",
           items: [
-            "Financial records: wallet, withdrawal and transfer records, and bank and transaction records.",
+            a.financialRecords,
             "KYC records.",
             "The audit log of sensitive actions. It is built so that it cannot be edited or deleted.",
           ],
@@ -153,14 +206,16 @@ function buildSections(a: AppDeletion): Section[] {
         },
       ],
     },
-  ];
+  );
+
+  return sections;
 }
 
-type Params = Promise<{ lang: string; app: string }>;
+type Params = Promise<{ lang: string; id: string }>;
 
-/** English only for now: `/mr/delete-account/<app>` is a 404 until a Marathi text exists. */
+/** English only for now: `/mr/apps/<id>/delete-account` is a 404 until a Marathi text exists. */
 export function generateStaticParams() {
-  return Object.keys(APPS).map((app) => ({ lang: defaultLocale, app }));
+  return Object.keys(APPS).map((id) => ({ lang: defaultLocale, id }));
 }
 
 export async function generateMetadata({
@@ -168,12 +223,12 @@ export async function generateMetadata({
 }: {
   params: Params;
 }): Promise<Metadata> {
-  const { app } = await params;
-  const entry = APPS[app];
+  const { id } = await params;
+  const entry = APPS[id];
   if (!entry) notFound();
   return legalMetadata(
     params,
-    `/delete-account/${app}`,
+    `/apps/${id}/delete-account`,
     `Delete your ${entry.shortName} account · Kisan Mitra`,
     `How to ask for your ${entry.appLabel} account and data to be deleted, and which records we must keep by law.`,
   );
@@ -185,18 +240,22 @@ export default async function AppDeleteAccountPage({
   params: Params;
 }) {
   const lang = await requireEnglish(params);
-  const { app } = await params;
-  const entry = APPS[app];
+  const { id } = await params;
+  const entry = APPS[id];
   if (!entry) notFound();
+
+  const others = Object.entries(APPS).filter(([key]) => key !== id);
 
   return (
     <LegalShell lang={lang}>
       <h1 className="font-serif text-huge text-forest">
-        <Rich text="[PLAY STORE APP NAME] — Delete your account" />
+        <Rich text={entry.heading} />
       </h1>
       <p className="mt-3 text-[15px] leading-relaxed text-forest/70">
         <Rich
-          text={`This page is for the ${entry.appLabel}. Using the Kisan Mitra farmer app? See {{how to delete your Kisan Mitra account|/delete-account}}.`}
+          text={`This page is for the ${entry.appLabel}. Using another Kisan Mitra app? See how to delete your ${others
+            .map(([key, o]) => `{{${o.shortName}|/apps/${key}/delete-account}}`)
+            .join(" or ")} account.`}
         />
       </p>
 

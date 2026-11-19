@@ -9,7 +9,7 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 /**
- * Shared building blocks for the legal pages (/privacy-policy, /delete-account).
+ * Shared building blocks for the legal pages (/apps/<id>/privacy-policy and /apps/<id>/delete-account).
  *
  * The copy is plain data (`Section[]`) rather than JSX so that a Hindi or
  * Marathi version can later be added as another content file with the same
@@ -182,7 +182,7 @@ export async function legalMetadata(
   };
 }
 
-/** A full privacy policy: title, date, optional intro, Data safety box, contents, numbered sections. */
+/** A full privacy policy: title, date, optional intro and Data safety box, contents, numbered sections. */
 export function PolicyDocument({
   lang,
   title,
@@ -195,7 +195,7 @@ export function PolicyDocument({
   title: string;
   updated: string;
   intro?: string;
-  dataSafety: DataSafety;
+  dataSafety?: DataSafety;
   sections: Section[];
 }) {
   return (
@@ -212,6 +212,7 @@ export function PolicyDocument({
         </p>
       )}
 
+      {dataSafety && (
       <aside
         aria-labelledby="data-safety"
         className="mt-8 rounded-2xl border border-forest/15 bg-cream p-5"
@@ -232,6 +233,7 @@ export function PolicyDocument({
           ))}
         </dl>
       </aside>
+      )}
 
       <nav aria-label="Contents" className="mt-8">
         <h2 className="font-serif text-lg text-forest">Contents</h2>

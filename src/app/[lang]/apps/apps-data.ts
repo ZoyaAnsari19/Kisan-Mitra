@@ -76,8 +76,10 @@ export const APPS_META: AppMeta[] = [
  * pages are English-only, so the same path is used on /mr as well.
  */
 export const PRIVACY_POLICY_HREF: Record<string, string> = {
+  "kisan-mitra": "/apps/kisan-mitra/privacy-policy",
   logistics: "/apps/logistics/privacy-policy",
-  "machinery-rental": "/apps/machinery-rental/privacy-policy",
+  // Served at /apps/machinery/..., not the app id (see privacy-policy/page.tsx).
+  "machinery-rental": "/apps/machinery/privacy-policy",
 };
 
 export const PLACEHOLDER_IMG = "/static/apps/placeholder.jpg";

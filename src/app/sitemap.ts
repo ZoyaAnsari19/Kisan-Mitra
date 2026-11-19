@@ -19,12 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // English-only legal pages: no `alternates`, there is no translation to point to.
   const legal = [
-    "/privacy-policy",
+    "/apps/kisan-mitra/privacy-policy",
     "/apps/logistics/privacy-policy",
-    "/apps/machinery-rental/privacy-policy",
-    "/delete-account",
-    "/delete-account/logistic",
-    "/delete-account/machinery",
+    "/apps/machinery/privacy-policy",
+    "/apps/kisan-mitra/delete-account",
+    "/apps/logistics/delete-account",
+    "/apps/machinery/delete-account",
   ].map((path) => ({
     url: absoluteLocaleUrl(path),
     changeFrequency: "yearly" as const,

@@ -17,18 +17,23 @@ import {
   POLICY_UPDATED as LOGISTICS_UPDATED,
 } from "./logistics-content";
 import {
-  DATA_SAFETY as MACHINERY_DATA_SAFETY,
+  DATA_SAFETY as KISAN_DATA_SAFETY,
+  POLICY_INTRO as KISAN_INTRO,
+  POLICY_SECTIONS as KISAN_SECTIONS,
+  POLICY_TITLE as KISAN_TITLE,
+  POLICY_UPDATED as KISAN_UPDATED,
+} from "./kisan-mitra-content";
+import {
   POLICY_INTRO as MACHINERY_INTRO,
   POLICY_SECTIONS as MACHINERY_SECTIONS,
   POLICY_TITLE as MACHINERY_TITLE,
   POLICY_UPDATED as MACHINERY_UPDATED,
-} from "./machinery-rental-content";
+} from "./machinery-content";
 
 /**
  * Per-app privacy policy at /apps/<id>/privacy-policy. An app only has one if
  * it is listed here (and in PRIVACY_POLICY_HREF in apps-data.ts, which decides
- * where the "Privacy Policy" link is shown); any other id is a 404.
- * The Kisan Mitra farmer app's policy lives at /privacy-policy.
+ * which app pages show the "Privacy Policy" button); any other id is a 404.
  */
 type AppPolicy = {
   metaTitle: string;
@@ -36,11 +41,22 @@ type AppPolicy = {
   title: string;
   updated: string;
   intro: string;
-  dataSafety: DataSafety;
+  /** Omit to leave the "Data safety" box off the page. */
+  dataSafety?: DataSafety;
   sections: Section[];
 };
 
 const POLICIES: Record<string, AppPolicy> = {
+  "kisan-mitra": {
+    metaTitle: "Kisan Mitra App Privacy Policy · Kisan Mitra",
+    description:
+      "How the Kisan Mitra app collects, uses, shares and protects your information, and how to ask us to delete it.",
+    title: KISAN_TITLE,
+    updated: KISAN_UPDATED,
+    intro: KISAN_INTRO,
+    dataSafety: KISAN_DATA_SAFETY,
+    sections: KISAN_SECTIONS,
+  },
   logistics: {
     metaTitle: "Transporter App Privacy Policy · Kisan Mitra",
     description:
@@ -51,14 +67,16 @@ const POLICIES: Record<string, AppPolicy> = {
     dataSafety: LOGISTICS_DATA_SAFETY,
     sections: LOGISTICS_SECTIONS,
   },
-  "machinery-rental": {
-    metaTitle: "Machinery Rental App Privacy Policy · Kisan Mitra",
+  // Served at /apps/machinery/... (not the site's app id "machinery-rental"):
+  // that is the URL given to the app and the Play Console.
+  // /apps/machinery-rental/privacy-policy redirects here (next.config.ts).
+  machinery: {
+    metaTitle: "RKF Machinery Owner App Privacy Policy · Kisan Mitra",
     description:
-      "How the Machinery Rental app collects, uses, shares and protects your information, including push notifications, and how to ask us to delete it.",
+      "How the RKF Machinery Owner app collects, uses, shares and protects your information, and how to ask us to delete it.",
     title: MACHINERY_TITLE,
     updated: MACHINERY_UPDATED,
     intro: MACHINERY_INTRO,
-    dataSafety: MACHINERY_DATA_SAFETY,
     sections: MACHINERY_SECTIONS,
   },
 };

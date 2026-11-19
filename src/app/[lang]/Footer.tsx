@@ -133,7 +133,7 @@ export function Footer({ lang, d }: { lang: Locale; d: Dictionary }) {
             {/* First entry is "Privacy" in every locale. The policy is English-only
                 for now, so the link is the same unprefixed URL on /mr too. */}
             {d.footer.legal.map((l, i) => (
-              <a key={l} href={i === 0 ? "/privacy-policy" : "#"} className="hover:text-ivory">{l}</a>
+              <a key={l} href={i === 0 ? "/apps/kisan-mitra/privacy-policy" : "#"} className="hover:text-ivory">{l}</a>
             ))}
           </div>
           <div className="font-hindi text-ivory/70 italic">{d.footer.motto}</div>

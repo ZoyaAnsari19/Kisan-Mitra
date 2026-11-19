@@ -27,19 +27,14 @@ const AUTO_DETECT_FROM_BROWSER = true;
 
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-/** Pages (and everything under them) with no translation yet; see the note where this is used. */
-const ENGLISH_ONLY_PREFIXES = ["/privacy-policy", "/delete-account"];
-
-/** Per-app policies, e.g. /apps/logistics/privacy-policy. */
-const APP_POLICY_PATH = /^\/apps\/[^/]+\/privacy-policy$/;
+/**
+ * Per-app legal pages with no translation yet, e.g. /apps/logistics/privacy-policy
+ * and /apps/logistics/delete-account; see the note where this is used.
+ */
+const ENGLISH_ONLY_PATH = /^\/apps\/[^/]+\/(privacy-policy|delete-account)$/;
 
 function isEnglishOnly(pathname: string) {
-  return (
-    APP_POLICY_PATH.test(pathname) ||
-    ENGLISH_ONLY_PREFIXES.some(
-      (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
-    )
-  );
+  return ENGLISH_ONLY_PATH.test(pathname);
 }
 
 export const config = {

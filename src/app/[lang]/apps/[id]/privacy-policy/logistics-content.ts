@@ -15,7 +15,7 @@ import type { DataSafety, Section } from "../../../legal-ui";
 export const POLICY_TITLE = "[PLAY STORE APP NAME] — Privacy Policy";
 export const POLICY_UPDATED = "[DATE]";
 export const POLICY_INTRO =
-  "This policy is for the Transporter app, for vehicle owners and drivers. Using another Kisan Mitra app? See the {{Kisan Mitra farmer app policy|/privacy-policy}} or the {{Machinery Rental app policy|/apps/machinery-rental/privacy-policy}}.";
+  "This policy is for the Transporter app, for vehicle owners and drivers. Using another Kisan Mitra app? See the {{Kisan Mitra farmer app policy|/apps/kisan-mitra/privacy-policy}} or the {{Machinery Rental app policy|/apps/machinery/privacy-policy}}.";
 
 /** Mirrors the Play Console "Data safety" form. Keep the two in sync. */
 export const DATA_SAFETY: DataSafety = {
@@ -78,7 +78,7 @@ export const POLICY_SECTIONS: Section[] = [
           "We share data with our staff, with the farmer on your trip, and with a few service companies: Cloudinary, a map provider, Google (including Firebase Analytics) and, when it is live, an SMS provider. See section 8.",
           "The app uses Firebase Analytics, so Google receives some usage and device data from the app. See section 9.",
           "We do not sell your data. All data between the app and our server travels over HTTPS.",
-          "You can ask us to delete your account. See {{how to delete your account|/delete-account/logistic}}.",
+          "You can ask us to delete your account. See {{how to delete your account|/apps/logistics/delete-account}}.",
         ],
       },
     ],
@@ -436,7 +436,7 @@ export const POLICY_SECTIONS: Section[] = [
           "Tell you what personal data we hold about you.",
           "Correct data that is wrong.",
           "Stop using optional data you gave us (Aadhaar, location, camera) by withdrawing your consent.",
-          "Delete your account and data. The app has no delete button yet. Follow the steps on {{the delete-account page|/delete-account/logistic}}. Records we must keep by law are explained in section 11.",
+          "Delete your account and data. The app has no delete button yet. Follow the steps on {{the delete-account page|/apps/logistics/delete-account}}. Records we must keep by law are explained in section 11.",
         ],
       },
       {

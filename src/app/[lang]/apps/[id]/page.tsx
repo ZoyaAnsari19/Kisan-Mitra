@@ -164,7 +164,7 @@ export default async function AppDetailPage({
             </p>
           </div>
 
-          <div className='shrink-0'>
+          <div className='shrink-0 flex flex-wrap items-center gap-3'>
             <AppDownloadButton
               status={meta.status}
               href={meta.downloadUrl?.android}
@@ -173,9 +173,8 @@ export default async function AppDetailPage({
               className='btn-primary'
             />
             {privacyHref && (
-              <a
-                href={privacyHref}
-                className='mt-3 block text-sm text-forest/65 underline underline-offset-4 hover:text-forest'>
+              <a href={privacyHref} className='btn-ghost'>
+                <i className='fa-solid fa-shield-halved text-sm'></i>
                 {d.apps.privacyPolicy}
               </a>
             )}
@@ -382,7 +381,7 @@ export default async function AppDetailPage({
             </div>
             <h2 className='font-serif text-huge mt-2'>{app.name}</h2>
           </div>
-          <div className='flex flex-col items-start sm:items-end gap-3'>
+          <div className='flex flex-wrap items-center gap-3'>
             <AppDownloadButton
               status={meta.status}
               href={meta.downloadUrl?.android}
@@ -391,9 +390,12 @@ export default async function AppDetailPage({
               className='btn-gold'
             />
             {privacyHref && (
+              /* `!` utilities: .btn-ghost in style.css is un-layered, so it
+                 would otherwise win over these and render forest-on-forest. */
               <a
                 href={privacyHref}
-                className='text-sm text-ivory/70 underline underline-offset-4 hover:text-ivory'>
+                className='btn-ghost text-ivory! border-ivory/30! hover:bg-ivory/10!'>
+                <i className='fa-solid fa-shield-halved text-sm'></i>
                 {d.apps.privacyPolicy}
               </a>
             )}

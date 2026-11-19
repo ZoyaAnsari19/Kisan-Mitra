@@ -144,3 +144,72 @@
 - Play Console URLs: `https://kisan.kalakar.tv/apps/machinery-rental/privacy-policy` and `https://kisan.kalakar.tv/delete-account/machinery` — only once the placeholders are filled.
 
 **Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [18-11-2026 14:50] — Kisan Mitra policy moved to /apps/kisan-mitra/privacy-policy; Privacy Policy button
+
+**What changed:**
+- The Kisan Mitra farmer app policy is now at `/apps/kisan-mitra/privacy-policy`, the same `/apps/<id>/privacy-policy` format as the Transporter and Machinery Rental apps. Its content moved to `kisan-mitra-content.ts` (text unchanged, title now "Kisan Mitra — Privacy Policy").
+- Old `/privacy-policy` now redirects (307, `next.config.ts`) to the new URL; its page and proxy entry were removed.
+- The "Privacy Policy" link on app detail pages is now a pill button (shield icon) beside the Download button, in the About section and in the final banner. It shows on `kisan-mitra`, `logistics` and `machinery-rental`.
+- Footer "Privacy" link, sitemap and all cross-links point to the new URL.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/kisan-mitra-content.ts` (moved from `privacy-policy/policy-content.ts`)
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/[id]/privacy-policy/logistics-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/machinery-rental-content.ts`
+- `src/app/[lang]/privacy-policy/page.tsx` (removed)
+- `src/app/[lang]/apps/[id]/page.tsx`
+- `src/app/[lang]/apps/apps-data.ts`
+- `src/app/[lang]/delete-account/page.tsx`
+- `src/app/[lang]/Footer.tsx`
+- `src/app/[lang]/legal-ui.tsx` (comment only)
+- `src/app/sitemap.ts`
+- `src/proxy.ts`
+- `next.config.ts`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. Production server check: three policy URLs 200 (no redirect under a Marathi cookie), `/privacy-policy` 307 to the new URL, `/mr/...` and `/apps/storage/privacy-policy` 404, button present on the three app pages only.
+- Apps without a policy (storage, mandi, labor-provider, supermart-pos, doctor-provider, staff-app) show no button: no audited facts exist to write their policy from. Add content to `POLICIES` and an entry in `PRIVACY_POLICY_HREF` to enable one.
+- The Hinglish draft pasted on 18-11-2026 was NOT merged; the audited-facts version is unchanged.
+- Button styling was not checked visually in a browser.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [18-11-2026 15:05] — RKF Machinery Owner policy rewritten from the new draft; delete pages moved to /apps/<id>/delete-account
+
+**What changed:**
+- Machinery policy rewritten (English) from the company's new "RKF Machinery Owner" draft (package `com.rkfglobal.machinery_owner`): 10 sections, no location / microphone / map search, Firebase Cloud Messaging as a partner, 7-day deletion (marked to confirm). It replaces the earlier 17-section text for this app. No "Data safety" box on this page (the draft keeps that table for the Play form only); the box is now optional in `PolicyDocument`.
+- Machinery policy URL is `/apps/machinery/privacy-policy` (as in the draft), not `/apps/machinery-rental/...`; the latter redirects. The "Privacy Policy" button on the Machinery Rental app page points to the new URL.
+- Delete-account pages moved to the same format as the policies: `/apps/kisan-mitra/delete-account`, `/apps/logistics/delete-account`, `/apps/machinery/delete-account` (one dynamic route, config per app). Old `/delete-account`, `/delete-account/logistic`, `/delete-account/machinery` redirect (307, `next.config.ts`). The Machinery page adds a "Before you ask" section (settle wallet money, dues, open bookings) and a note that only the machinery owner account is deleted.
+- Cross-links, sitemap and the proxy's English-only rule (`/apps/<id>/(privacy-policy|delete-account)`) updated.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/machinery-content.ts` (new; replaces `machinery-rental-content.ts`)
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/[id]/privacy-policy/kisan-mitra-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/logistics-content.ts`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx` (new; replaces `delete-account/page.tsx` and `delete-account/[app]/page.tsx`)
+- `src/app/[lang]/legal-ui.tsx`
+- `src/app/[lang]/apps/apps-data.ts`
+- `src/app/sitemap.ts`
+- `src/proxy.ts`
+- `next.config.ts`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. Production server check: all six legal URLs 200 (no redirect under a Marathi cookie); old URLs redirect; `/mr/...`, `/apps/storage/delete-account` and `/apps/machinery-rental/delete-account` 404; no broken internal link on the six pages; Data safety box absent on Machinery, present on the other two policies.
+- The draft says the deletion page verifies the mobile number by OTP and takes a request, and that the app has Profile → Delete account. Neither exists: the delete page only describes an email process, and the in-app line is marked `[CONFIRM]`. Do not publish that line until the feature is built.
+- Google Fonts / ML Kit were in the earlier audit but not in the draft; kept as one `[CONFIRM]` line.
+- The draft's Play Data Safety table was not put on the page (it is for the Play Console form).
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`

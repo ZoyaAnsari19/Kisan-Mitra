@@ -1,4 +1,4 @@
-import type { DataSafety, Section } from "../legal-ui";
+import type { DataSafety, Section } from "../../../legal-ui";
 
 /**
  * Privacy Policy copy (English). Every statement maps to the code/backend audit
@@ -8,15 +8,15 @@ import type { DataSafety, Section } from "../legal-ui";
  * contact details, retention periods, hosting region …). `legal-ui.tsx` renders
  * it highlighted so it is visible on the page. Do not replace one with a guess —
  * the legal-entity name, address and email must match the Play Console account
- * exactly. To list everything still open:  grep -o "\[[^]]*\]" policy-content.ts
+ * exactly. To list everything still open:  grep -o "\[[^]]*\]" kisan-mitra-content.ts
  *
  * To add Hindi/Marathi later, add a sibling file with the same shape.
  */
 
-export const POLICY_TITLE = "Privacy Policy";
+export const POLICY_TITLE = "Kisan Mitra — Privacy Policy";
 export const POLICY_UPDATED = "[DATE]";
 export const POLICY_INTRO =
-  "This policy is for the Kisan Mitra farmer app. Using a partner app? See the {{Transporter app privacy policy|/apps/logistics/privacy-policy}} or the {{Machinery Rental app privacy policy|/apps/machinery-rental/privacy-policy}}.";
+  "This policy is for the Kisan Mitra farmer app. Using a partner app? See the {{Transporter app privacy policy|/apps/logistics/privacy-policy}} or the {{Machinery Rental app privacy policy|/apps/machinery/privacy-policy}}.";
 
 /** Mirrors the Play Console "Data safety" form. Keep the two in sync. */
 export const DATA_SAFETY: DataSafety = {
@@ -68,7 +68,7 @@ export const POLICY_SECTIONS: Section[] = [
           "We share it with Kisan Mitra field staff for your village, with providers who fulfil your booking, and with a few service companies (Cloudinary, Mapbox, Open-Meteo, Google). See section 7.",
           "We do not sell your data. We do not show ads. We do not use your data for third-party advertising.",
           "The app does not track your location in the background. It asks for the camera, microphone and location only when you tap a button that needs them.",
-          "All data between the app and our server travels over HTTPS. You can ask us to delete your account. See {{how to delete your account|/delete-account}}.",
+          "All data between the app and our server travels over HTTPS. You can ask us to delete your account. See {{how to delete your account|/apps/kisan-mitra/delete-account}}.",
         ],
       },
     ],
@@ -350,7 +350,7 @@ export const POLICY_SECTIONS: Section[] = [
           "Tell you what personal data we hold about you.",
           "Correct data that is wrong.",
           "Stop using optional data you gave us (Aadhaar, PAN, location, microphone, camera) by withdrawing your consent.",
-          "Delete your account and data. The app has no delete button yet. Follow the steps on {{the delete-account page|/delete-account}}. Records we must keep by law are explained in section 10.",
+          "Delete your account and data. The app has no delete button yet. Follow the steps on {{the delete-account page|/apps/kisan-mitra/delete-account}}. Records we must keep by law are explained in section 10.",
         ],
       },
       {
