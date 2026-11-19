@@ -1,225 +1,221 @@
 import type { Section } from "../../../legal-ui";
 
 /**
- * Privacy Policy copy (English) for the RKF Machinery Owner app, written from
- * the company's draft policy (package com.rkfglobal.machinery_owner).
+ * Privacy Policy copy (English) for the RKF Machinery Owner app
+ * (package com.rkfglobal.machinery_owner). The wording is the company's draft
+ * of 19-11-2026, checked against the app and backend code, kept as written.
+ * Only the "Notes for Moin" box and the Play Data Safety table of the draft are
+ * left out: they are not part of the public policy.
  *
- * This app takes NO location (no location permission), no microphone and does
- * no map search. If a map or location feature is added later, change this
- * policy first. Do not copy text between the per-app files without checking it
- * against that app.
+ * This app takes NO location (the manifest has only CAMERA and
+ * POST_NOTIFICATIONS, plus internet; no GPS, no microphone, no map). If a map or
+ * GPS is added later, change this policy and Data Safety first. Do not copy text
+ * between the per-app files without checking it against that app.
  *
- * `[BRACKETED]` text is a decision the company has not made yet. It is rendered
- * highlighted on the page. Do not replace one with a guess — the legal-entity
- * name, address and email must match the Play Console account exactly.
+ * Firebase / push: the app has firebase_core and firebase_messaging but no code
+ * that starts Firebase or reads a token, so nothing is sent to our server today.
+ * Android's Firebase components may still register the phone with Google, so the
+ * policy lists Firebase Cloud Messaging. If the developer's merged-manifest
+ * report shows Firebase fully absent, delete the "Device information and
+ * notification token" row, the Firebase Cloud Messaging line and the Data Safety
+ * "Device ID" row.
+ *
+ * The delete-account text assumes the machinery_owner delete work is deployed:
+ * "Profile → Delete account" and the OTP check on the delete page do not exist
+ * yet. Do not publish this page before they are live.
+ *
+ * `[FILL]` text is a value only the company has. It is rendered highlighted on
+ * the page. Do not replace one with a guess — the legal-entity name, address and
+ * email must match the Play Console account exactly.
  * To list what is still open:  grep -o "\[[^]]*\]" machinery-content.ts
- *
- * No "Data safety" box on this page: the draft keeps that table for the Play
- * Console form only.
  */
 
 export const POLICY_TITLE = "RKF Machinery Owner — Privacy Policy";
-export const POLICY_UPDATED = "[DATE]";
+export const POLICY_UPDATED = "[FILL]";
 export const POLICY_INTRO =
-  "This policy is for the RKF Machinery Owner app. Using another Kisan Mitra app? See the {{Kisan Mitra farmer app policy|/apps/kisan-mitra/privacy-policy}} or the {{Transporter app policy|/apps/logistics/privacy-policy}}.";
+  "**App:** RKF Machinery Owner (package com.rkfglobal.machinery_owner)\n**Operator (“we”, “us”):** [FILL: full legal name], [FILL: registered address]\n**Contact:** [FILL: email], [FILL: phone]";
 
 export const POLICY_SECTIONS: Section[] = [
   {
-    id: "who-this-policy-is-for",
-    title: "Who this policy is for",
+    id: "about-this-policy",
+    title: "About this policy",
     blocks: [
       {
         type: "p",
-        text: "RKF Machinery Owner is for people who own farm machinery (a tractor, harvester, rotavator and so on) and want to rent it out to farmers. In the app you list your machine, take bookings, and see your work hours and money. This policy tells you what data we collect, why, who sees it, how long we keep it, and what you can do.",
-      },
-      {
-        type: "ul",
-        items: [
-          "App: RKF Machinery Owner (Android package com.rkfglobal.machinery_owner)",
-          "Operator: [LEGAL ENTITY NAME], [REGISTERED ADDRESS]",
-          "Contact: [PRIVACY CONTACT EMAIL], [PHONE]",
-        ],
+        text: "RKF Machinery Owner is for people who own farm machinery (tractors, harvesters, rotavators and similar) and want to rent it to farmers. Through the app you list your machines, receive bookings, start and finish jobs with OTP codes, and view your earnings, wallet and withdrawals. This policy explains what data we collect, why, who sees it, how long we keep it, and the choices you have.",
       },
     ],
   },
   {
     id: "data-we-collect",
-    title: "What data we collect",
+    title: "Data we collect",
     blocks: [
       {
         type: "table",
-        head: ["What", "When and why"],
+        head: ["Data", "Why"],
         rows: [
           [
-            "Mobile number",
-            "To log you in (with an OTP) and to identify you.",
+            "**Mobile number**",
+            "Login (one-time password) and identification.",
           ],
           [
-            "Name, village, taluka and district, address, date of birth, language",
-            "To create your account and to connect you with farmers in your area.",
+            "**Name, email (optional), date of birth, gender, village / taluka / district, address, PIN code, language**",
+            "To create your account and connect you with farmers in your area.",
           ],
           [
-            "Identity documents: PAN, Aadhaar [CONFIRM: which of these we actually take], and driving licence (number, expiry date and photo)",
-            "For KYC verification. This data is stored encrypted.",
+            "**Identity details:** Aadhaar number and PAN number, photos of Aadhaar (front and back) and PAN, and driving licence (number, expiry date, photo)",
+            "KYC verification. Stored encrypted.",
           ],
           [
-            "Machine details: type, registration number, model, photos, RC, insurance and other paperwork, your rate",
-            "To list your machine and to verify it.",
+            "**Machine details:** type, model, year, horsepower / capacity, photos, availability, and the name and mobile number of the machine operator if you add one",
+            "To list and verify your machine and show it to farmers.",
           ],
           [
-            "Photos and files you choose (from the camera, gallery or files)",
-            "For KYC, your machine, complaints and chat attachments.",
+            "**Booking data:** the farmer's name and mobile number, work village / address / map pin, job details, times, codes",
+            "To carry out the job, start and finish it with OTP, and keep accounts.",
           ],
           [
-            "Camera",
-            "Only when you take a photo or scan a wallet QR.",
+            "**Job timing records** (start and end codes, added time, overtime, interruptions)",
+            "To bill the job correctly and settle disputes.",
           ],
           [
-            "Bank or UPI details [CONFIRM]",
-            "To pay out money from your wallet (withdrawal).",
+            "**Photos and files** you choose (camera or gallery / files)",
+            "KYC, machine, complaints, chat attachments, wallet top-up proof.",
           ],
           [
-            "Wallet, bookings, working hours, payments and penalty records",
-            "To give you the service, to keep accounts, and to meet legal needs.",
+            "**Camera**",
+            "Only when you take a photo or scan a wallet QR code.",
           ],
           [
-            "Farmer’s booking details: name, job location (pin) and a description of the work",
-            "Shown to you so you can carry out the booking. The farmer’s mobile number is shown to you only after the booking is confirmed. [CONFIRM]",
+            "**Bank account details:** account holder name, account number, IFSC, bank name (optional), UPI ID (optional)",
+            "To pay out wallet withdrawals.",
           ],
           [
-            "Chats, complaints and support tickets",
-            "To help you.",
+            "**Wallet records:** top-ups, transfers, earnings, commission, dues, penalties, withdrawals",
+            "To provide the service, keep accounts and meet legal requirements.",
           ],
           [
-            "Device information and notification token",
-            "To send you booking notifications and to keep the app running well.",
+            "**Chats, complaints and support tickets**",
+            "To help you and resolve disputes.",
+          ],
+          [
+            "**Warnings / strikes** on your account (for example cancelling a booking at short notice or not turning up)",
+            "To keep the service reliable for farmers.",
+          ],
+          [
+            "**Device information and notification token**",
+            "To send booking and payment notifications and keep the app working.",
           ],
         ],
       },
       {
-        type: "h3",
-        text: "Location (GPS)",
+        type: "p",
+        text: "**Location:** this app does **not** read your phone's location, in the foreground or the background. A farmer's work location appears with a booking; if you tap it, it opens in your phone's own map app, which works under that app's own policy.",
       },
       {
         type: "p",
-        text: "This app does not take your phone’s location, and it does not do so in the background either. The farmer’s job location (pin) is shown with the booking. If you open it in a map app, that map app works under its own policy.",
+        text: "**Operator details:** if you enter another person's name and mobile number as the machine operator, please make sure they agree. We show these to the farmer for a job you have accepted.",
       },
       {
         type: "p",
-        text: "We ask you only for the data we need for the service. You can turn the camera permission off at any time in your phone’s settings. Then the photo and QR features stop working, and the rest of the app still works.",
+        text: "We ask only for data needed to provide the service. You can turn off the camera or notification permission at any time in phone settings; photo and QR scan will then not work, but the rest of the app does.",
       },
     ],
   },
   {
-    id: "why-we-use-data",
-    title: "Why we use your data",
+    id: "how-we-use-data",
+    title: "How we use data",
     blocks: [
       {
         type: "ul",
         items: [
-          "To create your account and log you in.",
-          "To show your machine to farmers, to take bookings, and to start and finish a job (with an OTP).",
-          "To keep accounts of job payments, wallet, commission, penalties and withdrawals.",
-          "To verify your KYC and your machine, and to prevent fraud.",
-          "To send you the notifications and OTPs you need.",
-          "To handle help requests, complaints and disputes.",
-          "To make the app better and safer.",
+          "Create your account and log you in.",
+          "Show your machine to farmers, take bookings, and start and finish jobs with OTP.",
+          "Keep accounts of fares, added time, overtime, commission, penalties, wallet and withdrawals.",
+          "Verify KYC and machines, and prevent fraud.",
+          "Send essential notifications and OTPs.",
+          "Handle support requests, complaints and disputes.",
+          "Improve and secure the app.",
         ],
       },
       {
         type: "p",
-        text: "We do not sell your data. [CONFIRM] We also do not use it for advertising.",
+        text: "We **do not sell** your data and we **do not use it for advertising**.",
       },
     ],
   },
   {
-    id: "who-we-share-with",
-    title: "Who we share it with",
+    id: "who-we-share-data-with",
+    title: "Who we share data with",
     blocks: [
       {
         type: "ul",
         items: [
-          "The farmer who booked you: your name, your machine details and your rate. After the booking is confirmed, also your mobile number. [CONFIRM] No farmer sees your Aadhaar, PAN or bank details.",
-          "RKF staff (VLE, VLM, DLO, TEO and admins): staff for your area can see your profile, KYC, machine and bookings, so they can help and verify you. Each staff member sees only the data of their own area.",
-          "The law and the government, when a law or a court order requires it.",
-        ],
-      },
-      {
-        type: "h3",
-        text: "Our technology partners",
-      },
-      {
-        type: "p",
-        text: "These companies work for us. They do not use your data for themselves.",
-      },
-      {
-        type: "ul",
-        items: [
-          "SMS and OTP provider: [NAME OF SMS GATEWAY]",
-          "Document and photo storage: Cloudinary",
-          "Push notifications: Google Firebase Cloud Messaging. Your notification token and device ID go to Google.",
-          "Cloud server and hosting: [HOSTING PROVIDER AND COUNTRY/REGION]",
-          "Google Fonts, and Google ML Kit for QR scanning on your phone: [CONFIRM: still used in this version]",
+          "**The farmer with a booking:** your name, machine details, the operator's name and mobile (if you added one) and your mobile number for a job you have accepted. Your Aadhaar, PAN, driving licence and bank details are never shown to farmers. Likewise, you see a farmer's mobile number and work location for jobs you are assigned.",
+          "**RKF staff** (VLE, VLM, DLO, TEO, administrators): may view your profile, KYC, machine and bookings to assist and verify. Each staff member sees only data for their own area.",
+          {
+            text: "**Service providers** that process data for us and may not use it for their own purposes:",
+            children: [
+              "**Hosting:** our servers run on a virtual server rented from Hostinger [FILL: server country / region]. Our application and database run there.",
+              "**Document and photo storage:** Cloudinary (KYC documents and photos are stored privately and shown only through time-limited links).",
+              "**SMS / OTP delivery:** [FILL: vendor]",
+              "**Notifications:** Google Firebase Cloud Messaging (device notification token and installation ID).",
+            ],
+          },
+          "**Authorities:** when required by law or a court order.",
         ],
       },
     ],
   },
   {
     id: "how-long-we-keep-data",
-    title: "How long we keep your data",
+    title: "How long we keep data",
     blocks: [
       {
         type: "ul",
         items: [
-          "While your account is active, we keep your data.",
-          "When you delete your account, we delete or anonymise your personal data: your name, mobile number, address, photos, KYC documents and bank details.",
-          "The law requires us to keep records of money transactions, wallet, bookings and billing for [RETENTION PERIOD IN YEARS]. We keep them without your name and mobile number where we can. [CONFIRM: after the company decides]",
-          "KYC documents: [RETENTION PERIOD]",
-          "Your machine listing and photos after you delete your account: [CONFIRM: removed or made inactive]",
+          "While your account is active.",
+          "**If you delete your account**, your personal data (name, mobile number, address, photos, KYC documents, bank details) is removed or anonymised. Your machine listings are set to **inactive** and their personal details and photos are removed.",
+          "**However**, financial records (wallet, bookings, bills, commission, penalties, payments) must be kept for **[FILL: e.g. 8 years]** under applicable law. They are kept without your name and mobile number wherever possible.",
+          "KYC documents are kept while your account is active and for **[FILL]** after deletion where the law requires.",
         ],
       },
     ],
   },
   {
-    id: "your-rights",
-    title: "Your rights",
+    id: "your-rights-and-choices",
+    title: "Your rights and choices",
     blocks: [
       {
         type: "p",
-        text: "You can:",
+        text: "You may:",
       },
       {
         type: "ul",
         items: [
-          "See your data and correct wrong information (in the profile in the app).",
-          "Ask us to delete your account and data (see below).",
-          "Take back your consent, by turning off a permission.",
+          "View and correct your information (Profile in the app).",
+          {
+            text: "**Delete your account and data:**",
+            children: [
+              "In the app: **Profile → Delete account**.",
+              "Without the app: {{https://kisan.kalakar.tv/apps/machinery/delete-account|/apps/machinery/delete-account}} (verify with your mobile number OTP), or email [FILL: email].",
+              "You submit a **request**. Our team reviews and completes it within **7 days**. Deletion cannot be undone. We cannot complete it while you have wallet balance, dues, penalties, pending top-ups or withdrawals, an open booking, or an active suspension; these must be cleared first.",
+              "Only your **machinery owner** account is deleted. Accounts in other RKF services (for example Kisan Mitra) are not affected.",
+            ],
+          },
+          "Withdraw consent by turning off camera or notification permission.",
           "Make a complaint (see section 10).",
-        ],
-      },
-      {
-        type: "h3",
-        text: "How to delete your account and data",
-      },
-      {
-        type: "ul",
-        items: [
-          "In the app: Profile → Delete account. [CONFIRM: say this only after the feature is built, and check the path]",
-          "Without the app: follow the steps on {{the delete-account page|/apps/machinery/delete-account}}, or write to [PRIVACY CONTACT EMAIL].",
-          "You send us a request to delete. Our team reviews it, approves it, and finishes it within 7 days. [CONFIRM: 7 days] Once deleted, the data does not come back.",
-          "If your wallet still has money, you have dues to pay, or you have an open booking, finish it first. We can delete your account only after that.",
-          "We delete only your machinery owner account. If you also have an account in another Kisan Mitra service, that account stays.",
         ],
       },
     ],
   },
   {
     id: "security",
-    title: "How we keep your data safe",
+    title: "Security",
     blocks: [
       {
         type: "p",
-        text: "Data is sent over HTTPS. Sensitive data such as Aadhaar and PAN is stored encrypted. Only authorised people can see it, and we keep a record of every major change. Still, no system is 100% secure. Do not tell your OTP or transaction PIN to anyone.",
+        text: "Data is sent over HTTPS. Aadhaar and PAN numbers are stored encrypted. Access is limited to authorised people and significant changes are logged. No system is 100% secure. Never share your OTP or transaction PIN.",
       },
     ],
   },
@@ -229,31 +225,35 @@ export const POLICY_SECTIONS: Section[] = [
     blocks: [
       {
         type: "p",
-        text: "This app is not for people under 18 years of age. [CONFIRM]",
+        text: "This app is not intended for anyone under 18.",
       },
     ],
   },
   {
     id: "changes",
-    title: "Changes to this policy",
+    title: "Changes",
     blocks: [
       {
         type: "p",
-        text: "If we change this policy, we will put the new version in the app or on this page, and change the “Last updated” date.",
+        text: "If we change this policy we will publish the new version in the app and on this page and update the effective date.",
       },
     ],
   },
   {
-    id: "complaints-and-contact",
-    title: "Complaints and contact",
+    id: "contact-and-grievances",
+    title: "Contact and grievances",
     blocks: [
       {
-        type: "ul",
-        items: [
-          "Grievance Officer: [NAME]",
-          "Email: [EMAIL]. Phone: [PHONE]. Address: [REGISTERED ADDRESS]",
-          "We reply to a complaint within [NUMBER OF] days.",
-        ],
+        type: "p",
+        text: "**Grievance Officer:** [FILL: name]",
+      },
+      {
+        type: "p",
+        text: "**Email:** [FILL]  **Phone:** [FILL]  **Address:** [FILL]",
+      },
+      {
+        type: "p",
+        text: "We respond within [FILL: suggested 30] days.",
       },
     ],
   },

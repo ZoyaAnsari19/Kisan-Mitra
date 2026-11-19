@@ -22,9 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/apps/kisan-mitra/privacy-policy",
     "/apps/logistics/privacy-policy",
     "/apps/machinery/privacy-policy",
+    "/apps/storage/privacy-policy",
     "/apps/kisan-mitra/delete-account",
     "/apps/logistics/delete-account",
     "/apps/machinery/delete-account",
+    "/apps/storage/delete-account",
   ].map((path) => ({
     url: absoluteLocaleUrl(path),
     changeFrequency: "yearly" as const,

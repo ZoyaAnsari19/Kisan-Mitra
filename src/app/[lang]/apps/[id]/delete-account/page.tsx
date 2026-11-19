@@ -55,11 +55,16 @@ const APPS: Record<string, AppDeletion> = {
     policyHref: "/apps/kisan-mitra/privacy-policy",
     days: "[N]",
     erasedText:
-      "We delete your account and the personal data tied to it. [CONFIRM: list of what is erased — profile, addresses, KYC photos and numbers, chats, uploaded files, notifications]",
+      "We delete or anonymise your personal data: your name, mobile number, address, photos, KYC documents, land documents and bank details.",
     financialRecords:
-      "Financial records: wallet, credit and settlement records, and bank and transaction records.",
+      "Financial records: wallet, bookings, orders, membership, udhaar and payment records.",
     keepQuestion:
-      "what happens to any balance left in your wallet when the account is deleted",
+      "whether these records are kept without your name and mobile number",
+    beforeYouAsk: [
+      "If your wallet still has money, you have unpaid udhaar or dues, you have a top-up or withdrawal pending, or you have an open booking or order, settle that first. We can delete your account only after that.",
+    ],
+    scopeNote:
+      "We delete only your farmer account. Accounts in other RKF apps are not affected.",
     inAppActions: [
       "Delete a saved address, notifications, price alerts, and items in your cart or wishlist.",
       "Replace your KYC documents.",
@@ -98,13 +103,13 @@ const APPS: Record<string, AppDeletion> = {
     policyHref: "/apps/machinery/privacy-policy",
     days: "7",
     erasedText:
-      "We delete or anonymise your personal data: your name, mobile number, address, photos, KYC documents and bank details. [CONFIRM: what happens to your machine listings and photos — removed or made inactive]",
+      "We delete or anonymise your personal data: your name, mobile number, address, photos, KYC documents and bank details. Your machine listings are made inactive, and their personal details and photos are removed.",
     financialRecords:
       "Financial records: money transactions, wallet, bookings and billing records.",
     keepQuestion:
       "whether these records are kept without your name and mobile number",
     beforeYouAsk: [
-      "If your wallet still has money, you have dues to pay, or you have an open booking, finish it first. We can delete your account only after that.",
+      "If your wallet still has money, you have dues or a penalty to pay, you have a top-up or withdrawal pending, you have an open booking, or your account is suspended, settle that first. We can delete your account only after that.",
     ],
     scopeNote:
       "We delete only your machinery owner account. If you also have an account in another Kisan Mitra service, that account stays.",
@@ -115,6 +120,29 @@ const APPS: Record<string, AppDeletion> = {
       "Turn off camera access in your phone’s settings. The photo and QR features then stop working, and the rest of the app still works.",
     ],
     removeOnRequest: "your Aadhaar, PAN or driving licence",
+  },
+  storage: {
+    heading: "RKF Storage Provider — Delete your account",
+    appLabel: "RKF Storage Provider app",
+    shortName: "Storage Provider",
+    policyHref: "/apps/storage/privacy-policy",
+    days: "7",
+    erasedText:
+      "We delete or anonymise your personal data: your name, mobile number, address, photos, KYC documents and bank details. Your godown is made inactive, and its name, address, photos, documents and map pin are removed. [CONFIRM: company decision of 18-11-2026, to be confirmed once the backend is built]",
+    financialRecords:
+      "Financial records: money transactions, wallet, bookings, bills and penalty records.",
+    keepQuestion:
+      "whether these records are kept without your name and mobile number",
+    beforeYouAsk: [
+      "If your wallet still has money, you have dues or a penalty to pay, you have a top-up or withdrawal pending, you have an open booking, a farmer’s goods are still stored in your facility, or your account is suspended, settle that first. We can delete your account only after that.",
+    ],
+    scopeNote:
+      "We delete only your storage owner account. If you also have an account in another Kisan Mitra service, that account stays.",
+    inAppActions: [
+      "See your data and correct wrong information in your profile.",
+      "Turn off camera or location access in your phone’s settings. The photo, QR and “use my location” features then stop working, and the rest of the app still works.",
+    ],
+    removeOnRequest: "your Aadhaar, PAN or other ID documents",
   },
 };
 

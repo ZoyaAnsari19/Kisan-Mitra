@@ -19,8 +19,11 @@ import { Header } from "./Header";
 export type Block =
   | { type: "p"; text: string }
   | { type: "h3"; text: string }
-  | { type: "ul"; items: string[] }
+  | { type: "ul"; items: ListItem[] }
   | { type: "table"; head: string[]; rows: string[][] };
+
+/** A bullet, optionally with a nested list under it. */
+export type ListItem = string | { text: string; children: string[] };
 
 export type Section = { id: string; title: string; blocks: Block[] };
 
@@ -30,13 +33,21 @@ export type Section = { id: string; title: string; blocks: Block[] };
  *                        decided yet. It stays visibly marked on the page so it
  *                        cannot be published unnoticed.
  *   {{label|/href}}    → a link.
+ *   **like this**      → bold (may contain a [PLACEHOLDER]).
  */
-const TOKEN = /(\[[^\]]+\]|\{\{[^}|]+\|[^}]+\}\})/g;
+const TOKEN = /(\*\*[^*]+\*\*|\[[^\]]+\]|\{\{[^}|]+\|[^}]+\}\})/g;
 
 export function Rich({ text }: { text: string }) {
   return (
     <>
       {text.split(TOKEN).map((part, i) => {
+        if (part.startsWith("**")) {
+          return (
+            <strong key={i} className="font-semibold text-forest">
+              <Rich text={part.slice(2, -2)} />
+            </strong>
+          );
+        }
         if (part.startsWith("[")) {
           return (
             <mark key={i} className="rounded bg-gold/30 px-1 text-forest">
@@ -79,11 +90,24 @@ function BlockView({ block }: { block: Block }) {
     case "ul":
       return (
         <ul className="mt-4 list-disc space-y-2 pl-5 leading-relaxed text-forest/80">
-          {block.items.map((item) => (
-            <li key={item}>
-              <Rich text={item} />
-            </li>
-          ))}
+          {block.items.map((item) => {
+            const { text, children } =
+              typeof item === "string" ? { text: item, children: [] } : item;
+            return (
+              <li key={text}>
+                <Rich text={text} />
+                {children.length > 0 && (
+                  <ul className="mt-2 list-[circle] space-y-2 pl-5">
+                    {children.map((child) => (
+                      <li key={child}>
+                        <Rich text={child} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
         </ul>
       );
     case "table":
@@ -187,6 +211,7 @@ export function PolicyDocument({
   lang,
   title,
   updated,
+  dateLabel = "Last updated",
   intro,
   dataSafety,
   sections,
@@ -194,6 +219,9 @@ export function PolicyDocument({
   lang: Locale;
   title: string;
   updated: string;
+  /** The label before the date, e.g. "Effective date". */
+  dateLabel?: string;
+  /** One line per newline. */
   intro?: string;
   dataSafety?: DataSafety;
   sections: Section[];
@@ -203,14 +231,15 @@ export function PolicyDocument({
       <h1 className="font-serif text-huge text-forest">
         <Rich text={title} />
       </h1>
-      <p className="mt-3 text-sm text-forest/60">
-        Last updated: <Rich text={updated} />
+      <p className="mt-3 text-[15px] leading-relaxed text-forest/70">
+        {dateLabel}: <Rich text={updated} />
       </p>
-      {intro && (
-        <p className="mt-3 text-[15px] leading-relaxed text-forest/70">
-          <Rich text={intro} />
-        </p>
-      )}
+      {intro &&
+        intro.split("\n").map((line) => (
+          <p key={line} className="mt-1 text-[15px] leading-relaxed text-forest/70">
+            <Rich text={line} />
+          </p>
+        ))}
 
       {dataSafety && (
       <aside

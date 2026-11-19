@@ -112,22 +112,15 @@ function AppGridCard({
               <i className="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
           </div>
-          {status === "live" && downloadUrl ?
-            <GridDownloadLink
-              href={downloadUrl}
-              label={downloadNowLabel}
-              title={downloadNowLabel}
-              className="hidden sm:flex items-center gap-1.5 rounded-full bg-forest pl-3 pr-2.5 py-1.5 text-ivory shrink-0 hover:bg-forest-soft transition-colors"
-            />
-          : status === "coming-soon" && (
-              <span
-                className="hidden sm:flex items-center rounded-full bg-forest pl-3 pr-3 py-1.5 text-ivory shrink-0"
-                title={comingSoonLabel}
-              >
-                <span className="text-[11px] font-medium whitespace-nowrap">{comingSoonLabel}</span>
-              </span>
-            )
-          }
+          {/* Every card shows the same Download pill. An app with no APK yet
+              gets the button without a link; clicking it flashes "Coming Soon". */}
+          <GridDownloadLink
+            href={status === "live" ? downloadUrl : undefined}
+            label={downloadNowLabel}
+            unavailableLabel={comingSoonLabel}
+            title={downloadNowLabel}
+            className="items-center gap-1.5 rounded-full bg-forest pl-3 pr-2.5 py-1.5 text-ivory hover:bg-forest-soft transition-colors"
+          />
         </div>
       </div>
     </AppCard>
@@ -341,11 +334,14 @@ export default async function AppsPage({
                           <i className="fa-solid fa-arrow-right text-[10px]"></i>
                         </span>
                       </div>
-                      {staffMeta.status === "coming-soon" && (
-                        <span className="rounded-full bg-forest pl-3 pr-3 py-1.5 text-ivory text-[11px] font-medium">
-                          {d.apps.comingSoonBadge}
-                        </span>
-                      )}
+                      <GridDownloadLink
+                        href={staffMeta.status === "live" ? staffMeta.downloadUrl?.android : undefined}
+                        label={d.apps.downloadNow}
+                        unavailableLabel={d.apps.comingSoonBadge}
+                        title={d.apps.downloadNow}
+                        showOnMobile
+                        className="items-center gap-1.5 rounded-full bg-forest pl-3 pr-2.5 py-1.5 text-ivory hover:bg-forest-soft transition-colors"
+                      />
                     </div>
                   </div>
                 </AppCard>

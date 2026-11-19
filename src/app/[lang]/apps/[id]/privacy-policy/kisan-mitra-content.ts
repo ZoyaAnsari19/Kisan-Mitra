@@ -1,301 +1,208 @@
-import type { DataSafety, Section } from "../../../legal-ui";
+import type { Section } from "../../../legal-ui";
 
 /**
- * Privacy Policy copy (English). Every statement maps to the code/backend audit
- * of the Kisan Mitra Android app (see the brief the page was built from).
+ * Privacy Policy copy (English) for the Kisan Mitra farmer app
+ * (package com.rkfglobal.kisan_mitra). The wording is the company's draft of
+ * 19-11-2026, checked against the app and backend code, kept as written.
+ * Only the "Notes for Moin" box and the Play Data Safety table of the draft are
+ * left out: they are not part of the public policy. This page has no Data safety
+ * box either.
  *
- * `[BRACKETED]` text is a decision the company has not made yet (legal entity,
- * contact details, retention periods, hosting region …). `legal-ui.tsx` renders
- * it highlighted so it is visible on the page. Do not replace one with a guess —
- * the legal-entity name, address and email must match the Play Console account
- * exactly. To list everything still open:  grep -o "\[[^]]*\]" kisan-mitra-content.ts
+ * Push notifications: the app has no push today (Firebase is never started and
+ * there is no firebase_messaging), so this policy does NOT mention push or a
+ * device token. When the push branch is merged and the merged manifest is
+ * re-checked, add "Device information and notification token" to section 2,
+ * "Google Firebase Cloud Messaging" to section 4, and a "Device ID" row to Data
+ * Safety.
  *
- * To add Hindi/Marathi later, add a sibling file with the same shape.
+ * Screens that are not live (Krishi Sahayak AI chat, Donation, Insurance,
+ * Carbon credit, Bank loan, Dairy, Energy, Water, Vet, Crop doctor) collect and
+ * send nothing to our server, so they are not in this policy. If any of them
+ * starts collecting data, change this policy first.
+ *
+ * The delete-account text assumes the farmer delete feature is live (backend
+ * core-api 1.0.141) and the app screen is built. "Profile → Delete account" and
+ * the OTP check on the delete page do not exist yet on the site: do not publish
+ * this page before they are live.
+ *
+ * `[FILL]` text is a value only the company has. It is rendered highlighted on
+ * the page. Do not replace one with a guess — the legal-entity name, address and
+ * email must match the Play Console account exactly.
+ * To list what is still open:  grep -o "\[[^]]*\]" kisan-mitra-content.ts
  */
 
 export const POLICY_TITLE = "Kisan Mitra — Privacy Policy";
-export const POLICY_UPDATED = "[DATE]";
+export const POLICY_UPDATED = "[FILL]";
 export const POLICY_INTRO =
-  "This policy is for the Kisan Mitra farmer app. Using a partner app? See the {{Transporter app privacy policy|/apps/logistics/privacy-policy}} or the {{Machinery Rental app privacy policy|/apps/machinery/privacy-policy}}.";
-
-/** Mirrors the Play Console "Data safety" form. Keep the two in sync. */
-export const DATA_SAFETY: DataSafety = {
-  title: "Data safety summary",
-  rows: [
-    {
-      label: "Data we collect",
-      value:
-        "Personal info, financial info, location (approximate and precise), photos, audio, files and documents, messages, app activity.",
-    },
-    { label: "Shared with others", value: "Yes — see section 7." },
-    { label: "Encrypted in transit", value: "Yes (HTTPS)." },
-    { label: "You can ask us to delete your data", value: "Yes — see section 12." },
-    { label: "Collected for advertising", value: "No." },
-  ],
-};
+  "**App:** Kisan Mitra (package com.rkfglobal.kisan_mitra)\n**Operator (“we”, “us”):** [FILL: full legal name], [FILL: registered address]\n**Contact:** [FILL: email], [FILL: phone]";
 
 export const POLICY_SECTIONS: Section[] = [
   {
-    id: "who-we-are",
-    title: "Who we are and how to contact us",
+    id: "about-this-policy",
+    title: "About this policy",
     blocks: [
       {
         type: "p",
-        text: "Kisan Mitra is a mobile app for farmers, and part of the RKF Foundation platform. It is run by [LEGAL ENTITY NAME]. In this policy, “we” means [LEGAL ENTITY NAME] and “you” means the farmer who uses the app.",
-      },
-      {
-        type: "ul",
-        items: [
-          "Legal entity: [LEGAL ENTITY NAME]",
-          "Registered address: [REGISTERED ADDRESS]",
-          "Privacy email: [PRIVACY CONTACT EMAIL]",
-          "Phone: [PHONE]",
-          "Grievance Officer: [NAME], [EMAIL]. We reply within [RESPONSE TIME].",
-        ],
+        text: "Kisan Mitra is an app for farmers. With it you can register your land, see mandi prices and government schemes, book transport, farm machinery, storage and farm labour, shop from the Mini Mall, keep a wallet, buy a membership, and get help from RKF. This policy explains what data we collect, why, who sees it, how long we keep it, and the choices you have.",
       },
     ],
   },
   {
-    id: "summary",
-    title: "Summary in plain words",
-    blocks: [
-      {
-        type: "ul",
-        items: [
-          "You log in with your mobile number and a one-time password (OTP). We also ask for your name and village. Most other information is optional, or depends on which features you use.",
-          "We collect your profile, and only if you choose, your Aadhaar, PAN and photos. We also keep your bookings, orders, wallet records, chats and support tickets.",
-          "We use this to run your account, to connect you with providers, to verify you, to prevent fraud, to support you and to follow the law.",
-          "We share it with Kisan Mitra field staff for your village, with providers who fulfil your booking, and with a few service companies (Cloudinary, Mapbox, Open-Meteo, Google). See section 7.",
-          "We do not sell your data. We do not show ads. We do not use your data for third-party advertising.",
-          "The app does not track your location in the background. It asks for the camera, microphone and location only when you tap a button that needs them.",
-          "All data between the app and our server travels over HTTPS. You can ask us to delete your account. See {{how to delete your account|/apps/kisan-mitra/delete-account}}.",
-        ],
-      },
-    ],
-  },
-  {
-    id: "who-this-applies-to",
-    title: "Who this applies to",
-    blocks: [
-      {
-        type: "p",
-        text: "This policy applies to adults (18 years or older) who register in the Kisan Mitra app. The app is not meant for children. If you think a child has registered, please contact us (section 16) and we will look into it.",
-      },
-    ],
-  },
-  {
-    id: "information-we-collect",
-    title: "Information we collect",
+    id: "data-we-collect",
+    title: "Data we collect",
     blocks: [
       {
         type: "table",
-        head: ["What", "Why we need it", "Required?"],
+        head: ["Data", "Why"],
         rows: [
           [
-            "Mobile number, preferred language, session tokens",
-            "To log you in with an OTP and keep you signed in.",
-            "Required",
+            "**Mobile number**",
+            "Login (one-time password) and identification.",
           ],
           [
-            "Village",
-            "To show services near you and to connect you to the field staff of your village.",
-            "Required",
+            "**Name, village / taluka / district, address, language, crops**",
+            "To create your account and give you services and prices for your area.",
           ],
           [
-            "First name",
-            "To set up your profile.",
-            "[CONFIRM: required or optional]",
+            "**Land records:** plots, area, map pin, and documents you upload",
+            "Land registration and approval.",
           ],
           [
-            "Last name, date of birth, gender, email, full address",
-            "To complete your profile, and for pickup and delivery.",
-            "Optional",
+            "**Identity details:** Aadhaar number and PAN number, and photos of Aadhaar (front and back) and PAN",
+            "KYC verification. Stored encrypted.",
           ],
           [
-            "Whether a field worker helped you register",
-            "To record who assisted you.",
-            "Asked at registration",
+            "**Photos and files** you choose (camera or gallery / files)",
+            "KYC, land, bookings, complaints, chat attachments, wallet top-up proof.",
           ],
           [
-            "Aadhaar number, PAN, and photos of Aadhaar (front and back), PAN and your profile photo",
-            "To verify your identity. See section 13.",
-            "Optional. You can add them at sign-up or later.",
+            "**Camera**",
+            "Only when you take a photo or scan a QR code.",
           ],
           [
-            "Land plots, survey requests, soil data, crop history",
-            "To give you land and crop services.",
-            "When you use these features",
+            "**Voice notes**",
+            "Only when you record and send a voice note in a chat. The app does not record unless you press the button.",
           ],
           [
-            "Wallet balance and records, bank account details, passbook photo, top-up requests with payment-proof image, withdrawals, wallet-to-wallet transfers, transaction PIN, credit notes and settlements, membership purchase, Kisan Score",
-            "To run your wallet and credit, and to pay out withdrawals. The app does not hold your card or UPI PIN. It has no payment-gateway inside it. Top-ups are bank or UPI transfers that our staff confirm.",
-            "When you use these features",
+            "**Location (GPS)**",
+            "Only when you tap **“Use my location”** (for example to set a pickup pin). A one-time reading, only while the app is open. Never in the background and never continuous.",
           ],
           [
-            "Bookings and orders: equipment, transport (pickup and drop points and the vehicle’s trip trail), storage, manpower, lab tests, Kisan Yatra, Super Mini Mall carts, wishlist, orders, returns (with photos) and reviews, sell-crop requests, price alerts, event registrations, government scheme applications (with the documents you upload), utility connections",
-            "To carry out what you ask for and to show you its status.",
-            "When you use these features",
+            "**Bank account details:** account holder name, account number, IFSC, bank name (optional), UPI ID (optional)",
+            "To pay out wallet withdrawals.",
           ],
           [
-            "Chat messages with our staff (text, images, PDF files, voice notes), support tickets and their messages, in-app notifications",
-            "To help and support you.",
-            "When you use these features",
+            "**Wallet, bookings, orders, membership, credit (udhaar) and payment records**",
+            "To provide the service, keep accounts and meet legal requirements.",
           ],
           [
-            "Location: your phone’s GPS position, and pickup or drop points you place on the map",
-            "For “use my location” in transport booking, to centre the map, and to rank place-search results near you.",
-            "Optional. You can refuse the permission.",
+            "**Booking details:** pickup and work locations, dates and times, quantities, codes",
+            "To carry out and bill your bookings.",
           ],
           [
-            "IP address and a device label stored with your login sessions; an audit log of sensitive actions (KYC, land approval, pricing, settlement, configuration) with who did it and when",
-            "For security, fraud prevention and accountability.",
-            "Collected automatically",
-          ],
-        ],
-      },
-      {
-        type: "h3",
-        text: "What we do not collect",
-      },
-      {
-        type: "ul",
-        items: [
-          "Your advertising ID.",
-          "Analytics or crash-report data from the app.",
-          "Your contacts, SMS, call log or browsing history.",
-        ],
-      },
-    ],
-  },
-  {
-    id: "permissions",
-    title: "Permissions we ask for",
-    blocks: [
-      {
-        type: "table",
-        head: ["Permission", "Why", "When"],
-        rows: [
-          [
-            "Internet and network state",
-            "To talk to the Kisan Mitra server.",
-            "Always",
+            "**Chats, complaints and support tickets**",
+            "To help you and resolve disputes.",
           ],
           [
-            "Camera",
-            "To scan payment or wallet QR codes, to take KYC photos (Aadhaar, PAN, profile photo) and to take a photo of an animal.",
-            "Only when you tap the button that needs it",
+            "**Applications you make** (for example government schemes, lab tests, utility connections, events)",
+            "To process what you asked for.",
           ],
           [
-            "Microphone",
-            "To record voice messages in chat.",
-            "Only while you hold the mic button",
+            "**Kisan score and activity**",
+            "To work out your score and show it to you.",
           ],
-          [
-            "Location (precise and approximate)",
-            "For “use my location” for pickup in transport booking, to centre the map pin, and to rank address and place search results near you.",
-            "Only while the app is open. We ask when you tap, never at start-up. If you already allowed it, the app also does a quiet position check to rank place-search results.",
-          ],
-        ],
-      },
-      {
-        type: "ul",
-        items: [
-          "The app never uses your location in the background.",
-          "The app does not ask for contacts, SMS, call log, phone state, calendar, body sensors or access to all your files.",
-          "You choose photos and PDFs through the Android system picker, so the app does not need storage permission.",
-          "You can refuse any permission, or turn it off later in your phone’s settings.",
-        ],
-      },
-    ],
-  },
-  {
-    id: "how-we-use",
-    title: "How we use information",
-    blocks: [
-      {
-        type: "ul",
-        items: [
-          "To create and verify your account.",
-          "To show services that are relevant to your village.",
-          "To handle bookings and payments between you and providers.",
-          "For KYC checks and fraud prevention.",
-          "To answer your chats and support tickets.",
-          "To follow the law.",
         ],
       },
       {
         type: "p",
-        text: "We do not use your information for advertising.",
+        text: "We ask only for data needed for the service you use. You can turn off camera, microphone or location permission at any time in phone settings. Those features then will not work, but the rest of the app does. You can also set a map pin by moving the map by hand or searching for a place.",
       },
     ],
   },
   {
-    id: "who-we-share-with",
-    title: "Who we share it with",
+    id: "how-we-use-data",
+    title: "How we use data",
+    blocks: [
+      {
+        type: "ul",
+        items: [
+          "Create your account and log you in.",
+          "Complete your bookings and orders and connect you with the provider.",
+          "Keep accounts of your wallet, udhaar, membership and withdrawals.",
+          "Verify KYC and land, and prevent fraud.",
+          "Send essential in-app notifications and OTPs.",
+          "Handle support requests, complaints and disputes.",
+          "Improve and secure the app.",
+        ],
+      },
+      {
+        type: "p",
+        text: "We **do not sell** your data and we **do not use it for advertising**.",
+      },
+    ],
+  },
+  {
+    id: "who-we-share-data-with",
+    title: "Who we share data with",
+    blocks: [
+      {
+        type: "ul",
+        items: [
+          "**Service providers you book** (transporters, machinery owners, godown owners, labour contractors, and Mini Mall shops): the details needed to do the job, such as your name, pickup or work place, and booking details. Your mobile number is shown to a provider only for a booking they have accepted. Your Aadhaar, PAN and bank details are never shown to a provider.",
+          "**RKF staff** (VLE, VLM, DLO, TEO, administrators): may view your profile, KYC, land and bookings to assist and verify. Each staff member sees only data for their own area.",
+          {
+            text: "**Service providers working for us**, who may not use your data for their own purposes:",
+            children: [
+              "**Hosting:** our servers run on a virtual server rented from Hostinger [FILL: server country / region]. Our application and database run there.",
+              "**Document and photo storage:** Cloudinary (KYC documents, land documents and photos are stored privately and shown only through time-limited links).",
+              "**SMS / OTP delivery:** [FILL: vendor]",
+              "**Maps: Mapbox.** The map picture (tiles) loads directly from Mapbox to your phone, so Mapbox can see your phone's IP address and the map area you view. When you search for a place or let the app name a pin, your request goes through our server to Mapbox and includes the text you typed and a nearby location (your pin or phone location) so results are local. We remove location and search text from our server logs. Mapbox handles this under its own privacy policy.",
+              "**Weather: Open-Meteo.** Our server asks for the weather using your village's coordinates, not your phone's location.",
+            ],
+          },
+          "**Authorities:** when required by law or a court order.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "how-long-we-keep-data",
+    title: "How long we keep data",
+    blocks: [
+      {
+        type: "ul",
+        items: [
+          "While your account is active.",
+          "**If you delete your account**, your personal data (name, mobile number, address, photos, KYC documents, land documents, bank details) is removed or anonymised.",
+          "**However**, financial records (wallet, bookings, orders, membership, udhaar, payments) must be kept for **[FILL: e.g. 8 years]** under applicable law. They are kept without your name and mobile number wherever possible.",
+          "KYC documents are kept while your account is active and for **[FILL]** after deletion where the law requires.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "your-rights-and-choices",
+    title: "Your rights and choices",
     blocks: [
       {
         type: "p",
-        text: "We do not sell your data. We share it only with the following.",
+        text: "You may:",
       },
       {
         type: "ul",
         items: [
-          "Kisan Mitra servers. Our API is at api.rkf.co.in and runs on a cloud server in [HOSTING COUNTRY/REGION]. All traffic uses HTTPS.",
-          "Field staff and admins. The village VLE or VLM and the assigned team can see your profile, KYC, land, bookings and chats for their own villages, so they can verify, help and support you. Each staff member can see only their own region and role.",
-          "Service providers who fulfil your booking. These are the transporter or driver, equipment owner, storage (godown) owner, labour contractor and workers, lab, buyer and Super Mini Mall seller. They get only what they need, such as your name, contact through the platform, village or pickup location, and the booking details.",
-          "Cloudinary, a cloud file service. It stores the images, PDFs and audio you upload, including KYC documents. KYC documents are kept as private files.",
-          "Mapbox. It provides place search, reverse geocoding and road distance for transport. It receives coordinates and the text you search for, not who you are. [CONFIRM: Mapbox is used in production]",
-          "Open-Meteo. It provides the weather for your village. Our server sends only the village coordinates, no personal data.",
-          "Google. The app loads its fonts (Baloo 2 and Mukta) from Google while it runs, so Google receives your device’s IP address and standard request data. The app also contains Google Play services, Firebase and ML Kit components. ML Kit scans QR codes on your phone.",
-          "SMS provider for OTP: [NAME OF SMS GATEWAY]. It will receive your mobile number to deliver the OTP.",
-          "Authorities. We may share data where the law, a court order or fraud prevention requires it.",
-        ],
-      },
-    ],
-  },
-  {
-    id: "background-and-technical",
-    title: "Background activity and technical data",
-    blocks: [
-      {
-        type: "ul",
-        items: [
-          "The app has no background service, no scheduled job and no background location. This version does not register for push notifications.",
-          "While the app is open it keeps a live connection to our server so chat and notifications update at once. The connection closes when you close the app.",
-          "When you open the app, it checks your saved session with our server to decide whether to show the login screen or your dashboard.",
-          "We store your IP address and a device label with your login sessions, for security.",
-          "Fonts load from Google while the app runs (see section 7).",
-        ],
-      },
-    ],
-  },
-  {
-    id: "on-your-phone",
-    title: "Where data is stored on your phone",
-    blocks: [
-      {
-        type: "ul",
-        items: [
-          "Your login tokens are kept in the phone’s encrypted secure storage (Android Keystore). Logging out clears them.",
-          "The last five places you used in transport booking, the time you closed the “turn on location” hint, and your language and theme choices.",
-          "Draft photos for return requests, kept in the app’s private storage.",
-          "Temporary files for voice notes, and for PDFs and QR images you share or download (in temporary storage or Downloads).",
-          "Debug logging is switched off in the release app.",
-        ],
-      },
-    ],
-  },
-  {
-    id: "retention",
-    title: "How long we keep it",
-    blocks: [
-      {
-        type: "ul",
-        items: [
-          "Market (mandi) price history: 30 days.",
-          "Audit log of sensitive actions: kept permanently. It is built so that it cannot be edited or deleted.",
-          "Financial, wallet, credit and KYC records: when deleted, we mark them as deleted but do not erase them, because they are legal and financial records. We keep them for [RETENTION PERIOD].",
-          "Everything else: [RETENTION PERIODS]",
+          "View and correct your information (Profile in the app).",
+          {
+            text: "**Delete your account and data:**",
+            children: [
+              "In the app: **Profile → Delete account**.",
+              "Without the app: {{https://kisan.kalakar.tv/apps/kisan-mitra/delete-account|/apps/kisan-mitra/delete-account}} (verify with your mobile number OTP), or email [FILL: email].",
+              "You submit a **request**. Our team reviews and completes it within **7 days**. Deletion cannot be undone. We cannot complete it while you have wallet balance, unpaid udhaar or dues, pending top-ups or withdrawals, or an open booking or order; these must be cleared first.",
+              "Only your **farmer** account is deleted. Accounts in other RKF apps are not affected.",
+            ],
+          },
+          "Withdraw consent by turning off camera, microphone or location permission.",
+          "Make a complaint (see section 10).",
         ],
       },
     ],
@@ -305,111 +212,46 @@ export const POLICY_SECTIONS: Section[] = [
     title: "Security",
     blocks: [
       {
-        type: "ul",
-        items: [
-          "Data between the app and our server is sent over HTTPS.",
-          "Login tokens are kept in secure storage on your phone.",
-          "Aadhaar and PAN numbers are encrypted in our database. KYC files are private.",
-          "Staff access depends on role and region. When a staff member’s rights change, their access tokens are revoked.",
-          "Wallet actions are protected by your transaction PIN.",
-          "We keep an audit trail of sensitive actions.",
-        ],
-      },
-      {
         type: "p",
-        text: "No system is 100% secure. Keep your phone, your OTP and your transaction PIN to yourself. If you think someone else has used your account, contact us at once.",
+        text: "Data is sent over HTTPS. Aadhaar and PAN numbers are stored encrypted. Access is limited to authorised people and significant changes are logged. No system is 100% secure. Never share your OTP or wallet PIN.",
       },
     ],
   },
   {
-    id: "your-choices",
-    title: "Your choices and rights",
-    blocks: [
-      {
-        type: "h3",
-        text: "What you can do in the app",
-      },
-      {
-        type: "ul",
-        items: [
-          "Edit your profile and addresses, and replace your KYC documents.",
-          "Change your language.",
-          "Delete a saved address, notifications, price alerts, and items in your cart or wishlist.",
-          "Refuse or turn off the camera, microphone and location permissions.",
-          "Log out.",
-          "Contact support through a ticket or the helpline.",
-        ],
-      },
-      {
-        type: "h3",
-        text: "What you can ask us to do",
-      },
-      {
-        type: "ul",
-        items: [
-          "Tell you what personal data we hold about you.",
-          "Correct data that is wrong.",
-          "Stop using optional data you gave us (Aadhaar, PAN, location, microphone, camera) by withdrawing your consent.",
-          "Delete your account and data. The app has no delete button yet. Follow the steps on {{the delete-account page|/apps/kisan-mitra/delete-account}}. Records we must keep by law are explained in section 10.",
-        ],
-      },
-      {
-        type: "p",
-        text: "To make a request, write to [PRIVACY CONTACT EMAIL]. You may have these rights under the Digital Personal Data Protection Act, 2023 and under the Information Technology Act, 2000 and the SPDI Rules, 2011, as they apply to us. [LEGAL REVIEW: confirm the rights wording]",
-      },
-    ],
-  },
-  {
-    id: "aadhaar-and-pan",
-    title: "Aadhaar and PAN",
-    blocks: [
-      {
-        type: "ul",
-        items: [
-          "Giving your Aadhaar and PAN is optional. You can add them at sign-up or later.",
-          "We use them only to check who you are. Kisan Mitra field staff and admins review them to verify you.",
-          "The numbers are stored encrypted. The app shows you back only the last 4 digits of your Aadhaar.",
-          "We do not share your Aadhaar or PAN with providers or with third parties. The photos of your documents are stored with Cloudinary as private files (see section 7).",
-          "To have them removed, write to [PRIVACY CONTACT EMAIL]. [CONFIRM: removal process]",
-        ],
-      },
-      {
-        type: "p",
-        text: "[LEGAL REVIEW: Aadhaar Act and UIDAI rules for private entities, before this section is published]",
-      },
-    ],
-  },
-  {
-    id: "outside-india",
-    title: "Transfer outside India",
+    id: "children",
+    title: "Children",
     blocks: [
       {
         type: "p",
-        text: "Cloudinary, Mapbox and Google may process data on servers outside India. Our own server is in [HOSTING COUNTRY/REGION]. [CONFIRM: where each provider processes data]",
+        text: "This app is not intended for anyone under 18.",
       },
     ],
   },
   {
     id: "changes",
-    title: "Changes to this policy",
+    title: "Changes",
     blocks: [
       {
         type: "p",
-        text: "If we change this policy, we will put the new version on this page and change the “Last updated” date at the top. [CONFIRM: also notify users inside the app?]",
+        text: "If we change this policy we will publish the new version in the app and on this page and update the effective date.",
       },
     ],
   },
   {
-    id: "contact",
-    title: "Contact and grievance",
+    id: "contact-and-grievances",
+    title: "Contact and grievances",
     blocks: [
       {
-        type: "ul",
-        items: [
-          "[LEGAL ENTITY NAME], [REGISTERED ADDRESS]",
-          "Email: [PRIVACY CONTACT EMAIL]. Phone: [PHONE]",
-          "Grievance Officer: [NAME], [EMAIL]. We reply within [RESPONSE TIME].",
-        ],
+        type: "p",
+        text: "**Grievance Officer:** [FILL: name]",
+      },
+      {
+        type: "p",
+        text: "**Email:** [FILL]  **Phone:** [FILL]  **Address:** [FILL]",
+      },
+      {
+        type: "p",
+        text: "We respond within [FILL: suggested 30] days.",
       },
     ],
   },

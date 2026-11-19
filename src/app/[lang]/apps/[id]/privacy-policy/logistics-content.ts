@@ -15,7 +15,7 @@ import type { DataSafety, Section } from "../../../legal-ui";
 export const POLICY_TITLE = "[PLAY STORE APP NAME] — Privacy Policy";
 export const POLICY_UPDATED = "[DATE]";
 export const POLICY_INTRO =
-  "This policy is for the Transporter app, for vehicle owners and drivers. Using another Kisan Mitra app? See the {{Kisan Mitra farmer app policy|/apps/kisan-mitra/privacy-policy}} or the {{Machinery Rental app policy|/apps/machinery/privacy-policy}}.";
+  "This policy is for the Transporter app, for vehicle owners and drivers. Using another Kisan Mitra app? See the {{Kisan Mitra farmer app policy|/apps/kisan-mitra/privacy-policy}}, the {{Machinery Owner app policy|/apps/machinery/privacy-policy}} or the {{Storage Provider app policy|/apps/storage/privacy-policy}}.";
 
 /** Mirrors the Play Console "Data safety" form. Keep the two in sync. */
 export const DATA_SAFETY: DataSafety = {

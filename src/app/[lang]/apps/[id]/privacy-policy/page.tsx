@@ -17,7 +17,6 @@ import {
   POLICY_UPDATED as LOGISTICS_UPDATED,
 } from "./logistics-content";
 import {
-  DATA_SAFETY as KISAN_DATA_SAFETY,
   POLICY_INTRO as KISAN_INTRO,
   POLICY_SECTIONS as KISAN_SECTIONS,
   POLICY_TITLE as KISAN_TITLE,
@@ -29,6 +28,12 @@ import {
   POLICY_TITLE as MACHINERY_TITLE,
   POLICY_UPDATED as MACHINERY_UPDATED,
 } from "./machinery-content";
+import {
+  POLICY_INTRO as STORAGE_INTRO,
+  POLICY_SECTIONS as STORAGE_SECTIONS,
+  POLICY_TITLE as STORAGE_TITLE,
+  POLICY_UPDATED as STORAGE_UPDATED,
+} from "./storage-content";
 
 /**
  * Per-app privacy policy at /apps/<id>/privacy-policy. An app only has one if
@@ -40,6 +45,8 @@ type AppPolicy = {
   description: string;
   title: string;
   updated: string;
+  /** Label before the date. Defaults to "Last updated". */
+  dateLabel?: string;
   intro: string;
   /** Omit to leave the "Data safety" box off the page. */
   dataSafety?: DataSafety;
@@ -53,8 +60,8 @@ const POLICIES: Record<string, AppPolicy> = {
       "How the Kisan Mitra app collects, uses, shares and protects your information, and how to ask us to delete it.",
     title: KISAN_TITLE,
     updated: KISAN_UPDATED,
+    dateLabel: "Effective date",
     intro: KISAN_INTRO,
-    dataSafety: KISAN_DATA_SAFETY,
     sections: KISAN_SECTIONS,
   },
   logistics: {
@@ -76,8 +83,19 @@ const POLICIES: Record<string, AppPolicy> = {
       "How the RKF Machinery Owner app collects, uses, shares and protects your information, and how to ask us to delete it.",
     title: MACHINERY_TITLE,
     updated: MACHINERY_UPDATED,
+    dateLabel: "Effective date",
     intro: MACHINERY_INTRO,
     sections: MACHINERY_SECTIONS,
+  },
+  storage: {
+    metaTitle: "RKF Storage Provider App Privacy Policy · Kisan Mitra",
+    description:
+      "How the RKF Storage Provider app collects, uses, shares and protects your information, including the one-time location for your godown pin, and how to ask us to delete it.",
+    title: STORAGE_TITLE,
+    updated: STORAGE_UPDATED,
+    dateLabel: "Effective date",
+    intro: STORAGE_INTRO,
+    sections: STORAGE_SECTIONS,
   },
 };
 
@@ -119,6 +137,7 @@ export default async function AppPrivacyPolicyPage({
       lang={lang}
       title={policy.title}
       updated={policy.updated}
+      dateLabel={policy.dateLabel}
       intro={policy.intro}
       dataSafety={policy.dataSafety}
       sections={policy.sections}

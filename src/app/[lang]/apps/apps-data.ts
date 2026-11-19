@@ -46,7 +46,7 @@ export const APPS_META: AppMeta[] = [
   },
   {
     id: "storage",
-    status: "coming-soon",
+    status: "live",
     downloadUrl: {
       android: "https://api.rkf.co.in/downloads/storage-provider-app.apk",
     },
@@ -60,7 +60,7 @@ export const APPS_META: AppMeta[] = [
   },
   {
     id: "labor-provider",
-    status: "coming-soon",
+    status: "live",
     downloadUrl: {
       android: "https://api.rkf.co.in/downloads/man-power-app.apk",
     },
@@ -80,6 +80,7 @@ export const PRIVACY_POLICY_HREF: Record<string, string> = {
   logistics: "/apps/logistics/privacy-policy",
   // Served at /apps/machinery/..., not the app id (see privacy-policy/page.tsx).
   "machinery-rental": "/apps/machinery/privacy-policy",
+  storage: "/apps/storage/privacy-policy",
 };
 
 export const PLACEHOLDER_IMG = "/static/apps/placeholder.jpg";

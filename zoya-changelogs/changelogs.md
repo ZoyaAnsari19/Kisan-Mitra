@@ -213,3 +213,183 @@
 - The draft's Play Data Safety table was not put on the page (it is for the Play Console form).
 
 **Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [19-11-2026 12:26] — RKF Storage Provider app Privacy Policy and Delete Account pages
+
+**What changed:**
+- Added the RKF Storage Provider policy at `/apps/storage/privacy-policy` and the delete page at `/apps/storage/delete-account`, from the company's draft (package `com.rkfglobal.storage_provider`). English only; 10 sections, no "Data safety" box (the draft keeps that table for the Play form).
+- Differences from the Machinery Owner policy, as in the draft: one-time location (foreground only) for the godown's map pin, map tiles from Mapbox straight to the phone, place search through our server, godown goes inactive on deletion, and extra delete conditions (a farmer's goods still in the godown, suspended account).
+- Push notifications are not in the app yet (the Firebase / push branch is still to be merged), so the notification-token row and the Firebase Cloud Messaging point are marked `[CONFIRM]`; remove both if the policy goes live before that merge.
+- The "Privacy Policy" button now also shows on `/apps/storage`. The other three policy intros link to the Storage policy; sitemap updated. The Storage delete page uses the same `/apps/<id>/delete-account` route as the others (new config entry).
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/storage-content.ts` (new)
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/[id]/privacy-policy/kisan-mitra-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/logistics-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/machinery-content.ts`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx`
+- `src/app/[lang]/apps/apps-data.ts`
+- `src/app/sitemap.ts`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. Production server check: both Storage URLs 200 (no redirect under a Marathi cookie); `/mr/...` and `/apps/mandi/...` 404; button present on `/apps/storage` only of the checked pages (not `/apps/mandi`); no broken internal link across the eight legal pages; no Data safety box on the Storage policy.
+- The draft says the delete page verifies the mobile number by OTP, and that the app has Profile → Delete account. Neither exists (the delete page describes an email process); the in-app line is marked `[CONFIRM]`. The draft's internal screen name was left out of the public text.
+- The draft's claim that search logs hide location and text, and that Mapbox may receive latitude/longitude, are folded into one `[CONFIRM]`.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [19-11-2026 12:35] — /apps grid: "Coming Soon" pill replaced by the Download button on every card
+
+**What changed:**
+- `storage` and `labor-provider` (Man Power) are now `status: "live"` in `APPS_META`; both APK URLs already existed and respond 200. Their cards on `/apps` show a real "Download Now" link, and their detail pages show the Live badge and a real Download button.
+- SuperMart, Kisan Mitra Vaidya and the Staff app have no APK URL, so their cards show the same "Download Now" pill as a button without a link; clicking it flashes a small "Coming Soon" popup for 2 seconds (same behaviour as the detail-page button). No "Coming Soon" pill is left on the grid.
+- `GridDownloadLink` now takes an optional `href`; with it, it is a download link, without it a popup button. The staff-app card (which had its own pill) uses it too.
+
+**Files touched:**
+- `src/app/[lang]/apps/GridDownloadLink.tsx`
+- `src/app/[lang]/apps/page.tsx`
+- `src/app/[lang]/apps/apps-data.ts`
+
+**API endpoints used:**
+- `HEAD https://api.rkf.co.in/downloads/<app>.apk` (6 existing APK URLs, only to confirm they respond; nothing downloaded)
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. Production server check on `/apps` and `/mr/apps`: 6 real APK links, 3 popup buttons, none of the old Coming Soon pills; all five former coming-soon detail pages return 200.
+- Kisan Mitra Vaidya's own description still says it is "a coming-soon preview, not a live consultation service" and SuperMart's FAQ mentions "coming soon" for card/UPI stock payment. The copy was not changed; it now sits beside a Download button.
+- Whether the Storage and Man Power APKs are release-ready was not checked; only that the URLs respond. The button look was not checked in a browser.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [19-11-2026 15:20] — Storage Provider privacy policy updated to the 19-11-2026 revised draft
+
+**What changed:**
+- Rewrote the Storage Provider policy text from the revised draft (checked against app and backend code on 19-11-2026). Push notifications are no longer mentioned: the notification-token row and the Firebase Cloud Messaging line are removed, since the app has no push today. The Google Fonts / ML Kit line is also removed, as the revised draft drops it.
+- Added: Hostinger as the host (server region is a placeholder), Cloudinary private storage with time-limited links, the full Mapbox explanation, WDRA/deed/lease/electricity-bill facility papers, bank-detail fields, the warnings (strikes) row, the rule that a farmer's number shows only for an accepted booking, and the "move the map by hand or search" fallback when location is off.
+- Delete-account section: the list of what blocks deletion now also includes pending top-ups or withdrawals. The same wording was added to the Storage delete-account page.
+- Removed the `[CONFIRM]` marks the revised draft settled (Aadhaar/PAN, bank proof, pin by hand, the farmer-sharing rule, the facility-inactive rule, children, "do not sell").
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/storage-content.ts`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. `/apps/storage/privacy-policy` and `/apps/storage/delete-account` return 200; `/mr/...` is 404.
+- Still open (placeholders): legal entity name, registered address, contact email and phone, effective date, SMS gateway, server country/region, retention periods (financial records, KYC), grievance officer name/email and reply days. Two `[CONFIRM]` remain: the in-app "Profile → Delete account" line (the app has no such feature yet) and "7 days".
+- The draft says the delete page verifies by mobile OTP. The delete page still describes an email process with its own `[CONFIRM]` for OTP, so the OTP wording on the policy is not yet true. The draft also says not to publish before the backend delete work is live.
+- The draft's Play Data Safety table is not part of the page; it was not added.
+- When the push branch is merged, add the notification-token row and the FCM line back (noted in the file's header comment).
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [19-11-2026 15:52] — Storage Provider policy: company draft used word for word
+
+**What changed:**
+- Replaced the Storage Provider policy content with the pasted RKF Storage Provider draft, kept as written (section titles, table rows, bullets, "[FILL]" placeholders). It replaces my earlier reworded version of the same draft.
+- Left out of the page: the "Notes for Moin" box and the Play Data Safety table (not part of the public policy). The "Using another Kisan Mitra app?" cross-links were dropped from this page; the draft has none.
+- `Rich` in `legal-ui.tsx` now supports `**bold**` (it may contain a `[PLACEHOLDER]`), because the draft uses bold. No existing text used it, so other legal pages are unchanged.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/storage-content.ts`
+- `src/app/[lang]/legal-ui.tsx`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All four policy pages return 200.
+- The draft's "In the app: Profile → Delete account" and "verify with your mobile number OTP" are now shown without `[CONFIRM]`, as in the draft. Neither exists yet (the app has no in-app delete; the delete page describes an email process), so do not publish before the backend delete work is live.
+- "[FILL: e.g. 8 years]" is shown as the draft's placeholder; "8 years" is an example, not a decision.
+- The page heading still says "Last updated:" (shared layout) where the draft says "Effective date".
+- Push, device token and Firebase are not mentioned, as in the draft (re-add after the push branch merges; see the file header).
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [19-11-2026 16:07] — Machinery Owner policy: company draft used word for word
+
+**What changed:**
+- Replaced the Machinery Owner policy content with the pasted RKF Machinery Owner draft (checked against the app and backend on 19-11-2026), kept as written: section titles, table rows, bullets, `[FILL]` placeholders and bold. It replaces the earlier version built from the older draft.
+- Left out of the page: the "Notes for Moin" box and the Play Data Safety table. The "Using another Kisan Mitra app?" cross-links were dropped from this page, as in the draft.
+- Delete-account page for Machinery: the "what happens to your machine listings" `[CONFIRM]` is now the draft's rule (listings made inactive, personal details and photos removed), and the "before you ask" list also includes a pending top-up or withdrawal and a suspended account.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/machinery-content.ts`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All four policy pages and four delete pages return 200; `/mr/...` is 404.
+- The draft's "In the app: Profile → Delete account" and "verify with your mobile number OTP" are shown without `[CONFIRM]`, as in the draft. Neither exists yet (the app has no in-app delete; the delete page describes an email process), so do not publish before the backend delete work is live.
+- Firebase Cloud Messaging and the notification-token row are kept, as in the draft; they must be removed if the developer's merged-manifest report shows Firebase fully absent (see the file header).
+- "[FILL: e.g. 8 years]" is the draft's placeholder; "8 years" is an example, not a decision. The page heading still says "Last updated:" where the draft says "Effective date".
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [19-11-2026 17:00] — Kisan Mitra policy: company draft used word for word
+
+**What changed:**
+- Replaced the Kisan Mitra (farmer app) policy content with the pasted draft (checked against the app and backend on 19-11-2026), kept as written: section titles, table rows, bullets, `[FILL]` placeholders and bold. It replaces the earlier 16-section version.
+- Left out of the page: the "Notes for Moin" box and the Play Data Safety table. The old "Data safety summary" box on this page and the "Using a partner app?" cross-links are gone too (the draft has neither), so `dataSafety` is no longer passed for Kisan Mitra in `privacy-policy/page.tsx`. The Transporter page still has its box.
+- Delete-account page for Kisan Mitra: the erased list now follows the draft (name, mobile number, address, photos, KYC and land documents, bank details), the "before you ask" list has unpaid udhaar or dues, pending top-ups or withdrawals, and open bookings or orders, and a line says only the farmer account is deleted.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/kisan-mitra-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All four policy and four delete pages return 200; `/mr/...` is 404; `/privacy-policy` still redirects to `/apps/kisan-mitra/privacy-policy`.
+- The draft's "In the app: Profile → Delete account" and "verify with your mobile number OTP" are shown without `[CONFIRM]`, as in the draft. Neither exists yet (the delete page describes an email process), so do not publish before they are live.
+- Weather (Open-Meteo, via our server, village coordinates) and Mapbox are in section 4 as in the draft. Push and Firebase are not mentioned (re-add after the push branch merges; see the file header).
+- "[FILL: e.g. 8 years]" is the draft's placeholder; "8 years" is an example, not a decision. The page heading still says "Last updated:" where the draft says "Effective date".
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [19-11-2026 17:32] — Policy layout now matches the drafts: Effective date, header lines, nested lists
+
+**What changed:**
+- Kisan Mitra, Machinery Owner and Storage Provider policies: the date line now reads "Effective date" (it was "Last updated"), and the App / Operator / Contact lines are shown as separate bold-labelled lines under the title, as in the drafts. The Transporter policy still says "Last updated".
+- "Who we share data with" and "Your rights and choices" in those three policies now use real nested bullets (service providers under "Service providers…", the delete steps under "Delete your account and data:"), as in the drafts, instead of separate blocks.
+- `legal-ui.tsx`: bullets can have an optional nested list, `PolicyDocument` takes an optional `dateLabel` and shows `intro` one line per newline. Text content of the policies is unchanged.
+
+**Files touched:**
+- `src/app/[lang]/legal-ui.tsx`
+- `src/app/[lang]/apps/[id]/privacy-policy/kisan-mitra-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/machinery-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/storage-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All four policy pages return 200.
+- Not checked in a browser: the look of the nested bullets and the header lines.
+- Still true: the draft's "Profile → Delete account" and the mobile-OTP check are not built yet; do not publish before they are live.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
