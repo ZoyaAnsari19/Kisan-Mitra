@@ -34,6 +34,31 @@ const nextConfig: NextConfig = {
         destination: "/apps/machinery/privacy-policy",
         permanent: false,
       },
+      // Same for Man Power: the site's app id is "labor-provider", the legal
+      // pages live at /apps/man-power/... (the URL given to the app).
+      {
+        source: "/apps/labor-provider/privacy-policy",
+        destination: "/apps/man-power/privacy-policy",
+        permanent: false,
+      },
+      {
+        source: "/apps/labor-provider/delete-account",
+        destination: "/apps/man-power/delete-account",
+        permanent: false,
+      },
+      // Mini Mart: listed on the site as "SuperMart" (app id "supermart-pos").
+      {
+        source: "/apps/supermart-pos/privacy-policy",
+        destination: "/apps/mini-mart/privacy-policy",
+        permanent: false,
+      },
+      // Staff App: the site's app id is "staff-app", the policy lives at
+      // /apps/staff/... (the URL given to the app).
+      {
+        source: "/apps/staff-app/privacy-policy",
+        destination: "/apps/staff/privacy-policy",
+        permanent: false,
+      },
     ];
   },
 };

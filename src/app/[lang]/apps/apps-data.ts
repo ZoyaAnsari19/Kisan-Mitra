@@ -81,6 +81,12 @@ export const PRIVACY_POLICY_HREF: Record<string, string> = {
   // Served at /apps/machinery/..., not the app id (see privacy-policy/page.tsx).
   "machinery-rental": "/apps/machinery/privacy-policy",
   storage: "/apps/storage/privacy-policy",
+  // Served at /apps/man-power/..., not the app id (see privacy-policy/page.tsx).
+  "labor-provider": "/apps/man-power/privacy-policy",
+  // The Mini Mart app is listed here as "SuperMart"; policy at /apps/mini-mart/...
+  "supermart-pos": "/apps/mini-mart/privacy-policy",
+  // Served at /apps/staff/..., not the app id (see privacy-policy/page.tsx).
+  "staff-app": "/apps/staff/privacy-policy",
 };
 
 export const PLACEHOLDER_IMG = "/static/apps/placeholder.jpg";

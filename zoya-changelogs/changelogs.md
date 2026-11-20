@@ -393,3 +393,112 @@
 - Still true: the draft's "Profile → Delete account" and the mobile-OTP check are not built yet; do not publish before they are live.
 
 **Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [20-11-2026 11:09] — RKF Man Power app Privacy Policy and Delete Account pages
+
+**What changed:**
+- New policy page at `/apps/man-power/privacy-policy`, written word for word from the company draft of 19-11-2026 (one app, two roles: labour contractors and workers). Same layout as the other drafts: "Effective date", App / Operator / Contact lines, nested bullets, `[FILL]` placeholders. The "Notes for Moin" box and the Play Data Safety table are not on the page.
+- New delete-account page at `/apps/man-power/delete-account` (the policy links to it). It follows the draft: 7 days, what blocks deletion (wallet balance, wages owed or unpaid, pending top-ups or withdrawals, an open job or dispute, suspension; for a contractor also workers still on the crew and open jobs), and only the requested role (contractor or worker) is removed.
+- The Man Power app's detail page (`/apps/labor-provider`) now shows the "Privacy Policy" button, linking to `/apps/man-power/privacy-policy`.
+- `/apps/labor-provider/privacy-policy` and `/apps/labor-provider/delete-account` redirect (307) to the `man-power` pages, as is done for Machinery. Both new pages are in the sitemap.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/man-power-content.ts` (new)
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx`
+- `src/app/[lang]/apps/apps-data.ts`
+- `src/app/sitemap.ts`
+- `next.config.ts`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All five policy and five delete pages return 200; `/mr/...` is 404; the English page is not redirected under a Marathi cookie; the button shows on `/apps/labor-provider` and not on `/apps/mandi`.
+- The draft's "Profile → Delete account" and the mobile-OTP check are shown without `[CONFIRM]`, as in the draft. Neither exists yet (the delete page describes an email process), so do not publish before the backend delete work is live.
+- From the draft's notes: the app has no age check, so a contractor could add someone under 18 although the policy says 18+; the contractor-added-worker OTP is treated as the worker's consent. Both need the lawyer.
+- Push, device token and Firebase are not mentioned (re-add after the push branch merges; see the file header). Look of the new pages not checked in a browser.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [20-11-2026 13:01] — RKF Logistics (Transporter) policy: company draft of 20-11-2026 used word for word
+
+**What changed:**
+- Replaced the Logistics policy (`/apps/logistics/privacy-policy`) with the pasted RKF Logistics draft, kept as written: 10 sections including "Location in this app", "Effective date", App / Operator / Contact lines, nested bullets and `[FILL]` placeholders. The old 17-section version, its "Data safety summary" box and the live-location section are replaced. The "Notes for Moin" box and the Play Data Safety table are not on the page. No policy page uses the Data-safety box any more.
+- Policy page title and metadata now say "RKF Logistics" instead of "Transporter".
+- Delete-account page for Logistics: heading "RKF Logistics — Delete your account" (the `[PLAY STORE APP NAME]` placeholder is gone), 7 days, vehicles made inactive, what blocks deletion (wallet balance, dues, pending top-ups or withdrawals, an open trip, suspension), only the transporter account is deleted. The short name in links and in the email subject is now "Logistics" (was "Transporter").
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/logistics-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All five policy and five delete pages return 200; `/mr/...` is 404.
+- Statements in this policy that are NOT true yet (from the draft's own notes), so do not publish until they are: (1) tracking continues in the background with a notification (the code is foreground-only; needs developer item A8, and Play's foreground-service declaration); (2) "trail points are deleted 90 days after delivery" (no purge job exists, trail points stay forever); (3) "Profile → Delete account" and the OTP check (the backend delete does not cover the transporter yet, and the site delete page is email-based).
+- Firebase Analytics is disclosed because the transporter build has the dependency; if the developer removes it, delete the Analytics row (section 2) and line (section 4). Push is not mentioned (no `firebase_messaging`). `READ_MEDIA_IMAGES` in the manifest is a Play risk, not a text change.
+- Look of the page not checked in a browser.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [20-11-2026 14:27] — RKF Mini Mart app Privacy Policy page
+
+**What changed:**
+- New policy page at `/apps/mini-mart/privacy-policy`, written from the company draft of 20-11-2026 (for a Mini Mart outlet's owner, store manager, cashier and delivery staff; covers their own data and the farmers' and customers' data they handle). Same layout as the other policies: "Effective date", App / Operator / Contact lines, nested bullets, `[FILL]` placeholders. The "Notes for Moin" box and the Play Data Safety table are not on the page.
+- Two section numbers in the draft were wrong and are fixed so readers are not sent to the wrong section: "make a complaint" now says section 11 (the draft said 10, which is "Changes") and "the data in sections 2 and 5" (the draft said 4, which is "How we use data").
+- The site lists this app as "SuperMart" (id `supermart-pos`), so its detail page now shows the "Privacy Policy" button linking to `/apps/mini-mart/privacy-policy`, and `/apps/supermart-pos/privacy-policy` redirects (307) there. The page is in the sitemap.
+- No delete-account page was made: the draft says there is no delete button; closure goes through the Super Store to RKF, or by writing to RKF.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/mini-mart-content.ts` (new)
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/apps-data.ts`
+- `src/app/sitemap.ts`
+- `next.config.ts`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All six policy pages return 200; `/mr/...` is 404; the button shows on `/apps/supermart-pos`, not on `/apps/mandi`; `/apps/mini-mart/delete-account` is 404 by design.
+- Assumption: the Mini Mart app is the site's "SuperMart" entry (the SuperMart description matches: stock from the Super Store, counter billing, farmers' orders). If that is wrong, move the `supermart-pos` entry in `PRIVACY_POLICY_HREF` and the redirect.
+- The draft's account-closure route (Super Store passes the request to RKF) has no screen in the Mini Mart or Super Store app yet; it works by phone or email until one is built. Play Console's "account deletion" question may need the lawyer or Play support.
+- No location, microphone or Mapbox (none in this app); no push or Analytics (not in this app). The Super Mini Mall / Super Store apps belong to another developer. Look of the page not checked in a browser.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [20-11-2026 15:35] — RKF Staff App Privacy Policy page
+
+**What changed:**
+- New policy page at `/apps/staff/privacy-policy`, written from the company draft of 20-11-2026 (for RKF's own field staff: VLE, VLM, TEO, DLO; covers their own data and the farmers' data they handle). Same layout as the other policies: "Effective date", App / Operator / Contact lines, nested bullets, `[FILL]` placeholders. The "Notes for Moin" box and the Play Data Safety table are not on the page. Wording kept as in the draft.
+- The site lists this app as "Staff App" (id `staff-app`), so its detail page now shows the "Privacy Policy" button linking to `/apps/staff/privacy-policy`, and `/apps/staff-app/privacy-policy` redirects (307) there. The page is in the sitemap.
+- No delete-account page was made: the draft says there is no delete button; RKF creates and closes staff accounts, staff write to HR or tell their supervisor.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/staff-content.ts` (new)
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/apps-data.ts`
+- `src/app/sitemap.ts`
+- `next.config.ts`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All seven policy pages return 200; `/mr/...` is 404; the button shows on `/apps/staff-app`, not on `/apps/mandi`; `/apps/staff/delete-account` is 404 by design; Notes box not on the page.
+- Open `[FILL]`: effective date, legal entity, address, email, phone, SMS vendor, server region, retention years, identity-document retention, grievance officer, reply days.
+- Before the app goes live: bump the app's agreement version so staff see the Consent screen again; the app still has a placeholder Privacy screen with a fake email. The code of conduct and background-verification consent are separate documents HR must write.
+- The draft discloses location (one-time on check-in / visit, continuous only in the land-survey screen, foreground), microphone (voice notes), Firebase Cloud Messaging and Mapbox. Salary is deliberately not mentioned (no screen in the app). Look of the page not checked in a browser.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`

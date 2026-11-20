@@ -73,23 +73,25 @@ const APPS: Record<string, AppDeletion> = {
     removeOnRequest: "your Aadhaar or PAN",
   },
   logistics: {
-    heading: "[PLAY STORE APP NAME] — Delete your account",
-    appLabel: "Transporter app",
-    shortName: "Transporter",
+    heading: "RKF Logistics — Delete your account",
+    appLabel: "RKF Logistics app",
+    shortName: "Logistics",
     policyHref: "/apps/logistics/privacy-policy",
-    days: "[N]",
+    days: "7",
     erasedText:
-      "We delete your account and the personal data tied to it. [CONFIRM: list of what is erased — profile, documents and their photos, Aadhaar and PAN numbers, vehicles, driver and emergency-contact details, bank details, chats, tickets, trip trail and location points]",
+      "We delete or anonymise your personal data: your name, mobile number, address, photos, KYC documents and bank details. Your vehicles are made inactive, and their personal details and photos are removed.",
     financialRecords:
-      "Financial records: wallet, withdrawal and transfer records, and bank and transaction records.",
+      "Financial records: wallet, trips, fares, commission and payment records.",
     keepQuestion:
-      "what happens to any balance left in your wallet, and to completed trip records that also belong to the farmer",
+      "whether these records are kept without your name and mobile number",
+    beforeYouAsk: [
+      "If your wallet still has money, you have dues to pay, you have a top-up or withdrawal pending, you have an open trip, or your account is suspended, settle that first. We can delete your account only after that.",
+    ],
+    scopeNote:
+      "We delete only your transporter account. Accounts in other RKF services, such as Kisan Mitra, stay.",
     inAppActions: [
-      "Edit your profile and bank details.",
-      "Replace your documents.",
-      "Remove a vehicle.",
-      "Delete notifications.",
-      "Refuse or turn off location, camera and photo access in your phone’s settings. Trips still work without location. Only the sharing stops.",
+      "See your data and correct wrong information in your profile.",
+      "Turn off camera or location access in your phone’s settings. Photo and QR scan then stop working. Trips still work without location, but the farmer cannot follow the vehicle on the map.",
     ],
     removeOnRequest: "your Aadhaar, PAN or driving licence",
   },
@@ -143,6 +145,32 @@ const APPS: Record<string, AppDeletion> = {
       "Turn off camera or location access in your phone’s settings. The photo, QR and “use my location” features then stop working, and the rest of the app still works.",
     ],
     removeOnRequest: "your Aadhaar, PAN or other ID documents",
+  },
+  // Man Power: contractors and workers share one app. The policy and delete page
+  // live at /apps/man-power/..., not /apps/labor-provider/... (that redirects here).
+  "man-power": {
+    heading: "RKF Man Power — Delete your account",
+    appLabel: "RKF Man Power app",
+    shortName: "Man Power",
+    policyHref: "/apps/man-power/privacy-policy",
+    days: "7",
+    erasedText:
+      "We delete or anonymise your personal data: your name, mobile number, address, photos, KYC documents, bank details and home pin.",
+    financialRecords:
+      "Financial records: job, attendance, wage, wallet and payment records.",
+    keepQuestion:
+      "whether these records are kept without your name and mobile number",
+    beforeYouAsk: [
+      "If your wallet still has money, you have wages owed or unpaid, you have a top-up or withdrawal pending, you have an open job or dispute, or your account is suspended, settle that first. A contractor must also clear any workers still on the crew and any open jobs. We can delete your account only after that.",
+    ],
+    scopeNote:
+      "We delete only the role you ask us to delete, contractor or worker. Another role, or an account in another RKF app such as Kisan Mitra, stays.",
+    inAppActions: [
+      "See your data and correct wrong information in your profile. Your name, date of birth and mobile number cannot be changed in the app after verification; write to us to correct them.",
+      "A worker can leave a crew.",
+      "Turn off camera or location access in your phone’s settings. The photo, QR and “use my location” features then stop working, and the rest of the app still works.",
+    ],
+    removeOnRequest: "your Aadhaar or PAN",
   },
 };
 
