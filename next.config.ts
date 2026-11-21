@@ -59,6 +59,11 @@ const nextConfig: NextConfig = {
         destination: "/apps/staff/privacy-policy",
         permanent: false,
       },
+      {
+        source: "/apps/staff-app/delete-account",
+        destination: "/apps/staff/delete-account",
+        permanent: false,
+      },
     ];
   },
 };

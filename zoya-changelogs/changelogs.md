@@ -502,3 +502,60 @@
 - The draft discloses location (one-time on check-in / visit, continuous only in the land-survey screen, foreground), microphone (voice notes), Firebase Cloud Messaging and Mapbox. Salary is deliberately not mentioned (no screen in the app). Look of the page not checked in a browser.
 
 **Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [21-11-2026 15:30] — RKF Staff App: updated policy (in-app delete request) and new Delete Account page
+
+**What changed:**
+- Staff policy updated to the company's new draft of 21-11-2026 (word for word): staff now send a "Delete account" request from Profile in the app or from the web page; RKF's admin reviews every request. Section 6 got the "If your account is deleted" bullet (personal details removed, work records kept as "former staff" without a name); section 7 got "Delete your account" and "Correct your data" in place of the old "HR only, no delete button" line.
+- The draft's `[FILL: web URL]` is filled with the delete page `https://kisan.kalakar.tv/apps/staff/delete-account` (named in the draft's notes), shown as a link like in the other policies.
+- New page `/apps/staff/delete-account`, built with the existing delete-page template and values taken from the draft (what is removed, what is kept, hand-over of area, cash, stock and open work before approval). `/apps/staff-app/delete-account` redirects (307) there; the page is in the sitemap and the other delete pages now link to it.
+- The "Notes for Moin" box and the Play Data Safety table are not on the page.
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/staff-content.ts`
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx`
+- `src/app/sitemap.ts`
+- `next.config.ts`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All seven policy pages and six delete pages return 200; `/apps/mini-mart/delete-account` is 404 by design; `/mr/...` is 404; redirect 307 OK.
+- The draft says the text is true only once the backend and app part (developer prompt A10 and Part B, which adds vle, vlm, teo and dlo to the delete list) is live. Do not publish before that.
+- The delete page uses the shared template, so two lines do not match the new policy: it says the app "does not have a delete button yet" with an email and OTP process, and its fixed "KYC records" line sits under "What we keep" while the policy says identity documents are removed on deletion. Both need the company's wording. Days stay `[N]` (draft: suggested 30).
+- Still open `[FILL]` in the policy: effective date, legal entity, address, email, phone, SMS vendor, server region, retention years, identity-document retention, grievance officer, reply days. Look of the pages not checked in a browser.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`
+
+## [21-11-2026 17:27] — RKF Super Store app Privacy Policy and Delete Account pages
+
+**What changed:**
+- New policy page at `/apps/super-store/privacy-policy`, word for word from the company draft of 21-11-2026 (for a Super Store (distributor) owner and store manager). Same layout as the other policies: "Effective date", App / Operator / Contact lines, nested bullets, `[FILL]` / `[CONFIRM]` placeholders. The "Notes for Moin" box and the Play Data Safety table are not on the page. The draft's section numbers (6, 7, 10) were correct, nothing was changed.
+- Section 3 covers the Mini Mart owners' data the Super Store owner enters when registering a Mini Mart (name, mobile, email, address, DOB, Aadhaar, PAN, photos, franchise agreement) with the Mini Mart owner's own OTP as consent.
+- New page `/apps/super-store/delete-account` ("Close your shop account"), built with the existing delete-page template and values from the draft: owner only, request goes to RKF's admin, Mini Marts still supplied must be moved by RKF first. Policy links to it; the other delete pages now link to it too.
+- Both pages are in the sitemap.
+- No "Privacy Policy" button and no redirect were added: this app has no entry on the site's app list (the site's "SuperMart" entry is the Mini Mart app).
+
+**Files touched:**
+- `src/app/[lang]/apps/[id]/privacy-policy/super-store-content.ts` (new)
+- `src/app/[lang]/apps/[id]/privacy-policy/page.tsx`
+- `src/app/[lang]/apps/[id]/delete-account/page.tsx`
+- `src/app/sitemap.ts`
+
+**API endpoints used:**
+- —
+
+**Breaking change:** NO
+
+**Notes:**
+- `npm run lint`: 0 errors (existing warnings only). `npm run build`: passes. All eight policy pages and seven delete pages return 200; `/apps/mini-mart/delete-account` is 404 by design; `/mr/...` is 404.
+- The draft says the text is true only once the backend and app parts (developer prompt A10 and Part B) are live. Do not publish before that.
+- The draft's `[FILL: web URL]` is filled with `/apps/super-store/delete-account` (the URL named in the draft's notes), shown as a link like in the other policies.
+- The delete page uses the shared template, so its "does not have a delete button yet" line, the email + OTP steps and the fixed "KYC records" bullet under "What we keep" do not match the policy (which says the owner requests it in the app and personal details are removed). They need the company's wording. Days stay `[N]` (draft: suggested 30).
+- Open `[FILL]`: effective date, legal entity, address, email, phone, SMS vendor, server region, retention years, KYC retention, GST / invoice retention `[CONFIRM]` with the CA, grievance officer, reply days. Lawyer should review section 3 (third-party Aadhaar / PAN data). The Super Store app belongs to another developer. Look of the pages not checked in a browser.
+
+**Branch:** `zoya-kisan-mitra-add-privacy-policy`

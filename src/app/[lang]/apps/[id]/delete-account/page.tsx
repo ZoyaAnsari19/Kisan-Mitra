@@ -172,6 +172,56 @@ const APPS: Record<string, AppDeletion> = {
     ],
     removeOnRequest: "your Aadhaar or PAN",
   },
+  // Staff App: RKF's own field staff (VLE, VLM, TEO, DLO). The policy and delete
+  // page live at /apps/staff/... (the URL given to the app); /apps/staff-app/...
+  // redirects here. The admin reviews each request, so "before you ask" is about
+  // hand-over of work and cash.
+  staff: {
+    heading: "RKF Staff App — Delete your account",
+    appLabel: "RKF Staff App",
+    shortName: "Staff App",
+    policyHref: "/apps/staff/privacy-policy",
+    days: "[N]",
+    erasedText:
+      "We remove your name, mobile number, date of birth, address, Aadhaar, PAN, photos, signature and documents from the account, and the account can no longer be used to log in.",
+    financialRecords:
+      "Records of the work you did: attendance, visits, reports, approvals, wallet and audit entries. They stay as records of “former staff”, without your name.",
+    keepQuestion:
+      "whether these records are kept without your name and mobile number",
+    beforeYouAsk: [
+      "RKF’s admin reviews every request; it is not instant. Before it can be approved you must hand over your area, return cash and stock allocated to you, and finish open work. We tell you what is still pending.",
+    ],
+    inAppActions: [
+      "See your own information in Profile. To correct your name, date of birth, mobile number or documents, ask your supervisor or HR.",
+      "Turn off camera, microphone or location access in your phone’s settings. The related features then stop working, and the rest of the app still works.",
+    ],
+    removeOnRequest: "your documents",
+  },
+  // Super Store (distributor): only the owner can ask, and the request goes
+  // straight to RKF's admin (no Super Store above it). Mini Marts still supplied
+  // by this Super Store block the closure until RKF moves them.
+  "super-store": {
+    heading: "RKF Super Store — Close your shop account",
+    appLabel: "RKF Super Store app",
+    shortName: "Super Store",
+    policyHref: "/apps/super-store/privacy-policy",
+    days: "[N]",
+    erasedText:
+      "The shop is closed, and the owner and the store manager can no longer log in. Their name, mobile number, address, date of birth, Aadhaar, PAN and photos are removed from the accounts, as are the shop’s documents and photos. The data of Mini Mart owners you registered belongs to those Mini Marts and is not changed by your closure.",
+    financialRecords:
+      "Bills, stock, wallet and audit records. They stay without anyone’s name.",
+    keepQuestion:
+      "whether these records are kept without your name and mobile number",
+    beforeYouAsk: [
+      "Only the owner can send this request; the store manager asks the owner. RKF’s admin approves or rejects it, and it is not instant.",
+      "Before it can be approved the shop must settle stock, open requests, wallet balance and dues. Every Mini Mart you supply must first be moved by RKF to another Super Store or the RKF godown. We show what is still open.",
+    ],
+    inAppActions: [
+      "See and correct your information in Profile and Shop. The owner can edit shop and staff details; the store manager asks the owner to correct theirs.",
+      "Turn off camera access in your phone’s settings. The photo and QR scan features then stop working, and the rest of the app still works.",
+    ],
+    removeOnRequest: "your Aadhaar, PAN or shop documents",
+  },
 };
 
 function buildSections(a: AppDeletion): Section[] {

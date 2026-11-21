@@ -40,6 +40,12 @@ import {
   POLICY_UPDATED as MACHINERY_UPDATED,
 } from "./machinery-content";
 import {
+  POLICY_INTRO as SUPER_STORE_INTRO,
+  POLICY_SECTIONS as SUPER_STORE_SECTIONS,
+  POLICY_TITLE as SUPER_STORE_TITLE,
+  POLICY_UPDATED as SUPER_STORE_UPDATED,
+} from "./super-store-content";
+import {
   POLICY_INTRO as STAFF_INTRO,
   POLICY_SECTIONS as STAFF_SECTIONS,
   POLICY_TITLE as STAFF_TITLE,
@@ -144,16 +150,30 @@ const POLICIES: Record<string, AppPolicy> = {
   // Served at /apps/staff/... (not the site's app id "staff-app"): that is the
   // URL given to the app and the Play Console.
   // /apps/staff-app/privacy-policy redirects here (next.config.ts).
-  // It has no delete-account page: RKF creates and closes staff accounts (HR).
+  // Delete page: /apps/staff/delete-account (RKF's admin reviews each request).
   staff: {
     metaTitle: "RKF Staff App Privacy Policy · Kisan Mitra",
     description:
-      "How the RKF Staff App collects, uses, shares and protects the information of RKF field staff, including location for attendance and land survey, and the farmers' data they handle, and how to ask for an account to be closed.",
+      "How the RKF Staff App collects, uses, shares and protects the information of RKF field staff, including location for attendance and land survey, and the farmers' data they handle, and how to ask for an account to be deleted.",
     title: STAFF_TITLE,
     updated: STAFF_UPDATED,
     dateLabel: "Effective date",
     intro: STAFF_INTRO,
     sections: STAFF_SECTIONS,
+  },
+  // Super Store (distributor) app. It has no entry on the site's app list, so no
+  // "Privacy Policy" button in PRIVACY_POLICY_HREF; the page is reached by its
+  // URL (the one given to the app and the Play Console).
+  // Delete page: /apps/super-store/delete-account (owner only, RKF's admin approves).
+  "super-store": {
+    metaTitle: "RKF Super Store App Privacy Policy · Kisan Mitra",
+    description:
+      "How the RKF Super Store app collects, uses, shares and protects the information of Super Store owners and managers, and the Mini Mart owners' data they handle, and how to ask for a shop account to be closed.",
+    title: SUPER_STORE_TITLE,
+    updated: SUPER_STORE_UPDATED,
+    dateLabel: "Effective date",
+    intro: SUPER_STORE_INTRO,
+    sections: SUPER_STORE_SECTIONS,
   },
 };
 

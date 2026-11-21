@@ -12,12 +12,15 @@ import type { Section } from "../../../legal-ui";
  * farmers or the public; only staff registered by RKF can log in. Accounts are
  * created by a supervisor or admin, never self-registered.
  *
- * Account closure: there is NO delete button and NO delete-account page. RKF
- * creates and closes staff accounts; staff write to HR or tell their supervisor.
- * The backend delete list covers only farmer, machinery owner and storage owner.
- * For Play Console's "account deletion" question: accounts are created by RKF
- * for its own staff and closed by RKF; ask Play support or the lawyer if the
- * form insists on an in-app path.
+ * Account deletion (draft of 21-11-2026, replaces the earlier "HR only, no
+ * in-app delete"): staff send a "Delete account" REQUEST from Profile in the app,
+ * or from the page /apps/staff/delete-account. RKF's admin reviews every request;
+ * after hand-over of work and cash it removes the person's personal details and
+ * closes the account. This text is true only once the backend and app part of
+ * the developer prompt (A10 and Part B: vle, vlm, teo and dlo added to the
+ * backend DeletionRoles list) is live. DO NOT PUBLISH BEFORE THAT.
+ * For Play Console's "account deletion" question: give the web URL above and say
+ * the in-app path is Profile → Delete account.
  *
  * Location (from the code): a one-time GPS reading on check-in, field visit or
  * "use my location"; and a continuous position stream only in the land-survey
@@ -225,6 +228,7 @@ export const POLICY_SECTIONS: Section[] = [
         items: [
           "While you are engaged with RKF and your account is active.",
           "After your engagement ends, we keep your staff record, attendance, field-visit, report, audit and wallet records for **[FILL: e.g. 8 years]**, as employment, tax and accounting law and our audit needs require. Identity documents are kept for **[FILL]**.",
+          "**If your account is deleted** (section 7), your name, mobile number, date of birth, address, Aadhaar, PAN, photos, signature and documents are removed from the account, and the account can no longer be used to log in. The records of work you did (attendance, visits, reports, approvals, wallet and audit entries) are not erased: they stay as records of “former staff”, without your name, because farmers' records, accounts and audits depend on them.",
           "Records about farmers that you created (verifications, bookings, approvals) stay with the farmer's record; they show that an RKF staff member acted, and your personal details on them can be removed or anonymised after you leave where the law allows.",
         ],
       },
@@ -242,7 +246,8 @@ export const POLICY_SECTIONS: Section[] = [
         type: "ul",
         items: [
           "View your own information (Profile in the app). To correct your name, date of birth, mobile number or documents, ask your supervisor or HR.",
-          "**Close your account or ask for your data to be corrected or removed:** the app has no delete button because RKF creates and closes staff accounts. Write to HR at [FILL: email] or tell your supervisor. We will reply within [FILL: suggested 30] days. We may have to keep some records (section 6).",
+          "**Delete your account:** in the app, open Profile and choose **Delete account** to send a request (or use the page at {{https://kisan.kalakar.tv/apps/staff/delete-account|/apps/staff/delete-account}}). Because your account carries work, cash and farmers' records, **RKF's admin reviews every request; it is not instant.** Before it can be approved you must hand over your area, return cash and stock allocated to you, and finish open work; we tell you what is still pending. When approved, the removal in section 6 is carried out. We reply within [FILL: suggested 30] days. We may have to keep some records (section 6).",
+          "**Correct your data:** ask your supervisor or HR at [FILL: email].",
           "Turn off camera, microphone or location permission in your phone settings at any time. The related features then do not work; the rest of the app does.",
           "Make a complaint (see section 11).",
         ],
